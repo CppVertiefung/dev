@@ -12,30 +12,36 @@ TTime::TTime() {
 }
 
 TTime::TTime(unsigned char hour, unsigned char minute, unsigned char second) {
-    if (hour < 24 && hour >= 0)
-        this->hour = hour;
-    else
-        this->hour = 0;
-    if (minute < 60 && minute >= 0)
-        this->minute = minute;
-    else
-        this->minute = 0;
-    if (second < 60 && hour >= 0)
-        this->second = second;
-    else
-        this->second = 0;
+    setHour(hour);
+    setMinute(minute);
+    setSecond(second);
 }
 
 TTime::TTime(unsigned char hour, unsigned char minute) {
+    setHour(hour);
+    setMinute(minute);
+    setSecond(0);
+}
+
+void TTime::setHour(unsigned char hour) {
     if (hour < 24 && hour >= 0)
         this->hour = hour;
     else
         this->hour = 0;
+}
+
+void TTime::setMinute(unsigned char minute) {
     if (minute < 60 && minute >= 0)
         this->minute = minute;
     else
         this->minute = 0;
-    second = 0;
+}
+
+void TTime::setSecond(unsigned char second) {
+    if (second < 60 && second >= 0)
+        this->second = second;
+    else
+        this->second = 0;
 }
 
 void TTime::print() {

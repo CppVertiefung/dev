@@ -18,18 +18,25 @@
 #include <ttime.h>
 
 class TDate {
-    private:
-        int year;
-        unsigned char month;
-        unsigned char day;
+private:
+    int year;
+    unsigned char month;
+    unsigned char day;
 
-    public:
-        TDate();
-        TDate(unsigned char day, unsigned char month, int year);
-        void print();
-        void setCurrentDate();
+public:
+    TDate();
+    TDate(unsigned char day, unsigned char month, int year);
+
+    void setYear(int year);
+    void setMonth(unsigned char month);
+    void setDay(unsigned char day);
+    int getYear();
+    unsigned char getMonth();
+    unsigned char getDay();
+    
+    void print();
+    void setCurrentDate();
 };
 
 
 #endif /* TDATE_H */
-
