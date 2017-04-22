@@ -19,16 +19,21 @@
 #include <iostream>
 
 class TTime {
-    private:
-        unsigned char hour;
-        unsigned char minute;
-        unsigned char second;
-    public:
-        TTime();
-        TTime(unsigned char hour, unsigned char minute);
-        TTime(unsigned char hour, unsigned char minute, unsigned char second);
-        void print();
-        void setCurrentTime();
+private:
+    unsigned char hour;
+    unsigned char minute;
+    unsigned char second;
+public:
+    TTime();
+    TTime(unsigned char hour, unsigned char minute);
+    TTime(unsigned char hour, unsigned char minute, unsigned char second);
+    
+    void setSecond(unsigned char second);
+    void setMinute(unsigned char minute);
+    void setHour(unsigned char hour);
+    
+    void print();
+    void setCurrentTime();
 };
 
 #endif /* TTIME_H */
