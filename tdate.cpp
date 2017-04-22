@@ -11,15 +11,39 @@ TDate::TDate() {
 }
 
 TDate::TDate(unsigned char day, unsigned char month, int year) {
+    setYear(year);
+    setMonth(month);
+    setDay(day);
+}
+
+void TDate::setYear(int year) {
     this->year = year;
+}
+
+void TDate::setMonth(unsigned char month) {
     if (month <= 12 && month > 0)
         this->month = month;
     else
         this->month = 1;
+}
+
+void TDate::setDay(unsigned char day) {
     if (day <= 31 && day > 0)
         this->day = day;
     else
         this->day = 1;
+}
+
+int TDate::getYear() {
+    return year;
+}
+
+unsigned char TDate::getMonth() {
+    return month;
+}
+
+unsigned char TDate::getDay() {
+    return day;
 }
 
 void TDate::print() {
@@ -32,8 +56,11 @@ void TDate::setCurrentDate() {
 
     time(&t);
     now = localtime(&t);
-    
+
     year = 1900 + now->tm_year;
-    month = (unsigned char)now->tm_mon + 1;
-    day = (unsigned char)now->tm_mday;
+    month = (unsigned char) now->tm_mon + 1;
+    day = (unsigned char) now->tm_mday;
 }
+
+
+
