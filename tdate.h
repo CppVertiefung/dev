@@ -15,7 +15,7 @@
 #define TDATE_H
 
 #include <stdio.h>
-#include <ttime.h>
+#include "ttime.h"
 
 class TDate {
 private:
