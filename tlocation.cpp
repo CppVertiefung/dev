@@ -6,6 +6,8 @@
  */
 
 #include "tlocation.h"
+
+using namespace std;
  
 TLocation::TLocation()
 {
@@ -13,33 +15,33 @@ TLocation::TLocation()
 	setRack("Fach zum Einsortieren");
 }
 
-TLocation::TLocation(std::string section, std::string rack)
+TLocation::TLocation(string section, string rack)
 {
 	setSection(section);
 	setRack(rack);
 }	
 
-void TLocation::setSection(std::string section)
+void TLocation::setSection(string section)
 {
 	this->section = section;
 }
 
-void TLocation::setRack(std::string rack)
+void TLocation::setRack(string rack)
 {
 	this->rack = rack;
 }
 
-std::string TLocation::getSection()
+string TLocation::getSection()
 {
 	return section;
 }
 
-std::string TLocation::getRack()
+string TLocation::getRack()
 {
 	return rack;
 }
 
 void TLocation::print()
 {
-	printf("Abt.: %s; Regal: %s", section, rack);
+	printf("Abt.: %s; Regal: %s", section.c_str(), rack.c_str());
 }

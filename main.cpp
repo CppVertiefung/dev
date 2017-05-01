@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
+using namespace std;            // gilt dann auch fuer alle .h files
 
 #include "tlocation.h"
 #include "taddress.h"

@@ -7,18 +7,18 @@
 
 #include "tperson.h"
 
+using namespace std;
+
 //TPerson::TPerson()
 //{
 //}
 
-TPerson::TPerson(std::string name, TAddress address, TDate birth)
+TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth)
 {
 	setName(name);
-	setAddress(address);
-	setBirth(birth);
 }
 
-void TPerson::setName(std::string name)
+void TPerson::setName(string name)
 {
 	this->name = name;
 }
@@ -33,7 +33,7 @@ void TPerson::setBirth(TDate birth)
 	this->birth = birth;
 }
 
-std::string TPerson::getName()
+string TPerson::getName()
 {
 	return name;
 }
@@ -50,7 +50,7 @@ TDate TPerson::getBirth()
 	 
 void TPerson::print()
 {
-	printf("%s\n", name);
+	printf("%s\n", name.c_str());
 	address.print();
 	printf("* ");
 	birth.print();

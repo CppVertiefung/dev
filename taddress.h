@@ -11,29 +11,31 @@
 #include <stdio.h>
 #include <string>
 
-class TAddress
-{
+namespace std {
+
+    class TAddress {
     private:
-        std::string street;
-        std::string number;
-        std::string zipcode;
-        std::string town;
+        string street;
+        string number;
+        string zipcode;
+        string town;
 
     public:
-//        TAddress();
-        TAddress(std::string street, std::string number, std::string zipcode, std::string town);
+        //        TAddress();
+        TAddress(string street, string number, string zipcode, string town);
 
-        void setStreet(std::string street);
-        void setNumber(std::string number);
-        void setZipcode(std::string zipcode);
-        void setTown(std::string town);
-        std::string getStreet();
-        std::string getNumber();
-        std::string getZipcode();
-        std::string getTown();
+        void setStreet(string street);
+        void setNumber(string number);
+        void setZipcode(string zipcode);
+        void setTown(string town);
+        string getStreet();
+        string getNumber();
+        string getZipcode();
+        string getTown();
 
         void print();
-};
+    };
 
+} // std
 
 #endif /* TADDRESS_H */
