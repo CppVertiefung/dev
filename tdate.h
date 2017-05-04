@@ -14,8 +14,9 @@
 #ifndef TDATE_H
 #define TDATE_H
 
-#include "ttime.h"
 #include <stdio.h>
+#include "ttime.h"
+
 
 class TDate {
     private:

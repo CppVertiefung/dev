@@ -1,4 +1,4 @@
- /* 
+/* 
  * File:   taddress.cpp
  * Author: phil
  *
@@ -13,45 +13,37 @@ using namespace std;
 //{
 //}
 
-TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth)
-{
-	setName(name);
+TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth) {
+    setName(name);
 }
 
-void TPerson::setName(string name)
-{
-	this->name = name;
+void TPerson::setName(string name) {
+    this->name = name;
 }
 
-void TPerson::setAddress(TAddress address)
-{
-	this->address = address;
+void TPerson::setAddress(TAddress address) {
+    this->address = address;
 }
 
-void TPerson::setBirth(TDate birth)
-{
-	this->birth = birth;
+void TPerson::setBirth(TDate birth) {
+    this->birth = birth;
 }
 
-string TPerson::getName()
-{
-	return name;
+string TPerson::getName() {
+    return name;
 }
 
-TAddress TPerson::getAddress()
-{
-	return address;
+TAddress TPerson::getAddress() {
+    return address;
 }
 
-TDate TPerson::getBirth()
-{
-	return birth;
+TDate TPerson::getBirth() {
+    return birth;
 }
-	 
-void TPerson::print()
-{
-	printf("%s\n", name.c_str());
-	address.print();
-	printf("* ");
-	birth.print();
+
+void TPerson::print() {
+    printf("%s\n", name.c_str());
+    address.print();
+    printf("* ");
+    birth.print();
 }

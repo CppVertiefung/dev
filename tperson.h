@@ -28,6 +28,7 @@ namespace std {
         void setName(string name);
         void setAddress(TAddress address);
         void setBirth(TDate birth);
+
         string getName();
         TAddress getAddress();
         TDate getBirth();
