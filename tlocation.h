@@ -8,23 +8,28 @@
 #ifndef TLOCATION_H
 #define TLOCATION_H
 
+#include <stdio.h>
 #include <string>
+#include <iomanip>
 
-class TLocation
-{private:
-	string section;
-	string rack;
-	
-public:
-	TLocation();
-	TLocation(string section, string rack);
-	
-	void setSection(string section);
-	void setRack(string rack);
-	string getSection();
-	string getRack();
-	
-	void print();
-};
+namespace std {
+
+    class TLocation {
+    private:
+        string section;
+        string rack;
+
+    public:
+//        TLocation();
+        TLocation(string section, string rack);
+
+        void setSection(string section);
+        void setRack(string rack);
+        string getSection();
+        string getRack();
+
+        void print();
+    };
+}
 
 #endif /* TLOCATION_H */

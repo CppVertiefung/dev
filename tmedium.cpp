@@ -11,8 +11,7 @@
  * Created on 3. Mai 2017, 21:18
  */
 
-#include <qt/QtCore/qstring.h>
-#include <iomanip>
+//#include <qt/QtCore/qstring.h>
 
 #include "tmedium.h"
 
@@ -25,11 +24,17 @@ TMedium::TMedium(string title, string signature, TLocation location, int ageRest
 }
 
 TMedium::~TMedium() {
-    
+    printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
 }
 
 void TMedium::print() {
-
+    printf("Titel:      %s\n", title.c_str());
+    printf("Signatur:   %s\n", signature.c_str());
+    printf("Ort:        ");
+    location.print();
+    printf("\n");
+    printf("FSK:        %i\n", ageRestriction);
+    printf("Status:     %s\n", getStatus().c_str());
 }
 
 void TMedium::setTitle(string title) {
@@ -78,5 +83,7 @@ string TMedium::getStatus() {
             return "reserved";
         case Status::borrowed:
             return "borrowed";
+        default:
+            return "ERROR TMedium::getStatus()";
     }
 }

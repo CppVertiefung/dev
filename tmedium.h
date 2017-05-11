@@ -15,8 +15,9 @@
 #define TMEDIUM_H
 
 #include <string>
-#include "tlocation.h"
+#include <iomanip>
 
+#include "tlocation.h"
 
 
 namespace std {
@@ -37,7 +38,7 @@ namespace std {
         };
 
         Status status;
-        TMedium(string title, string signature, TLocation location, int altersfreigabe, Status status);
+        TMedium(string title, string signature, TLocation location, int ageRestriction, Status status);
         ~TMedium();
 
         void print();

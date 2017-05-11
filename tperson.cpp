@@ -20,6 +20,10 @@ TPerson::TPerson(string name, TAddress address, TDate birth) : address(address),
     setName(name);
 }
 
+TPerson::~TPerson() {
+    printf("Die Person '%s' wird vernichtet!\n", name.c_str());
+}
+
 void TPerson::setName(string name) {
     this->name = name;
 }

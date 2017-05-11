@@ -32,6 +32,7 @@ namespace std {
     public:
         TLibrary(string name, TAddress address, TPerson *manager);
         void add(TMedium* medium);
+        void print();
         
         void setName(string name);
         void setAddress(TAddress address);

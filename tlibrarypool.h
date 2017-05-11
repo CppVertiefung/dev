@@ -16,6 +16,7 @@
 
 #include <string>
 #include <vector>
+#include <iomanip>
 #include "tperson.h"
 #include "tlibrary.h"
 
@@ -32,6 +33,10 @@ namespace std {
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
+        void setName(string name);
+        
+        string getName();
+        
     };
 
 }
