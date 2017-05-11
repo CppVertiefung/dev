@@ -8,7 +8,9 @@
 #ifndef TLOCATION_H
 #define TLOCATION_H
 
+#include <stdio.h>
 #include <string>
+#include <iomanip>
 
 namespace std {
 
@@ -18,7 +20,7 @@ namespace std {
         string rack;
 
     public:
-        TLocation();
+//        TLocation();
         TLocation(string section, string rack);
 
         void setSection(string section);
@@ -28,7 +30,6 @@ namespace std {
 
         void print();
     };
-
-} //std
+}
 
 #endif /* TLOCATION_H */

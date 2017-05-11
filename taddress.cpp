@@ -5,9 +5,9 @@
  * Created on 25. April 2017, 23:00
  */
 
-#include "taddress.h"
-
 using namespace std;
+
+#include "taddress.h"
 
 //TAddress::TAddress()
 //{}

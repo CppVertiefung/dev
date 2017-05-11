@@ -1,57 +1,57 @@
- /* 
+/* 
  * File:   taddress.cpp
  * Author: phil
  *
  * Created on 25. April 2017, 23:38
  */
-
+ 
+#include <string>
+#include <stdio.h>
+#include "tdate.h"
+#include "taddress.h"
 #include "tperson.h"
 
 using namespace std;
 
-//TPerson::TPerson()
-//{
-//}
+//TPerson()
+//{}
 
-TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth)
-{
-	setName(name);
+TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth) {
+    setName(name);
 }
 
-void TPerson::setName(string name)
-{
-	this->name = name;
+TPerson::~TPerson() {
+    printf("Die Person '%s' wird vernichtet!\n", name.c_str());
 }
 
-void TPerson::setAddress(TAddress address)
-{
-	this->address = address;
+void TPerson::setName(string name) {
+    this->name = name;
 }
 
-void TPerson::setBirth(TDate birth)
-{
-	this->birth = birth;
+void TPerson::setAddress(TAddress address) {
+    this->address = address;
 }
 
-string TPerson::getName()
-{
-	return name;
+void TPerson::setBirth(TDate birth) {
+    this->birth = birth;
 }
 
-TAddress TPerson::getAddress()
-{
-	return address;
+string TPerson::getName() {
+    return name;
 }
 
-TDate TPerson::getBirth()
-{
-	return birth;
+TAddress TPerson::getAddress() {
+    return address;
 }
-	 
-void TPerson::print()
-{
-	printf("%s\n", name.c_str());
-	address.print();
-	printf("* ");
-	birth.print();
+
+TDate TPerson::getBirth() {
+    return birth;
+}
+
+void TPerson::print() {
+  //printf("%s\n", name);
+    printf("%s\n", name.c_str());
+    address.print();
+    printf("* ");
+    birth.print();
 }
