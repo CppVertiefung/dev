@@ -4,18 +4,23 @@
  *
  * Created on 25. April 2017, 23:38
  */
-
+ 
+#include <string>
+#include <stdio.h>
+#include "tdate.h"
+#include "taddress.h"
 #include "tperson.h"
 
 using namespace std;
 
-//TPerson::TPerson()
-//{
-//}
+TPerson()
+{}
 
-TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth)
+TPerson(string name, TAddress address, TDate birth)
 {
-	setName(name);
+	setName(string name);
+	setAddress(TAddress address);
+	setBirth(TDate birth);
 }
 
 void TPerson::setName(string name)
@@ -50,7 +55,7 @@ TDate TPerson::getBirth()
 	 
 void TPerson::print()
 {
-	printf("%s\n", name.c_str());
+	printf("%s\n", name);
 	address.print();
 	printf("* ");
 	birth.print();

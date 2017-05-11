@@ -10,25 +10,21 @@
 
 #include <string>
 
-namespace std {
-
-    class TLocation {
-    private:
-        string section;
-        string rack;
-
-    public:
-        TLocation();
-        TLocation(string section, string rack);
-
-        void setSection(string section);
-        void setRack(string rack);
-        string getSection();
-        string getRack();
-
-        void print();
-    };
-
-} //std
+class TLocation
+{private:
+	string section;
+	string rack;
+	
+public:
+	TLocation();
+	TLocation(string section, string rack);
+	
+	void setSection(string section);
+	void setRack(string rack);
+	string getSection();
+	string getRack();
+	
+	void print();
+};
 
 #endif /* TLOCATION_H */
