@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <iomanip>
 
 namespace std {
 
@@ -21,7 +22,7 @@ namespace std {
         string town;
 
     public:
-        //        TAddress();
+        //    TAddress();
         TAddress(string street, string number, string zipcode, string town);
 
         void setStreet(string street);
@@ -36,6 +37,6 @@ namespace std {
         void print();
     };
 
-} // std
+} // namespace std
 
 #endif /* TADDRESS_H */

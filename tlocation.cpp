@@ -8,40 +8,34 @@
 #include "tlocation.h"
 
 using namespace std;
- 
-TLocation::TLocation()
-{
-	setSection("Buero");
-	setRack("Fach zum Einsortieren");
+
+//TLocation()
+//{
+//	setSection("Buero");
+//	setRack("Fach zum Einsortieren");
+//}
+
+TLocation::TLocation(string section, string rack) {
+    setSection(section);
+    setRack(rack);
 }
 
-TLocation::TLocation(string section, string rack)
-{
-	setSection(section);
-	setRack(rack);
-}	
-
-void TLocation::setSection(string section)
-{
-	this->section = section;
+void TLocation::setSection(string section) {
+    this->section = section;
 }
 
-void TLocation::setRack(string rack)
-{
-	this->rack = rack;
+void TLocation::setRack(string rack) {
+    this->rack = rack;
 }
 
-string TLocation::getSection()
-{
-	return section;
+string TLocation::getSection() {
+    return section;
 }
 
-string TLocation::getRack()
-{
-	return rack;
+string TLocation::getRack() {
+    return rack;
 }
 
-void TLocation::print()
-{
-	printf("Abt.: %s; Regal: %s", section.c_str(), rack.c_str());
+void TLocation::print() {
+    printf("Abt.: %s; Regal: %s", section.c_str(), rack.c_str());
 }
