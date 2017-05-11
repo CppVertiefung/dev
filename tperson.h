@@ -11,25 +11,29 @@
 #include <string>
 #include "taddress.h"
 #include "tdate.h"
- 
-class TPerson
-{private:
-	string name;
-	TAddress address;
-	TDate birth;
-	
-public:
-	TPerson();
-	TPerson(string name, TAddress address, TDate birth);
-	
-	void setName(string name);
-	void setAddress(TAddress address);
-	void setBirth(TDate birth);
-	string getName();
-	TAddress getAddress();
-	TDate getBirth();
-	 
-	void print();
-};
 
+namespace std {
+
+    class TPerson {
+    private:
+        string name;
+        TAddress address;
+        TDate birth;
+
+    public:
+        //	TPerson();
+        TPerson(string name, TAddress address, TDate birth);
+
+        void setName(string name);
+        void setAddress(TAddress address);
+        void setBirth(TDate birth);
+
+        string getName();
+        TAddress getAddress();
+        TDate getBirth();
+
+        void print();
+    };
+
+} // std
 #endif /* TPERSON_H */
