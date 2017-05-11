@@ -4,21 +4,23 @@
  *
  * Created on 26. April 2017, 00:05
  */
-
+ 
+#include <string>
+#include <stdio.h>
 #include "tlocation.h"
-
+ 
 using namespace std;
  
-TLocation::TLocation()
+TLocation()
 {
 	setSection("Buero");
 	setRack("Fach zum Einsortieren");
 }
 
-TLocation::TLocation(string section, string rack)
+TLocation(string section, string rack);
 {
-	setSection(section);
-	setRack(rack);
+	setSection(string section);
+	setRack(string rack);
 }	
 
 void TLocation::setSection(string section)
@@ -43,5 +45,5 @@ string TLocation::getRack()
 
 void TLocation::print()
 {
-	printf("Abt.: %s; Regal: %s", section.c_str(), rack.c_str());
+	printf("Abt.: %s; Regal: %s", section, rack);
 }
