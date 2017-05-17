@@ -30,7 +30,6 @@ namespace std {
         void load(ifstream stream);
         string getSection();
         string getRack();
-
         void print();
     };
 }

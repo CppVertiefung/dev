@@ -40,6 +40,5 @@ namespace std {
         void print();
     };
 
-} // namespace std
-
+}
 #endif /* TADDRESS_H */

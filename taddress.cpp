@@ -43,7 +43,7 @@ void TAddress::load(ifstream stream){
         printf("Something weng wrong!!!");
     }
 }
-TAddress::parseLine(line) {
+string TAddress::parseLine(string line) {
     if (string slash = line.find("/")){
         int endtag=line.find(">");
         line.erase(0,slash);
