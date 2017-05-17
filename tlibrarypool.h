@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tlibrarypool.h
  * Author: gabriel
  *
@@ -28,15 +28,19 @@ namespace std {
         TPerson *chief;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
+    protected:
+        string parseLine(string line);
     public:
         TLibraryPool(string name, TPerson* chief);
+		TLibraryPool(string filename);
+		void load(ifstream stream);
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
         void setName(string name);
-        
+
         string getName();
-        
+
     };
 
 }

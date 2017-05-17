@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   taddress.h
  * Author: phil
  *
@@ -20,6 +20,8 @@ namespace std {
         string number;
         string zipcode;
         string town;
+ protected:
+        string parseLine(string line);
 
     public:
         //    TAddress();
@@ -29,6 +31,7 @@ namespace std {
         void setNumber(string number);
         void setZipcode(string zipcode);
         void setTown(string town);
+		void load(ifstream stream);
         string getStreet();
         string getNumber();
         string getZipcode();

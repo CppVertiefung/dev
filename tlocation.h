@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   tlocation.h
  * Author: phil
  *
@@ -18,6 +18,8 @@ namespace std {
     private:
         string section;
         string rack;
+ protected:
+        string parseLine(string line);
 
     public:
 //        TLocation();
@@ -25,6 +27,7 @@ namespace std {
 
         void setSection(string section);
         void setRack(string rack);
+        void load(ifstream stream);
         string getSection();
         string getRack();
 

@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tmedium.cpp
  * Author: gabriel
- * 
+ *
  * Created on 3. Mai 2017, 21:18
  */
 
@@ -25,6 +25,49 @@ TMedium::TMedium(string title, string signature, TLocation location, int ageRest
 
 TMedium::~TMedium() {
     printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
+}
+
+void TMedium::load(ifstream stream){
+    string line,title,signature,status;
+    int age;
+    getline(stream,line);
+    string tag TMedium::parseLine(string line);
+    if (tag=="Medium"){
+        getline(stream,line);
+        title = TMedium::parseLine(string line);
+        getline(stream,line);
+        signature = TMedium::parseLine(string line);
+        TLocation location =TLocation::load(stream);
+        getline(stream,line);
+        age=atoi( = TMedium::parseLine(string line));
+        getline(stream,line);
+        status= TMedium::parseLine(string line);
+        TMedium::setTitle(title);
+        TMedium::setSignature(signature);
+        TMedium::setAgeRestriction(age);
+        getline(stream,line);
+    }else{
+        cout << "Something weng wrong!!!!" <<endl;
+    }
+}
+
+TMedium::parseLine(string line){
+    if (string slash =line.find("/")){
+        int endtag=line.find(">");
+        line.erase(0,slash);
+        int starttag=line.find("<");
+        int endtag=line.find(">");
+        int length=endtag - starttag;
+        string tag=line.substr(starttag,endtag);
+        return (tag);
+    }else{
+        int starttag=line.find("<");
+        int endtag=line.find(">");
+        int length=endtag - starttag;
+        string tag=line.substr(starttag,endtag);
+        return (tag);
+    }
+
 }
 
 void TMedium::print() {

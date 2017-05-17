@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tlibrary.h
  * Author: gabriel
  *
@@ -28,16 +28,17 @@ namespace std {
         TAddress address;
         TPerson *manager;
         vector<TMedium*> media;
-        
+    protected:
+        string parseLine(string line);
     public:
         TLibrary(string name, TAddress address, TPerson *manager);
         void add(TMedium* medium);
         void print();
-        
+
         void setName(string name);
         void setAddress(TAddress address);
         void setManager(TPerson *manager);
-        
+		void load(ifstream stream);
         string getName();
         TAddress getAddress();
         TPerson* getManager();

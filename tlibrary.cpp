@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tlibrary.cpp
  * Author: gabriel
- * 
+ *
  * Created on 3. Mai 2017, 21:17
  */
 
@@ -18,6 +18,40 @@ using namespace std;
 
 TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(address), manager(manager) {
     setName(name);
+}
+
+void TLibrary::load(ifstream stream){
+    string line;
+    getline(stream,line);
+    string tag TLibrary::parseLine(string line);
+    if (tag=="Library"){
+        //TODO: Kontrollmethode einfügen die ein Auslesen in Falscher Reihenfolge ermöglicht!
+        getline(stream,line);
+        string name TLibrary::parseLine(string line);
+        TLibrary::TLibrary(string name, TAddress::load(ifstream stream), TPerson::load(ifstream stream));
+        string name TLibrary::parseLine(string line);
+    }else{
+        cout << "Something weng wrong!!!!" <<endl;
+    }
+}
+
+TLibrary::parseLine(line) {
+    if (string slash =line.find("/")){
+        int endtag=line.find(">");
+        line.erase(0,slash);
+        int starttag=line.find("<");
+        int endtag=line.find(">");
+        int length=endtag - starttag;
+        string tag=line.substr(starttag,endtag);
+        return (tag);
+    }else{
+        int starttag=line.find("<");
+        int endtag=line.find(">");
+        int length=endtag - starttag;
+        string tag=line.substr(starttag,endtag);
+        return (tag);
+    }
+
 }
 
 void TLibrary::add(TMedium* medium) {
