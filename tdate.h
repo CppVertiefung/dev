@@ -14,9 +14,10 @@
 #ifndef TDATE_H
 #define TDATE_H
 
+#include <string>
 #include <stdio.h>
 #include "ttime.h"
-
+using namespace std;
 class TDate {
 private:
     int year;

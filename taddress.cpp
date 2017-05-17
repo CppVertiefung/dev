@@ -44,18 +44,16 @@ void TAddress::load(ifstream stream){
     }
 }
 string TAddress::parseLine(string line) {
-    if (string slash = line.find("/")){
+    if (int slash = line.find("/")){
         int endtag=line.find(">");
         line.erase(0,slash);
         int starttag=line.find("<");
-        int endtag=line.find(">");
-        int length=endtag - starttag;
+        endtag=line.find(">");
         string tag=line.substr(starttag,endtag);
         return (tag);
     }else{
         int starttag=line.find("<");
         int endtag=line.find(">");
-        int length=endtag - starttag;
         string tag=line.substr(starttag,endtag);
         return (tag);
     }
