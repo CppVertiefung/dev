@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tmedium.h
  * Author: gabriel
  *
@@ -28,6 +28,8 @@ namespace std {
         string signature;
         TLocation location;
         int ageRestriction;
+ protected:
+        string parseLine(string line);
     public:
 
         enum Status {
@@ -47,6 +49,7 @@ namespace std {
         void setLocation(TLocation location);
         void setAgeRestriction(int age);
         void setStatus(Status status);
+        void load(ifstream stream);
 
         string getTitle();
         string getSignature();

@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   taddress.cpp
  * Author: phil
  *
@@ -8,7 +8,8 @@
 using namespace std;
 
 #include "taddress.h"
-
+#include <stdio.h>
+#include <fstream>
 //TAddress::TAddress()
 //{}
 
@@ -22,7 +23,42 @@ TAddress::TAddress(string street, string number, string zipcode, string town) {
 void TAddress::setStreet(string street) {
     this->street = street;
 }
+void TAddress::load(ifstream stream){
+    string line;
+    getline(stream,line);
+    string tag= TAddress::parseLine(line);
+    if (tag=="Address"){
+        string street, number, zipcode, town;
+        getline(stream,line);
+        street = TAddress::parseLine( line);
+        getline(stream,line);
+        number= TAddress::parseLine( line);
+        getline(stream,line);
+        zipcode = TAddress::parseLine( line);
+        getline(stream,line);
+        town = TAddress::parseLine( line);
+        // replace by content of constructor        TAddress::TAddress(street,number,zipcode,town);
+        getline(stream,line);
+    }else{
+        printf("Something weng wrong!!!");
+    }
+}
+string TAddress::parseLine(string line) {
+    if (int slash = line.find("/")){
+        int endtag=line.find(">");
+        line.erase(0,slash);
+        int starttag=line.find("<");
+        endtag=line.find(">");
+        string tag=line.substr(starttag,endtag);
+        return (tag);
+    }else{
+        int starttag=line.find("<");
+        int endtag=line.find(">");
+        string tag=line.substr(starttag,endtag);
+        return (tag);
+    }
 
+}
 void TAddress::setNumber(string number) {
     this->number = number;
 }

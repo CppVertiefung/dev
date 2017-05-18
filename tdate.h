@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tdate.h
  * Author: gabriel
  *
@@ -14,14 +14,17 @@
 #ifndef TDATE_H
 #define TDATE_H
 
+#include <string>
 #include <stdio.h>
 #include "ttime.h"
-
+using namespace std;
 class TDate {
 private:
     int year;
     unsigned char month;
     unsigned char day;
+ protected:
+        string parseLine(string line);
 
 public:
     TDate();
@@ -30,10 +33,11 @@ public:
     void setYear(int year);
     void setMonth(unsigned char month);
     void setDay(unsigned char day);
+    void load(ifstream stream);
     int getYear();
     unsigned char getMonth();
     unsigned char getDay();
-    
+
     void print();
     void setCurrentDate();
 };
