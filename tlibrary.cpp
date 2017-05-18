@@ -12,7 +12,6 @@
  */
 
 #include "tlibrary.h"
-#include "tperson.h"
 
 using namespace std;
 
@@ -20,35 +19,37 @@ TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(ad
     setName(name);
 }
 
-void TLibrary::load(ifstream stream){
+void TLibrary::load(ifstream stream) {
     string line;
-    getline(stream,line);
-    string tag TLibrary::parseLine(string line);
-    if (tag=="Library"){
-        //TODO: Kontrollmethode einfügen die ein Auslesen in Falscher Reihenfolge ermöglicht!
-        getline(stream,line);
-        string name TLibrary::parseLine(string line);
-        TLibrary::TLibrary(string name, TAddress::load(ifstream stream), TPerson::load(ifstream stream));
-        string name TLibrary::parseLine(string line);
-    }else{
-        cout << "Something weng wrong!!!!" <<endl;
+    getline(stream, line);
+    string tag = TLibrary::parseLine(line);
+    if (tag == "Library") {
+        //TODO: Kontrollmethode einfï¿½gen die ein Auslesen in Falscher Reihenfolge ermï¿½glicht!
+        getline(stream, line);
+        string name = TLibrary::parseLine(line);
+        TAddress addr = new TAddress(TAddress::load(stream));
+        TPerson pers = TPerson(TPerson::load(stream));
+        TLibrary::TLibrary(name, addr, pers);
+        string name = TLibrary::parseLine(line);
+    } else {
+        cout << "Something weng wrong!!!!" << endl;
     }
 }
 
 TLibrary::parseLine(line) {
-    if (string slash =line.find("/")){
-        int endtag=line.find(">");
-        line.erase(0,slash);
-        int starttag=line.find("<");
-        int endtag=line.find(">");
-        int length=endtag - starttag;
-        string tag=line.substr(starttag,endtag);
+    if (string slash = line.find("/")) {
+        int endtag = line.find(">");
+        line.erase(0, slash);
+        int starttag = line.find("<");
+        int endtag = line.find(">");
+        int length = endtag - starttag;
+        string tag = line.substr(starttag, endtag);
         return (tag);
-    }else{
-        int starttag=line.find("<");
-        int endtag=line.find(">");
-        int length=endtag - starttag;
-        string tag=line.substr(starttag,endtag);
+    } else {
+        int starttag = line.find("<");
+        int endtag = line.find(">");
+        int length = endtag - starttag;
+        string tag = line.substr(starttag, endtag);
         return (tag);
     }
 

@@ -16,31 +16,38 @@
 
 #include <string>
 #include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <cstring>
+#include <ctime> //muss included sein da es sonst auf meinem Rechner nicht Kompiliert... Windoof halt -Tobias
+#include <fstream>
 #include "ttime.h"
-using namespace std;
-class TDate {
-private:
-    int year;
-    unsigned char month;
-    unsigned char day;
- protected:
+
+namespace std {
+
+    class TDate {
+    private:
+        int year;
+        unsigned char month;
+        unsigned char day;
+    protected:
         string parseLine(string line);
 
-public:
-    TDate();
-    TDate(unsigned char day, unsigned char month, int year);
+    public:
+        TDate();
+        TDate(unsigned char day, unsigned char month, int year);
 
-    void setYear(int year);
-    void setMonth(unsigned char month);
-    void setDay(unsigned char day);
-    void load(ifstream stream);
-    int getYear();
-    unsigned char getMonth();
-    unsigned char getDay();
+        void setYear(int year);
+        void setMonth(unsigned char month);
+        void setDay(unsigned char day);
+        void load(ifstream stream);
+        int getYear();
+        unsigned char getMonth();
+        unsigned char getDay();
 
-    void print();
-    void setCurrentDate();
-};
-
+        void print();
+        void setCurrentDate();
+    };
+}
 
 #endif /* TDATE_H */
