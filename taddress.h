@@ -1,8 +1,9 @@
-/*
+/* 
  * File:   taddress.h
  * Author: phil
  *
  * Created on 23. April 2017, 21:32
+ * Updated on 30. may 2017 by phil
  */
 
 #ifndef TADDRESS_H
@@ -20,8 +21,6 @@ namespace std {
         string number;
         string zipcode;
         string town;
- protected:
-        string parseLine(string line);
 
     public:
         //    TAddress();
@@ -31,7 +30,7 @@ namespace std {
         void setNumber(string number);
         void setZipcode(string zipcode);
         void setTown(string town);
-		void load(ifstream stream);
+		TAddress load(ifstream stream);
         string getStreet();
         string getNumber();
         string getZipcode();
@@ -40,5 +39,6 @@ namespace std {
         void print();
     };
 
-}
+} // namespace std
+
 #endif /* TADDRESS_H */

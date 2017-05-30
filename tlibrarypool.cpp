@@ -4,67 +4,75 @@
  * and open the template in the editor.
  */
 
-/*
+/* 
  * File:   tlibrarypool.cpp
  * Author: gabriel
- *
+ * 
  * Created on 4. Mai 2017, 13:56
+ * Updated on 30. may 2017 by phil
  */
 
 #include "tlibrarypool.h"
-#include <stdio.h>
+
 using namespace std;
 
-TLibraryPool::TLibraryPool(string name, TPerson* chief) : chief(chief) {
+TLibraryPool::TLibraryPool(string name, TPerson* chief){ // : chief(chief) 
     setName(name);
 }
-TLibraryPool::TLibraryPool(filename){
+
+TLibraryPool::TLibraryPool(string filename){
     FILE * input;
     string line;
-    input = fopen(filename,"r");
-    if (!input)
-    {
-        cout << "ERROR READING FILE!" <<endl;
-    }else
-    {
-        getline(input,line);
-        string test=parseLine(line);
-        if (test=="LibraryPool"){
-            TLibraryPool.load(input);
-        }
+    string tag;
+	if((input = fopen(filename, "r")) == NULL){
+        cout << "ERROR: Failed to open file." <<endl;
     }
-    fclose(input);
+	getline(input, line);
+	if (line.find("<LibraryPool>") != std::string::npos){
+		TLibraryPool::load(input);
+	}
+	fclose(input);
 }
-TLibraryPool::parseLine(line) {
-    if (string slash =line.find("/")){
-        int endtag=line.find(">");
-        line.erase(0,slash);
-        int starttag=line.find("<");
-        int endtag=line.find(">");
-        int length=endtag - starttag;
-        string tag=line.substr(starttag,endtag);
-        return tag;
-    }else{
-        int starttag=line.find("<");
-        int endtag=line.find(">");
-        int length=endtag - starttag;
-        string tag=line.substr(starttag,endtag);
-        return (tag);
-    }
 
+void TLibraryPool::load(ifstream stream){
+	string line;
+	do{
+		getline(stream, line);
+		if (stream.find("<Name>") != std::string::npos){
+			//this->name = TLibraryPool::parseLine(stream);
+		}
+		if (stream.find("<Chairman>") != std::string::npos){
+			getline(stream, line);
+			if (stream.find("<Person>") != std::string::npos){	
+				//this->chief = new TPerson::load(stream);
+			}
+		}
+		if (stream.find("<Library>") != std::string::npos){
+			//TLibraryPool::add(new TLibrary::load(stream));
+		}
+		if (stream.find("<Customer>") != std::string::npos){
+			if (stream.find("<Person>") != std::string::npos){
+				//TLibraryPool::add(new TPerson::load(stream));
+			}
+		}
+	}while(line.find("</LibraryPool>") == std::string::npos);
 }
-void TLibraryPool::load(ifstream stream) { //TODO: auslesen was als nächstes geadded wird und per while abarbeiten. darin mit switch case arbeiten
-    string line;
-    getline(stream,line);
-    string tag = TLibraryPool::parseLine(string line)
-    getline(stream,line);
-    TLibraryPool.TLibraryPool(string tag, TPerson::load)
-    getline(stream,line);
-    TLibrary::add(TLibrary::load(stream));
-    TLibrary::add(TLibrary::load(stream));
-    TLibrary::add(TPerson::load(stream));
-    TLibrary::add(TPerson::load(stream));
+
+string TLibraryPool::parseLine(line) {
+	int start;
+	int end;
+
+    if (line.find("/") != std::string::npos){
+        start = line.find(">") + 1;
+        end = line.find("</");
+        return line.substr(start, end - start);
+    }else{
+        start = line.find("<") + 1;
+        end = line.find(">");
+        return line.substr(start, end - start);
+    }
 }
+
 void TLibraryPool::add(TLibrary* library) {
     libraries.push_back(library);
 }
@@ -83,12 +91,15 @@ void TLibraryPool::print() {
         libraries.at(i)->print();
         printf("\n");
     }
-    printf("\nDer Buechereiverband hat %lu Kunden:\n", customers.size());
+    printf("\nDer Buechereiverband hat %lu Kunden:\n\n", customers.size());
     for (unsigned int i = 0; i < customers.size(); i++) {
         customers.at(i)->print();
         printf("\n");
     }
     printf("\n");
+    
+
+
 }
 
 void TLibraryPool::setName(string name) {

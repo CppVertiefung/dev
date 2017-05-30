@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 
-/*
+/* 
  * File:   tmedium.h
  * Author: gabriel
  *
  * Created on 3. Mai 2017, 21:18
+ * Updated on 30. may 2017 by phil
  */
 
 #ifndef TMEDIUM_H
@@ -16,6 +17,7 @@
 
 #include <string>
 #include <iomanip>
+#include <cstdlib>
 
 #include "tlocation.h"
 
@@ -23,23 +25,22 @@
 namespace std {
 
     class TMedium {
-    private:
-        string title;
-        string signature;
-        TLocation location;
-        int ageRestriction;
- protected:
-        string parseLine(string line);
-    public:
-
-        enum Status {
+	public:
+		enum Status {
             available,
             borrowed,
             ordered,
             reserved
         };
-
-        Status status;
+		
+    private:
+        string title;
+        string signature;
+        TLocation location;
+        int ageRestriction;
+		Status status;
+		
+    public:
         TMedium(string title, string signature, TLocation location, int ageRestriction, Status status);
         ~TMedium();
 
@@ -49,7 +50,7 @@ namespace std {
         void setLocation(TLocation location);
         void setAgeRestriction(int age);
         void setStatus(Status status);
-        void load(ifstream stream);
+		TMedium load(ifstream stream);
 
         string getTitle();
         string getSignature();

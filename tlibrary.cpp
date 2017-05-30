@@ -4,55 +4,44 @@
  * and open the template in the editor.
  */
 
-/*
+/* 
  * File:   tlibrary.cpp
  * Author: gabriel
- *
+ * 
  * Created on 3. Mai 2017, 21:17
  */
 
 #include "tlibrary.h"
+#include "tperson.h"
 
 using namespace std;
 
-TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(address), manager(manager) {
+TLibrary::TLibrary(string name, TAddress address, TPerson* manager){ //: address(address), manager(manager) 
     setName(name);
 }
 
-void TLibrary::load(ifstream stream) {
-    string line;
-    getline(stream, line);
-    string tag = TLibrary::parseLine(line);
-    if (tag == "Library") {
-        //TODO: Kontrollmethode einf�gen die ein Auslesen in Falscher Reihenfolge erm�glicht!
-        getline(stream, line);
-        string name = TLibrary::parseLine(line);
-        TAddress addr = new TAddress(TAddress::load(stream));
-        TPerson pers = TPerson(TPerson::load(stream));
-        TLibrary::TLibrary(name, addr, pers);
-        string name = TLibrary::parseLine(line);
-    } else {
-        cout << "Something weng wrong!!!!" << endl;
-    }
-}
-
-TLibrary::parseLine(line) {
-    if (string slash = line.find("/")) {
-        int endtag = line.find(">");
-        line.erase(0, slash);
-        int starttag = line.find("<");
-        int endtag = line.find(">");
-        int length = endtag - starttag;
-        string tag = line.substr(starttag, endtag);
-        return (tag);
-    } else {
-        int starttag = line.find("<");
-        int endtag = line.find(">");
-        int length = endtag - starttag;
-        string tag = line.substr(starttag, endtag);
-        return (tag);
-    }
-
+TLibrary * TLibrary::load(ifstream stream){
+	string line;
+	do{
+		getline(stream, line);
+		if (stream.find("<Name>") != std::string::npos){
+			//this->name = TLibraryPool::parseLine(stream);
+		}
+		if (stream.find("<Medium>") != std::string::npos){
+			getline(stream, line);
+			if (stream.find("<Date>") != std::string::npos){	
+				//TLibrary::add(new TMedium::load(stream));
+		}
+		if (stream.find("<Address>") != std::string::npos){
+			//this->address = TAddress::load(stream);
+		}
+		if (stream.find("<Manager>") != std::string::npos){
+			getline(stream, line);
+			if (stream.find("<Person>") != std::string::npos){	
+				//this->manager = new TPerson::load(stream);
+			}
+		}
+	}while(line.find("</Library>") == std::string::npos);
 }
 
 void TLibrary::add(TMedium* medium) {

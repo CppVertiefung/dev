@@ -6,7 +6,9 @@
 
 #include "tdate.h"
 
-using namespace std;
+TDate::TDate() {
+    setCurrentDate();
+}
 
 TDate::TDate(unsigned char day, unsigned char month, int year) {
     setYear(year);
@@ -14,55 +16,20 @@ TDate::TDate(unsigned char day, unsigned char month, int year) {
     setDay(day);
 }
 
-TDate::TDate() {
-    setCurrentDate();
-}
-
-string TDate::parseLine(string line) {
-    if (int slash = line.find("/")) {
-        int endtag = line.find(">");
-        line.erase(0, slash);
-        int starttag = line.find("<");
-        endtag = line.find(">");
-        int length = endtag - starttag;
-        string tag = line.substr(starttag, endtag);
-        return (tag);
-    } else {
-        int starttag = line.find("<");
-        int endtag = line.find(">");
-        int length = endtag - starttag;
-        string tag = line.substr(starttag, endtag);
-        return (tag);
-    }
-
-}
-
-void TDate::load(ifstream stream) {
-    string line;
-    getline(stream, line);
-    string tag = TDate::parseLine(line);
-    if (tag == "Birthday") {
-        getline(stream, line);
-        tag = TDate::parseLine(line);
-        if (tag == "Date") {
-            getline(stream, line);
-            int day = atoi(TDate::parseLine(line).c_str());
-            getline(stream, line);
-            int month = atoi(TDate::parseLine(line).c_str());
-            getline(stream, line);
-            int year = atoi(TDate::parseLine(line).c_str());
-            setYear(year);
-            setMonth(month);
-            setDay(day);
-            getline(stream, line);
-
-        } else {
-            cout << "Something weng wrong!!!" << endl;
-        }
-        getline(stream, line);
-    } else {
-        cout << "Something weng wrong!!!" << endl;
-    }
+TDate TDate::load(ifstream stream){
+	string line;
+	do{
+		getline(stream, line);
+		if (stream.find("<Day>") != std::string::npos){
+			//this->day = TLibraryPool::parseLine(stream);
+		}
+		if (stream.find("<Month>") != std::string::npos){
+			//this->month = TLibraryPool::parseLine(stream);
+		}
+		if (stream.find("<Year>") != std::string::npos){
+			//this->year = atoi(TLibraryPool::parseLine(stream));
+		}
+	}while(line.find("</Date>") == std::string::npos);
 }
 
 void TDate::setYear(int year) {

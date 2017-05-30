@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 
-/*
+/* 
  * File:   tlibrary.h
  * Author: gabriel
  *
  * Created on 3. Mai 2017, 21:17
+ * Updated on 30. may 2017 by phil
  */
 
 #ifndef TLIBRARY_H
@@ -28,17 +29,17 @@ namespace std {
         TAddress address;
         TPerson *manager;
         vector<TMedium*> media;
-    protected:
-        string parseLine(string line);
+        
     public:
         TLibrary(string name, TAddress address, TPerson *manager);
         void add(TMedium* medium);
         void print();
-
+        
         void setName(string name);
         void setAddress(TAddress address);
         void setManager(TPerson *manager);
-		void load(ifstream stream);
+		TLibrary load(ifstream stream);
+        
         string getName();
         TAddress getAddress();
         TPerson* getManager();

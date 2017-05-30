@@ -4,50 +4,42 @@
  * and open the template in the editor.
  */
 
-/*
+/* 
  * File:   tdate.h
  * Author: gabriel
  *
  * Created on 18. April 2017, 16:44
+ * Updated on 30. may 2017 by phil
  */
 
 #ifndef TDATE_H
 #define TDATE_H
 
-#include <string>
 #include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <cstring>
-#include <ctime> //muss included sein da es sonst auf meinem Rechner nicht Kompiliert... Windoof halt -Tobias
-#include <fstream>
 #include "ttime.h"
+#include <cstdlib>
 
-namespace std {
+class TDate {
+private:
+    int year;
+    unsigned char month;
+    unsigned char day;
 
-    class TDate {
-    private:
-        int year;
-        unsigned char month;
-        unsigned char day;
-    protected:
-        string parseLine(string line);
+public:
+    TDate();
+    TDate(unsigned char day, unsigned char month, int year);
 
-    public:
-        TDate();
-        TDate(unsigned char day, unsigned char month, int year);
+    void setYear(int year);
+    void setMonth(unsigned char month);
+    void setDay(unsigned char day);
+	TDate load(ifstream stream);
+    int getYear();
+    unsigned char getMonth();
+    unsigned char getDay();
+    
+    void print();
+    void setCurrentDate();
+};
 
-        void setYear(int year);
-        void setMonth(unsigned char month);
-        void setDay(unsigned char day);
-        void load(ifstream stream);
-        int getYear();
-        unsigned char getMonth();
-        unsigned char getDay();
-
-        void print();
-        void setCurrentDate();
-    };
-}
 
 #endif /* TDATE_H */

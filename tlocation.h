@@ -1,8 +1,9 @@
-/*
+/* 
  * File:   tlocation.h
  * Author: phil
  *
  * Created on 25. April 2017, 23:58
+ * Updated on 30. may 2017 by phil
  */
 
 #ifndef TLOCATION_H
@@ -18,8 +19,6 @@ namespace std {
     private:
         string section;
         string rack;
- protected:
-        string parseLine(string line);
 
     public:
 //        TLocation();
@@ -27,9 +26,10 @@ namespace std {
 
         void setSection(string section);
         void setRack(string rack);
-        void load(ifstream stream);
+		TLocation load(ifstream stream);
         string getSection();
         string getRack();
+
         void print();
     };
 }

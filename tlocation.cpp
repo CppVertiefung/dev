@@ -1,4 +1,4 @@
-/*
+/* 
  * File:   tlocation.cpp
  * Author: phil
  *
@@ -20,41 +20,17 @@ TLocation::TLocation(string section, string rack) {
     setRack(rack);
 }
 
-TLocation::load(ifstream stream){
-    string line, section, rack;
-    getline(stream,line);
-    string tag TLocation::parseLine(string line);
-    if (tag=="Location"){
-        getline(stream,line);
-        section=TLocation::parseLine(string line);
-        getline(stream,line);
-        rack=TLocation::parseLine(string line);
-        TLocation::setSection(section);
-        TLocation::setRack(rack);
-        getline(stream,line);
-    }else{
-        printf("what happened?");
-    }
-
-}
-
-TLocation::parseLine(string line){
-    if (string slash =line.find("/")){
-        int endtag=line.find(">");
-        line.erase(0,slash);
-        int starttag=line.find("<");
-        int endtag=line.find(">");
-        int length=endtag - starttag;
-        string tag=line.substr(starttag,endtag);
-        return (tag);
-    }else{
-        int starttag=line.find("<");
-        int endtag=line.find(">");
-        int length=endtag - starttag;
-        string tag=line.substr(starttag,endtag);
-        return (tag);
-    }
-
+TLocation TLocation::load(ifstream stream){
+	string line;
+	do{
+		getline(stream, line);
+		if (stream.find("<Section>") != std::string::npos){
+			//this->section = TLibraryPool::parseLine(stream);
+		}
+		if (stream.find("<Rack>") != std::string::npos){
+			//this->rack = TLibraryPool::parseLine(stream);
+		}
+	}while(line.find("</Location>") == std::string::npos);
 }
 
 void TLocation::setSection(string section) {
