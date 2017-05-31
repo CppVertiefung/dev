@@ -12,39 +12,45 @@
  */
 
 #include "tlibrary.h"
-#include "tperson.h"
 
 using namespace std;
 
-TLibrary::TLibrary(string name, TAddress address, TPerson* manager){ //: address(address), manager(manager) 
+TLibrary::TLibrary(string name, TAddress address, TPerson* manager) { //: address(address), manager(manager) 
     setName(name);
 }
 
-TLibrary * TLibrary::load(ifstream stream){
-	string line;
-	do{
-		getline(stream, line);
-		if (stream.find("<Name>") != std::string::npos){
-			//this->name = TLibraryPool::parseLine(stream);
-		}
-		if (stream.find("<Medium>") != std::string::npos){
-			getline(stream, line);
-			if (stream.find("<Date>") != std::string::npos){	
-				//TLibrary::add(new TMedium::load(stream));
-		}
-		if (stream.find("<Address>") != std::string::npos){
-			//this->address = TAddress::load(stream);
-		}
-		if (stream.find("<Manager>") != std::string::npos){
-			getline(stream, line);
-			if (stream.find("<Person>") != std::string::npos){	
-				//this->manager = new TPerson::load(stream);
-			}
-		}
-	}while(line.find("</Library>") == std::string::npos);
+TLibrary * TLibrary::load(ifstream stream) {
+    string line;
+    do {
+        getline(stream, line);
+        
+        // string.find funktioniert so:
+        // size_t find (const string& str, size_t pos = 0) const;
+        // Return Value:
+        // The position of the first character of the first match.
+        // If no matches were found, the function returns string::npos.
+        
+        if (stream.find("<Name>") != std::string::npos) {
+            //this->name = TLibraryPool::parseLine(stream);
+        }
+        if (stream.find("<Medium>") != std::string::npos) {
+            getline(stream, line);
+            if (stream.find("<Date>") != std::string::npos) {
+                //TLibrary::add(new TMedium::load(stream));
+            }
+            if (stream.find("<Address>") != std::string::npos) {
+                //this->address = TAddress::load(stream);
+            }
+            if (stream.find("<Manager>") != std::string::npos) {
+                getline(stream, line);
+                if (stream.find("<Person>") != std::string::npos) {
+                    //this->manager = new TPerson::load(stream);
+                }
+            }
+        } while (line.find("</Library>") == std::string::npos);
 }
 
-void TLibrary::add(TMedium* medium) {
+void TLibrary::add(TMedium * medium) {
     media.push_back(medium);
 }
 
@@ -69,7 +75,7 @@ void TLibrary::setAddress(TAddress address) {
     this->address = address;
 }
 
-void TLibrary::setManager(TPerson *manager) {
+void TLibrary::setManager(TPerson * manager) {
     this->manager = manager;
 }
 
@@ -81,7 +87,7 @@ TAddress TLibrary::getAddress() {
     return address;
 }
 
-TPerson* TLibrary::getManager() {
+TPerson * TLibrary::getManager() {
     return manager;
 }
 

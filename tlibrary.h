@@ -17,6 +17,7 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
 #include "taddress.h"
 #include "tperson.h"
 #include "tmedium.h"
@@ -29,17 +30,17 @@ namespace std {
         TAddress address;
         TPerson *manager;
         vector<TMedium*> media;
-        
+
     public:
         TLibrary(string name, TAddress address, TPerson *manager);
         void add(TMedium* medium);
         void print();
-        
+
         void setName(string name);
         void setAddress(TAddress address);
         void setManager(TPerson *manager);
-		TLibrary load(ifstream stream);
-        
+        TLibrary * load(ifstream stream);
+
         string getName();
         TAddress getAddress();
         TPerson* getManager();
