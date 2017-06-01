@@ -31,7 +31,7 @@ namespace std {
         void setNumber(string number);
         void setZipcode(string zipcode);
         void setTown(string town);
-	TAddress load(ifstream stream);
+        TAddress load(ifstream stream);
         string getStreet();
         string getNumber();
         string getZipcode();

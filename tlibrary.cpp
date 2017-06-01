@@ -23,13 +23,14 @@ TLibrary * TLibrary::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        
+
         // string.find funktioniert so:
         // size_t find (const string& str, size_t pos = 0) const;
         // Return Value:
         // The position of the first character of the first match.
         // If no matches were found, the function returns string::npos.
-        
+
+        // ANPASSEN!F
         if (stream.find("<Name>") != std::string::npos) {
             //this->name = TLibraryPool::parseLine(stream);
         }
@@ -47,47 +48,48 @@ TLibrary * TLibrary::load(ifstream stream) {
                     //this->manager = new TPerson::load(stream);
                 }
             }
-        } while (line.find("</Library>") == std::string::npos);
-}
-
-void TLibrary::add(TMedium * medium) {
-    media.push_back(medium);
-}
-
-void TLibrary::print() {
-    printf("\nBuecherei:  %s\n", getName().c_str());
-    address.print();
-    printf("\n");
-    manager->print();
-    printf("\n");
-    for (unsigned int i = 0; i < media.size(); i++) {
-        printf("Medium Nr. %i\n", i + 1);
-        media.at(i)->print();
-        printf("\n");
+        }
+        while (line.find("</Library>") == std::string::npos);
     }
-}
 
-void TLibrary::setName(string name) {
-    this->name = name;
-}
+    void TLibrary::add(TMedium * medium) {
+        media.push_back(medium);
+    }
 
-void TLibrary::setAddress(TAddress address) {
-    this->address = address;
-}
+    void TLibrary::print() {
+        printf("\nBuecherei:  %s\n", getName().c_str());
+        address.print();
+        printf("\n");
+        manager->print();
+        printf("\n");
+        for (unsigned int i = 0; i < media.size(); i++) {
+            printf("Medium Nr. %i\n", i + 1);
+            media.at(i)->print();
+            printf("\n");
+        }
+    }
 
-void TLibrary::setManager(TPerson * manager) {
-    this->manager = manager;
-}
+    void TLibrary::setName(string name) {
+        this->name = name;
+    }
 
-string TLibrary::getName() {
-    return name;
-}
+    void TLibrary::setAddress(TAddress address) {
+        this->address = address;
+    }
 
-TAddress TLibrary::getAddress() {
-    return address;
-}
+    void TLibrary::setManager(TPerson * manager) {
+        this->manager = manager;
+    }
 
-TPerson * TLibrary::getManager() {
-    return manager;
-}
+    string TLibrary::getName() {
+        return name;
+    }
+
+    TAddress TLibrary::getAddress() {
+        return address;
+    }
+
+    TPerson * TLibrary::getManager() {
+        return manager;
+    }
 

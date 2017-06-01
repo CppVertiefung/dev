@@ -21,12 +21,12 @@ namespace std {
         string rack;
 
     public:
-//        TLocation();
+        //        TLocation();
         TLocation(string section, string rack);
 
         void setSection(string section);
         void setRack(string rack);
-		TLocation load(ifstream stream);
+        TLocation load(ifstream stream);
         string getSection();
         string getRack();
 

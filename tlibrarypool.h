@@ -29,19 +29,19 @@ namespace std {
         TPerson *chief;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
-	public: //has to be protected - Vererbung einbauen!
-		string parseLine(string line);
+    public: //has to be protected - Vererbung einbauen!
+        string parseLine(string line);
     public:
         TLibraryPool(string name, TPerson* chief);
-		TLibraryPool(string filename);
+        TLibraryPool(string filename);
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
         void setName(string name);
-		void load(ifstream stream);
-        
+        void load(ifstream stream);
+
         string getName();
-        
+
     };
 
 }

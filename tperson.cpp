@@ -4,7 +4,7 @@
  *
  * Created on 25. April 2017, 23:38
  */
- 
+
 #include <string>
 #include <stdio.h>
 #include "tdate.h"
@@ -24,23 +24,23 @@ TPerson::~TPerson() {
     printf("Die Person '%s' wird vernichtet!\n", name.c_str());
 }
 
-TPerson * TPerson::load(ifstream stream){
-	string line;
-	do{
-		getline(stream, line);
-		if (stream.find("<Name>") != std::string::npos){
-			//this->name = TLibraryPool::parseLine(stream);
-		}
-		if (stream.find("<Birthday>") != std::string::npos){
-			getline(stream, line);
-			if (stream.find("<Date>") != std::string::npos){	
-				//this->birth = TDate::load(stream);
-			}
-		}
-		if (stream.find("<Address>") != std::string::npos){
-			//this->address = TAddress::load(stream);
-		}
-	}while(line.find("</Person>") == std::string::npos);
+TPerson * TPerson::load(ifstream stream) {
+    string line;
+    do {
+        getline(stream, line);
+        if (stream.find("<Name>") != std::string::npos) {
+            //this->name = TLibraryPool::parseLine(stream);
+        }
+        if (stream.find("<Birthday>") != std::string::npos) {
+            getline(stream, line);
+            if (stream.find("<Date>") != std::string::npos) {
+                //this->birth = TDate::load(stream);
+            }
+        }
+        if (stream.find("<Address>") != std::string::npos) {
+            //this->address = TAddress::load(stream);
+        }
+    } while (line.find("</Person>") == std::string::npos);
 }
 
 void TPerson::setName(string name) {
@@ -68,7 +68,7 @@ TDate TPerson::getBirth() {
 }
 
 void TPerson::print() {
-  //printf("%s\n", name);
+    //printf("%s\n", name);
     printf("%s\n", name.c_str());
     address.print();
     printf("* ");

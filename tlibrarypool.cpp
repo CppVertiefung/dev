@@ -16,57 +16,57 @@
 
 using namespace std;
 
-TLibraryPool::TLibraryPool(string name, TPerson* chief){ // : chief(chief) 
+TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief) 
     setName(name);
 }
 
-TLibraryPool::TLibraryPool(string filename){
+TLibraryPool::TLibraryPool(string filename) {
     FILE * input;
     string line;
     string tag;
-	if((input = fopen(filename, "r")) == NULL){
-        cout << "ERROR: Failed to open file." <<endl;
+    if ((input = fopen(filename, "r")) == NULL) {
+        cout << "ERROR: Failed to open file." << endl;
     }
-	getline(input, line);
-	if (line.find("<LibraryPool>") != std::string::npos){
-		TLibraryPool::load(input);
-	}
-	fclose(input);
+    getline(input, line);
+    if (line.find("<LibraryPool>") != std::string::npos) {
+        TLibraryPool::load(input);
+    }
+    fclose(input);
 }
 
-void TLibraryPool::load(ifstream stream){
-	string line;
-	do{
-		getline(stream, line);
-		if (stream.find("<Name>") != std::string::npos){
-			//this->name = TLibraryPool::parseLine(stream);
-		}
-		if (stream.find("<Chairman>") != std::string::npos){
-			getline(stream, line);
-			if (stream.find("<Person>") != std::string::npos){	
-				//this->chief = new TPerson::load(stream);
-			}
-		}
-		if (stream.find("<Library>") != std::string::npos){
-			//TLibraryPool::add(new TLibrary::load(stream));
-		}
-		if (stream.find("<Customer>") != std::string::npos){
-			if (stream.find("<Person>") != std::string::npos){
-				//TLibraryPool::add(new TPerson::load(stream));
-			}
-		}
-	}while(line.find("</LibraryPool>") == std::string::npos);
+void TLibraryPool::load(ifstream stream) {
+    string line;
+    do {
+        getline(stream, line);
+        if (stream.find("<Name>") != std::string::npos) {
+            //this->name = TLibraryPool::parseLine(stream);
+        }
+        if (stream.find("<Chairman>") != std::string::npos) {
+            getline(stream, line);
+            if (stream.find("<Person>") != std::string::npos) {
+                //this->chief = new TPerson::load(stream);
+            }
+        }
+        if (stream.find("<Library>") != std::string::npos) {
+            //TLibraryPool::add(new TLibrary::load(stream));
+        }
+        if (stream.find("<Customer>") != std::string::npos) {
+            if (stream.find("<Person>") != std::string::npos) {
+                //TLibraryPool::add(new TPerson::load(stream));
+            }
+        }
+    } while (line.find("</LibraryPool>") == std::string::npos);
 }
 
 string TLibraryPool::parseLine(line) {
-	int start;
-	int end;
+    int start;
+    int end;
 
-    if (line.find("/") != std::string::npos){
+    if (line.find("/") != std::string::npos) {
         start = line.find(">") + 1;
         end = line.find("</");
         return line.substr(start, end - start);
-    }else{
+    } else {
         start = line.find("<") + 1;
         end = line.find(">");
         return line.substr(start, end - start);
@@ -97,7 +97,7 @@ void TLibraryPool::print() {
         printf("\n");
     }
     printf("\n");
-    
+
 
 
 }

@@ -28,26 +28,26 @@ TMedium::~TMedium() {
     printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
 }
 
-TMedium TMedium::load(ifstream stream){
-	string line;
-	do{
-		getline(stream, line);
-		if (stream.find("<Title>") != std::string::npos){
-			//this->title = TLibraryPool::parseLine(stream);
-		}
-		if (stream.find("<Signatur>") != std::string::npos){
-			//this->signature = TLibraryPool::parseLine(stream);
-		}
-		if (stream.find("<Location>") != std::string::npos){
-			//this->location = TLocation::load(stream);
-		}
-		if (stream.find("<FSK>") != std::string::npos){
-			//this->ageRestriction = atoi(TLibraryPool::parseLine(stream));
-		}
-		if (stream.find("<Status>") != std::string::npos){
-			//this->status = atoi(TLibraryPool::parseLine(stream));
-		}
-	}while(line.find("</Medium>") == std::string::npos);
+TMedium TMedium::load(ifstream stream) {
+    string line;
+    do {
+        getline(stream, line);
+        if (stream.find("<Title>") != std::string::npos) {
+            //this->title = TLibraryPool::parseLine(stream);
+        }
+        if (stream.find("<Signatur>") != std::string::npos) {
+            //this->signature = TLibraryPool::parseLine(stream);
+        }
+        if (stream.find("<Location>") != std::string::npos) {
+            //this->location = TLocation::load(stream);
+        }
+        if (stream.find("<FSK>") != std::string::npos) {
+            //this->ageRestriction = atoi(TLibraryPool::parseLine(stream));
+        }
+        if (stream.find("<Status>") != std::string::npos) {
+            //this->status = atoi(TLibraryPool::parseLine(stream));
+        }
+    } while (line.find("</Medium>") == std::string::npos);
 }
 
 void TMedium::print() {

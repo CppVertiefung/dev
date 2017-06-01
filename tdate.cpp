@@ -16,20 +16,20 @@ TDate::TDate(unsigned char day, unsigned char month, int year) {
     setDay(day);
 }
 
-TDate TDate::load(ifstream stream){
-	string line;
-	do{
-		getline(stream, line);
-		if (stream.find("<Day>") != std::string::npos){
-			//this->day = TLibraryPool::parseLine(stream);
-		}
-		if (stream.find("<Month>") != std::string::npos){
-			//this->month = TLibraryPool::parseLine(stream);
-		}
-		if (stream.find("<Year>") != std::string::npos){
-			//this->year = atoi(TLibraryPool::parseLine(stream));
-		}
-	}while(line.find("</Date>") == std::string::npos);
+TDate TDate::load(ifstream stream) {
+    string line;
+    do {
+        getline(stream, line);
+        if (stream.find("<Day>") != std::string::npos) {
+            //this->day = TLibraryPool::parseLine(stream);
+        }
+        if (stream.find("<Month>") != std::string::npos) {
+            //this->month = TLibraryPool::parseLine(stream);
+        }
+        if (stream.find("<Year>") != std::string::npos) {
+            //this->year = atoi(TLibraryPool::parseLine(stream));
+        }
+    } while (line.find("</Date>") == std::string::npos);
 }
 
 void TDate::setYear(int year) {

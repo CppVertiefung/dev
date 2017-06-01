@@ -32,11 +32,11 @@ public:
     void setYear(int year);
     void setMonth(unsigned char month);
     void setDay(unsigned char day);
-	TDate load(ifstream stream);
+    TDate load(ifstream stream);
     int getYear();
     unsigned char getMonth();
     unsigned char getDay();
-    
+
     void print();
     void setCurrentDate();
 };

@@ -25,21 +25,22 @@
 namespace std {
 
     class TMedium {
-	public:
-		enum Status {
+    public:
+
+        enum Status {
             available,
             borrowed,
             ordered,
             reserved
         };
-		
+
     private:
         string title;
         string signature;
         TLocation location;
         int ageRestriction;
-		Status status;
-		
+        Status status;
+
     public:
         TMedium(string title, string signature, TLocation location, int ageRestriction, Status status);
         ~TMedium();
@@ -50,7 +51,7 @@ namespace std {
         void setLocation(TLocation location);
         void setAgeRestriction(int age);
         void setStatus(Status status);
-		TMedium load(ifstream stream);
+        TMedium load(ifstream stream);
 
         string getTitle();
         string getSignature();
