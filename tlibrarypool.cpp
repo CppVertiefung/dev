@@ -21,15 +21,17 @@ TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief)
 }
 
 TLibraryPool::TLibraryPool(string filename) {
-    FILE * input;
+    ifstream input;
     string line;
     string tag;
-    if ((input = fopen(filename.c_str(), "r")) == NULL) {
-        cout << "ERROR: Failed to open file: " << filename << endl;
-    }
-    getline(input, &line);
+//    if ((input = fopen(filename.c_str(), "r")) == NULL) {
+//    if (input.open(filename)) {
+//        cout << "ERROR: Failed to open file: " << filename << endl;
+//    }
+    input.open(filename);
+    getline(input, line);
     if (line.find("<LibraryPool>") != std::string::npos) {
-        TLibraryPool::load(input);
+        load(input);
     }
     fclose(input);
 }
@@ -37,21 +39,21 @@ TLibraryPool::TLibraryPool(string filename) {
 void TLibraryPool::load(ifstream stream) {
     string line;
     do {
-        getline(stream, &line);
-        if (stream.find("<Name>") != std::string::npos) {
+        getline(stream, line);
+        if (line.find("<Name>") != std::string::npos) {
             //this->name = TLibraryPool::parseLine(stream);
         }
-        if (stream.find("<Chairman>") != std::string::npos) {
+        if (line.find("<Chairman>") != std::string::npos) {
             getline(stream, line);
-            if (stream.find("<Person>") != std::string::npos) {
+            if (line.find("<Person>") != std::string::npos) {
                 //this->chief = new TPerson::load(stream);
             }
         }
-        if (stream.find("<Library>") != std::string::npos) {
+        if (line.find("<Library>") != std::string::npos) {
             //TLibraryPool::add(new TLibrary::load(stream));
         }
-        if (stream.find("<Customer>") != std::string::npos) {
-            if (stream.find("<Person>") != std::string::npos) {
+        if (line.find("<Customer>") != std::string::npos) {
+            if (line.find("<Person>") != std::string::npos) {
                 //TLibraryPool::add(new TPerson::load(stream));
             }
         }

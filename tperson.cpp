@@ -24,20 +24,20 @@ TPerson::~TPerson() {
     printf("Die Person '%s' wird vernichtet!\n", name.c_str());
 }
 
-TPerson * TPerson::load(ifstream stream) {
+TPerson TPerson::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        if (stream.find("<Name>") != std::string::npos) {
+        if (line.find("<Name>") != std::string::npos) {
             //this->name = TLibraryPool::parseLine(stream);
         }
-        if (stream.find("<Birthday>") != std::string::npos) {
+        if (line.find("<Birthday>") != std::string::npos) {
             getline(stream, line);
-            if (stream.find("<Date>") != std::string::npos) {
+            if (line.find("<Date>") != std::string::npos) {
                 //this->birth = TDate::load(stream);
             }
         }
-        if (stream.find("<Address>") != std::string::npos) {
+        if (line.find("<Address>") != std::string::npos) {
             //this->address = TAddress::load(stream);
         }
     } while (line.find("</Person>") == std::string::npos);

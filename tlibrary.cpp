@@ -31,20 +31,20 @@ TLibrary * TLibrary::load(ifstream stream) {
         // If no matches were found, the function returns string::npos.
 
         // ANPASSEN!F
-        if (stream.find("<Name>") != std::string::npos) {
+        if (line.find("<Name>") != std::string::npos) {
             //this->name = TLibraryPool::parseLine(stream);
         }
-        if (stream.find("<Medium>") != std::string::npos) {
+        if (line.find("<Medium>") != std::string::npos) {
             getline(stream, line);
-            if (stream.find("<Date>") != std::string::npos) {
+            if (line.find("<Date>") != std::string::npos) {
                 //TLibrary::add(new TMedium::load(stream));
             }
-            if (stream.find("<Address>") != std::string::npos) {
+            if (line.find("<Address>") != std::string::npos) {
                 //this->address = TAddress::load(stream);
             }
-            if (stream.find("<Manager>") != std::string::npos) {
+            if (line.find("<Manager>") != std::string::npos) {
                 getline(stream, line);
-                if (stream.find("<Person>") != std::string::npos) {
+                if (line.find("<Person>") != std::string::npos) {
                     //this->manager = new TPerson::load(stream);
                 }
             }

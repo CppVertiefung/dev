@@ -24,10 +24,10 @@ TLocation TLocation::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        if (stream.find("<Section>") != std::string::npos) {
+        if (line.find("<Section>") != std::string::npos) {
             //this->section = TLibraryPool::parseLine(stream);
         }
-        if (stream.find("<Rack>") != std::string::npos) {
+        if (line.find("<Rack>") != std::string::npos) {
             //this->rack = TLibraryPool::parseLine(stream);
         }
     } while (line.find("</Location>") == std::string::npos);

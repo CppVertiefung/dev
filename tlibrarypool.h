@@ -15,9 +15,12 @@
 #ifndef TLIBRARYPOOL_H
 #define TLIBRARYPOOL_H
 
+#include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <cstring>
 #include "tperson.h"
 #include "tlibrary.h"
 

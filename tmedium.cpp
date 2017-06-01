@@ -32,19 +32,19 @@ TMedium TMedium::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        if (stream.find("<Title>") != std::string::npos) {
+        if (line.find("<Title>") != std::string::npos) {
             //this->title = TLibraryPool::parseLine(stream);
         }
-        if (stream.find("<Signatur>") != std::string::npos) {
+        if (line.find("<Signatur>") != std::string::npos) {
             //this->signature = TLibraryPool::parseLine(stream);
         }
-        if (stream.find("<Location>") != std::string::npos) {
+        if (line.find("<Location>") != std::string::npos) {
             //this->location = TLocation::load(stream);
         }
-        if (stream.find("<FSK>") != std::string::npos) {
+        if (line.find("<FSK>") != std::string::npos) {
             //this->ageRestriction = atoi(TLibraryPool::parseLine(stream));
         }
-        if (stream.find("<Status>") != std::string::npos) {
+        if (line.find("<Status>") != std::string::npos) {
             //this->status = atoi(TLibraryPool::parseLine(stream));
         }
     } while (line.find("</Medium>") == std::string::npos);

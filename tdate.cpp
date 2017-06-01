@@ -22,13 +22,13 @@ TDate TDate::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        if (stream.find("<Day>") != std::string::npos) {
+        if (line.find("<Day>") != std::string::npos) {
             //this->day = TLibraryPool::parseLine(stream);
         }
-        if (stream.find("<Month>") != std::string::npos) {
+        if (line.find("<Month>") != std::string::npos) {
             //this->month = TLibraryPool::parseLine(stream);
         }
-        if (stream.find("<Year>") != std::string::npos) {
+        if (line.find("<Year>") != std::string::npos) {
             //this->year = atoi(TLibraryPool::parseLine(stream));
         }
     } while (line.find("</Date>") == std::string::npos);
