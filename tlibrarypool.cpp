@@ -24,16 +24,37 @@ TLibraryPool::TLibraryPool(string filename) {
     ifstream input;
     string line;
     string tag;
-//    if ((input = fopen(filename.c_str(), "r")) == NULL) {
-//    if (input.open(filename)) {
-//        cout << "ERROR: Failed to open file: " << filename << endl;
-//    }
-    input.open(filename);
+    //    if ((input = fopen(filename.c_str(), "r")) == NULL) {
+    //    if (input.open(filename)) {
+    //        cout << "ERROR: Failed to open file: " << filename << endl;
+    //    }
+    input.open(filename, ios::in);
     getline(input, line);
     if (line.find("<LibraryPool>") != std::string::npos) {
-        load(input);
+        //        load(input);
+        string line;
+        do {
+            getline(input, line);
+            if (line.find("<Name>") != std::string::npos) {
+                //this->name = TLibraryPool::parseLine(stream);
+            }
+            if (line.find("<Chairman>") != std::string::npos) {
+                getline(input, line);
+                if (line.find("<Person>") != std::string::npos) {
+                    //this->chief = new TPerson::load(stream);
+                }
+            }
+            if (line.find("<Library>") != std::string::npos) {
+                //TLibraryPool::add(new TLibrary::load(stream));
+            }
+            if (line.find("<Customer>") != std::string::npos) {
+                if (line.find("<Person>") != std::string::npos) {
+                    //TLibraryPool::add(new TPerson::load(stream));
+                }
+            }
+        } while (line.find("</LibraryPool>") == std::string::npos);
     }
-    fclose(input);
+    input.close();
 }
 
 void TLibraryPool::load(ifstream stream) {
