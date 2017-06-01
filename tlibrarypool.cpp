@@ -24,10 +24,10 @@ TLibraryPool::TLibraryPool(string filename) {
     FILE * input;
     string line;
     string tag;
-    if ((input = fopen(filename, "r")) == NULL) {
-        cout << "ERROR: Failed to open file." << endl;
+    if ((input = fopen(filename.c_str(), "r")) == NULL) {
+        cout << "ERROR: Failed to open file: " << filename << endl;
     }
-    getline(input, line);
+    getline(input, &line);
     if (line.find("<LibraryPool>") != std::string::npos) {
         TLibraryPool::load(input);
     }
@@ -37,7 +37,7 @@ TLibraryPool::TLibraryPool(string filename) {
 void TLibraryPool::load(ifstream stream) {
     string line;
     do {
-        getline(stream, line);
+        getline(stream, &line);
         if (stream.find("<Name>") != std::string::npos) {
             //this->name = TLibraryPool::parseLine(stream);
         }
@@ -58,7 +58,7 @@ void TLibraryPool::load(ifstream stream) {
     } while (line.find("</LibraryPool>") == std::string::npos);
 }
 
-string TLibraryPool::parseLine(line) {
+string TLibraryPool::parseLine(string line) {
     int start;
     int end;
 

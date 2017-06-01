@@ -16,30 +16,33 @@
 #define TDATE_H
 
 #include <stdio.h>
-#include "ttime.h"
 #include <cstdlib>
+#include <fstream>
+#include "ttime.h"
 
-class TDate {
-private:
-    int year;
-    unsigned char month;
-    unsigned char day;
+namespace std {
 
-public:
-    TDate();
-    TDate(unsigned char day, unsigned char month, int year);
+    class TDate {
+    private:
+        int year;
+        unsigned char month;
+        unsigned char day;
 
-    void setYear(int year);
-    void setMonth(unsigned char month);
-    void setDay(unsigned char day);
-    TDate load(ifstream stream);
-    int getYear();
-    unsigned char getMonth();
-    unsigned char getDay();
+    public:
+        TDate();
+        TDate(unsigned char day, unsigned char month, int year);
 
-    void print();
-    void setCurrentDate();
-};
+        void setYear(int year);
+        void setMonth(unsigned char month);
+        void setDay(unsigned char day);
+        TDate load(ifstream stream);
+        int getYear();
+        unsigned char getMonth();
+        unsigned char getDay();
 
+        void print();
+        void setCurrentDate();
+    };
 
+}
 #endif /* TDATE_H */

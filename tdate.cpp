@@ -6,6 +6,8 @@
 
 #include "tdate.h"
 
+using namespace std;
+
 TDate::TDate() {
     setCurrentDate();
 }

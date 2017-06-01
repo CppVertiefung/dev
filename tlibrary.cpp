@@ -15,7 +15,7 @@
 
 using namespace std;
 
-TLibrary::TLibrary(string name, TAddress address, TPerson* manager) { //: address(address), manager(manager) 
+TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(address) { //: address(address), manager(manager) 
     setName(name);
 }
 
@@ -49,47 +49,47 @@ TLibrary * TLibrary::load(ifstream stream) {
                 }
             }
         }
-        while (line.find("</Library>") == std::string::npos);
-    }
+    } while (line.find("</Library>") == std::string::npos);
+}
 
-    void TLibrary::add(TMedium * medium) {
-        media.push_back(medium);
-    }
+void TLibrary::add(TMedium * medium) {
+    media.push_back(medium);
+}
 
-    void TLibrary::print() {
-        printf("\nBuecherei:  %s\n", getName().c_str());
-        address.print();
+void TLibrary::print() {
+    printf("\nBuecherei:  %s\n", getName().c_str());
+    address.print();
+    printf("\n");
+    manager->print();
+    printf("\n");
+    for (unsigned int i = 0; i < media.size(); i++) {
+        printf("Medium Nr. %i\n", i + 1);
+        media.at(i)->print();
         printf("\n");
-        manager->print();
-        printf("\n");
-        for (unsigned int i = 0; i < media.size(); i++) {
-            printf("Medium Nr. %i\n", i + 1);
-            media.at(i)->print();
-            printf("\n");
-        }
     }
+}
 
-    void TLibrary::setName(string name) {
-        this->name = name;
-    }
+void TLibrary::setName(string name) {
+    this->name = name;
+}
 
-    void TLibrary::setAddress(TAddress address) {
-        this->address = address;
-    }
+void TLibrary::setAddress(TAddress address) {
+    this->address = address;
+}
 
-    void TLibrary::setManager(TPerson * manager) {
-        this->manager = manager;
-    }
+void TLibrary::setManager(TPerson * manager) {
+    this->manager = manager;
+}
 
-    string TLibrary::getName() {
-        return name;
-    }
+string TLibrary::getName() {
+    return name;
+}
 
-    TAddress TLibrary::getAddress() {
-        return address;
-    }
+TAddress TLibrary::getAddress() {
+    return address;
+}
 
-    TPerson * TLibrary::getManager() {
-        return manager;
-    }
+TPerson * TLibrary::getManager() {
+    return manager;
+}
 
