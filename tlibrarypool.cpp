@@ -36,20 +36,20 @@ TLibraryPool::TLibraryPool(string filename) {
         do {
             getline(input, line);
             if (line.find("<Name>") != std::string::npos) {
-                //this->name = TLibraryPool::parseLine(stream);
+//                this->name = parseLine(input);
             }
             if (line.find("<Chairman>") != std::string::npos) {
                 getline(input, line);
                 if (line.find("<Person>") != std::string::npos) {
-                    //this->chief = new TPerson::load(stream);
+//                    this->chief = new TPerson::load(stream);
                 }
             }
             if (line.find("<Library>") != std::string::npos) {
-                //TLibraryPool::add(new TLibrary::load(stream));
+                TLibraryPool::add(new TLibrary::load(input));
             }
             if (line.find("<Customer>") != std::string::npos) {
                 if (line.find("<Person>") != std::string::npos) {
-                    //TLibraryPool::add(new TPerson::load(stream));
+//                    TLibraryPool::add(new TPerson::load(stream));
                 }
             }
         } while (line.find("</LibraryPool>") == std::string::npos);

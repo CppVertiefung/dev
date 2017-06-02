@@ -23,16 +23,9 @@ TLibrary * TLibrary::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-
-        // string.find funktioniert so:
-        // size_t find (const string& str, size_t pos = 0) const;
-        // Return Value:
-        // The position of the first character of the first match.
-        // If no matches were found, the function returns string::npos.
-
-        // ANPASSEN!F
+        
         if (line.find("<Name>") != std::string::npos) {
-            //this->name = TLibraryPool::parseLine(stream);
+//            this->name = TLibraryPool::parseLine(line);
         }
         if (line.find("<Medium>") != std::string::npos) {
             getline(stream, line);
