@@ -13,10 +13,11 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include "tparser.h"
 
 namespace std {
 
-    class TLocation {
+    class TLocation : public TParser{
     private:
         string section;
         string rack;

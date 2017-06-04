@@ -10,12 +10,13 @@
 #define TPERSON_H
 
 #include <string>
-#include "taddress.h"
+#include <stdio.h>
 #include "tdate.h"
+#include "taddress.h"
 
 namespace std {
 
-    class TPerson {
+    class TPerson : public TParser {
     private:
         string name;
         TAddress address;

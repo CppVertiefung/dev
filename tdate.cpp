@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
- /*
+/*
  * Updated on 03. June 2017 by phil
  */
- 
+
 #include "tdate.h"
 
 using namespace std;
@@ -26,16 +26,16 @@ void TDate::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        if (line.find("<Day>") != std::string::npos) {
-            this->day = TLibraryPool::parseLine(stream);
+        if (line.find("<Day>") != string::npos) {
+            this->day = stoi(parseLine(line));
         }
-        if (line.find("<Month>") != std::string::npos) {
-            this->month = TLibraryPool::parseLine(stream);
+        if (line.find("<Month>") != string::npos) {
+            this->month = stoi(parseLine(line));
         }
-        if (line.find("<Year>") != std::string::npos) {
-            this->year = atoi(TLibraryPool::parseLine(stream));
+        if (line.find("<Year>") != string::npos) {
+            this->year = stoi(parseLine(line));
         }
-    } while (line.find("</Date>") == std::string::npos);
+    } while (line.find("</Date>") == string::npos);
 }
 
 void TDate::setYear(int year) {

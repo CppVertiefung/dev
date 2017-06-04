@@ -20,11 +20,12 @@
 #include <cstdlib>
 
 #include "tlocation.h"
+#include "tparser.h"
 
 
 namespace std {
 
-    class TMedium {
+    class TMedium : public TParser {
     public:
 
         enum Status {

@@ -33,22 +33,22 @@ void TMedium::load(ifstream stream) {
 	TLocation location = TLocation(0, 0);
     do {
         getline(stream, line);
-        if (line.find("<Title>") != std::string::npos) {
-            this->title = TLibraryPool::parseLine(stream);
+        if (line.find("<Title>") != string::npos) {
+            this->title = parseLine(line);
         }
-        if (line.find("<Signatur>") != std::string::npos) {
-            this->signature = TLibraryPool::parseLine(stream);
+        if (line.find("<Signatur>") != string::npos) {
+            this->signature = parseLine(line);
         }
-        if (line.find("<Location>") != std::string::npos) {
-            this->location = location.load(stream);
+        if (line.find("<Location>") != string::npos) {
+            this->location = location.load(line);
         }
-        if (line.find("<FSK>") != std::string::npos) {
-            this->ageRestriction = atoi(TLibraryPool::parseLine(stream));
+        if (line.find("<FSK>") != string::npos) {
+            this->ageRestriction = stoi(parseLine(line));
         }
-        if (line.find("<Status>") != std::string::npos) {
-            this->status = atoi(TLibraryPool::parseLine(stream));
+        if (line.find("<Status>") != string::npos) {
+            this->status = stoi(parseLine(line));
         }
-    } while (line.find("</Medium>") == std::string::npos);
+    } while (line.find("</Medium>") == string::npos);
 }
 
 void TMedium::print() {

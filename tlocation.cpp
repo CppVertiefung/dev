@@ -25,13 +25,13 @@ void TLocation::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        if (line.find("<Section>") != std::string::npos) {
-            this->section = TLibraryPool::parseLine(stream);
+        if (line.find("<Section>") != string::npos) {
+            this->section = parseLine(line);
         }
-        if (line.find("<Rack>") != std::string::npos) {
-            this->rack = TLibraryPool::parseLine(stream);
+        if (line.find("<Rack>") != string::npos) {
+            this->rack = parseLine(line);
         }
-    } while (line.find("</Location>") == std::string::npos);
+    } while (line.find("</Location>") == string::npos);
 }
 
 void TLocation::setSection(string section) {

@@ -14,9 +14,11 @@
 #include <iomanip>
 #include <fstream>
 
+#include "tparser.h"
+
 namespace std {
 
-    class TAddress {
+    class TAddress : public TParser {
     private:
         string street;
         string number;

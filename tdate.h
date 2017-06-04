@@ -17,12 +17,14 @@
 
 #include <stdio.h>
 #include <cstdlib>
+#include <string>
 #include <fstream>
 #include "ttime.h"
+#include "tparser.h"
 
 namespace std {
 
-    class TDate {
+    class TDate : public TParser{
     private:
         int year;
         int month;

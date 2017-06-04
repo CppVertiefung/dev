@@ -21,10 +21,11 @@
 #include "taddress.h"
 #include "tperson.h"
 #include "tmedium.h"
+#include "tparser.h"
 
 namespace std {
 
-    class TLibrary {
+    class TLibrary : public TParser {
     private:
         string name;
         TAddress address;

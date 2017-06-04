@@ -24,17 +24,17 @@ void TAddress::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        if (line.find("<Street>") != std::string::npos) {
-            this->street = TLibraryPool::parseLine(stream);
+        if (line.find("<Street>") != string::npos) {
+            this->street = parseLine(line);
         }
-        if (line.find("<Number>") != std::string::npos) {
-            this->number = TLibraryPool::parseLine(stream);
+        if (line.find("<Number>") != string::npos) {
+            this->number = parseLine(line);
         }
-        if (line.find("<Zipcode>") != std::string::npos) {
-            this->zipcode = TLibraryPool::parseLine(stream);
+        if (line.find("<Zipcode>") != string::npos) {
+            this->zipcode = parseLine(line);
         }
-        if (line.find("<Town>") != std::string::npos) {
-            this->town = TLibraryPool::parseLine(stream);
+        if (line.find("<Town>") != string::npos) {
+            this->town = parseLine(line);
         }
     } while (line.find("</Address>") == std::string::npos);
 }

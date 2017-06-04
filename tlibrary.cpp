@@ -22,26 +22,26 @@ TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(ad
 
 void TLibrary::load(ifstream stream) {
     string line;
-	TPerson * pers = new TPerson(0, 0, 0);
-	TMedium * med = new TMedium(0, 0, 0, 0, 0);
+    TPerson * pers = new TPerson(0, 0, 0); // geht so nicht - neuer Leerkonstruktor fuer TPerson muss her
+    TMedium * med = new TMedium(0, 0, 0, 0, 0); // ebenso
     do {
         getline(stream, line);
-        
-        if (line.find("<Name>") != std::string::npos) {
-            this->name = TLibraryPool::parseLine(line);
+
+        if (line.find("<Name>") != string::npos) {
+            this->name = parseLine(line);
         }
-        if (line.find("<Medium>") != std::string::npos) {
-			//new Objekt(0, 0, 0, 0, 0) erstellen, mit this->media = objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
-			media.add(med->load(stream));
-		}
-        if (line.find("<Address>") != std::string::npos) {
-			TAddress addr(0, 0, 0, 0);
+        if (line.find("<Medium>") != string::npos) {
+            //new Objekt(0, 0, 0, 0, 0) erstellen, mit this->media = objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
+            this->media.push_back(med->load(stream));
+        }
+        if (line.find("<Address>") != string::npos) {
+            TAddress addr(0, 0, 0, 0);
             this->address = addr.load(stream);
         }
-        if (line.find("<Manager>") != std::string::npos) {
+        if (line.find("<Manager>") != string::npos) {
             getline(stream, line);
-            if (line.find("<Person>") != std::string::npos) {
-                    this->chief = pers->load(stream);
+            if (line.find("<Person>") != string::npos) {
+                this->manager = pers->load(stream);
             }
         }
 

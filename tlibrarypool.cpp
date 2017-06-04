@@ -24,41 +24,41 @@ TLibraryPool::TLibraryPool(string filename) {
     ifstream input;
     string line;
     string tag;
-	TPerson * pers = new TPerson(0, 0, 0);
-	TLibrary * lib = new TLibrary(0, 0, 0);
-    TPerson * cust = new TPerson(0, 0, 0);
-	//    if ((input = fopen(filename.c_str(), "r")) == NULL) {
+    TPerson * pers = new TPerson(0, 0, 0);      // ersetze durch Leerkonstruktor
+    TLibrary * lib = new TLibrary(0, 0, 0);     // ersetze durch Leerkonstruktor
+    TPerson * cust = new TPerson(0, 0, 0);      // ersetze durch Leerkonstruktor
+    //    if ((input = fopen(filename.c_str(), "r")) == NULL) {
     //    if (input.open(filename)) {
     //        cout << "ERROR: Failed to open file: " << filename << endl;
     //    }
     input.open(filename, ios::in);
     getline(input, line);
-    if (line.find("<LibraryPool>") != std::string::npos) {
+    if (line.find("<LibraryPool>") != string::npos) {
         //        load(input);
         string line;
         do {
             getline(input, line);
-            if (line.find("<Name>") != std::string::npos) {
-                this->name = parseLine(input);
+            if (line.find("<Name>") != string::npos) {
+                this->name = parseLine(line);
             }
-            if (line.find("<Chairman>") != std::string::npos) {
+            if (line.find("<Chairman>") != string::npos) {
                 getline(input, line);
-                if (line.find("<Person>") != std::string::npos) {
+                if (line.find("<Person>") != string::npos) {
                     this->chief = pers->load(stream);
                 }
             }
-            if (line.find("<Library>") != std::string::npos) {
-				//new Objekt(0, 0, 0, 0, 0) erstellen, objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
-				libraries.add(lib->load(stream));
-				//this->libraries.add(lib->load(stream)); ich hab echt keine Ahnung, muss libraries vorher als Attribut abgelegt werden???
+            if (line.find("<Library>") != string::npos) {
+                //new Objekt(0, 0, 0, 0, 0) erstellen, objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
+                libraries.add(lib->load(stream));
+                //this->libraries.add(lib->load(stream)); ich hab echt keine Ahnung, muss libraries vorher als Attribut abgelegt werden???
             }
-            if (line.find("<Customer>") != std::string::npos) {
-                if (line.find("<Person>") != std::string::npos) {
-					//new Objekt(0, 0, 0, 0, 0) erstellen, objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
-					customers.add(cust->load(stream));
+            if (line.find("<Customer>") != string::npos) {
+                if (line.find("<Person>") != string::npos) {
+                    //new Objekt(0, 0, 0, 0, 0) erstellen, objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
+                    customers.add(cust->load(stream));
                 }
             }
-        } while (line.find("</LibraryPool>") == std::string::npos);
+        } while (line.find("</LibraryPool>") == string::npos);
     }
     input.close();
 }
@@ -87,20 +87,20 @@ TLibraryPool::TLibraryPool(string filename) {
     } while (line.find("</LibraryPool>") == std::string::npos);
 }*/
 
-string TLibraryPool::parseLine(string line) {
-    int start;
-    int end;
-
-    if (line.find("/") != std::string::npos) {
-        start = line.find(">") + 1;
-        end = line.find("</");
-        return line.substr(start, end - start);
-    } else {
-        start = line.find("<") + 1;
-        end = line.find(">");
-        return line.substr(start, end - start);
-    }
-}
+//string TLibraryPool::parseLine(string line) {
+//    int start;
+//    int end;
+//
+//    if (line.find("/") != string::npos) {
+//        start = line.find(">") + 1;
+//        end = line.find("</");
+//        return line.substr(start, end - start);
+//    } else {
+//        start = line.find("<") + 1;
+//        end = line.find(">");
+//        return line.substr(start, end - start);
+//    }
+//}
 
 void TLibraryPool::add(TLibrary* library) {
     libraries.push_back(library);
