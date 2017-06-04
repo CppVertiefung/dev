@@ -63,45 +63,6 @@ TLibraryPool::TLibraryPool(string filename) {
     input.close();
 }
 
-/*void TLibraryPool::load(ifstream stream) {
-    string line;
-    do {
-        getline(stream, line);
-        if (line.find("<Name>") != std::string::npos) {
-            //this->name = TLibraryPool::parseLine(stream);
-        }
-        if (line.find("<Chairman>") != std::string::npos) {
-            getline(stream, line);
-            if (line.find("<Person>") != std::string::npos) {
-                this->chief = new TPerson::load(stream);
-            }
-        }
-        if (line.find("<Library>") != std::string::npos) {
-            TLibraryPool::add(new TLibrary::load(stream));
-        }
-        if (line.find("<Customer>") != std::string::npos) {
-            if (line.find("<Person>") != std::string::npos) {
-                //TLibraryPool::add(new TPerson::load(stream));
-            }
-        }
-    } while (line.find("</LibraryPool>") == std::string::npos);
-}*/
-
-//string TLibraryPool::parseLine(string line) {
-//    int start;
-//    int end;
-//
-//    if (line.find("/") != string::npos) {
-//        start = line.find(">") + 1;
-//        end = line.find("</");
-//        return line.substr(start, end - start);
-//    } else {
-//        start = line.find("<") + 1;
-//        end = line.find(">");
-//        return line.substr(start, end - start);
-//    }
-//}
-
 void TLibraryPool::add(TLibrary* library) {
     libraries.push_back(library);
 }
@@ -126,9 +87,6 @@ void TLibraryPool::print() {
         printf("\n");
     }
     printf("\n");
-
-
-
 }
 
 void TLibraryPool::setName(string name) {

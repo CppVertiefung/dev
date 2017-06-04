@@ -44,7 +44,6 @@ void TLibrary::load(ifstream stream) {
                 this->manager = pers->load(stream);
             }
         }
-
     } while (line.find("</Library>") == std::string::npos);
 }
 

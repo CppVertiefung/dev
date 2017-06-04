@@ -40,8 +40,8 @@ namespace std {
         void setName(string name);
         void setAddress(TAddress address);
         void setManager(TPerson *manager);
+      
         void load(ifstream stream);
-
         string getName();
         TAddress getAddress();
         TPerson* getManager();
