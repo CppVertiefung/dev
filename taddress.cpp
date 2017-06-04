@@ -3,6 +3,7 @@
  * Author: phil
  *
  * Created on 25. April 2017, 23:00
+ * Updated on 04. June 2017 by phil
  */
 
 using namespace std;
@@ -13,10 +14,48 @@ using namespace std;
 //{}
 
 TAddress::TAddress(string street, string number, string zipcode, string town) {
-    setStreet(street);
-    setNumber(number);
-    setZipcode(zipcode);
-    setTown(town);
+    this->street = street;
+    this->number = number;
+    this->zipcode = zipcode;
+    this->town = town;
+}
+
+void TAddress::load(ifstream stream) {
+    string line;
+    do {
+        getline(stream, line);
+        if (line.find("<Street>") != string::npos) {
+            this->street = parseLine(line);
+        }
+        if (line.find("<Number>") != string::npos) {
+            this->number = parseLine(line);
+        }
+        if (line.find("<Zipcode>") != string::npos) {
+            this->zipcode = parseLine(line);
+        }
+        if (line.find("<Town>") != string::npos) {
+            this->town = parseLine(line);
+        }
+    } while (line.find("</Address>") == std::string::npos);
+}
+
+TAddress TAddress::load(ifstream stream) {
+    string line;
+    do {
+        getline(stream, line);
+        if (line.find("<Street>") != std::string::npos) {
+            //this->street = TLibraryPool::parseLine(stream);
+        }
+        if (line.find("<Number>") != std::string::npos) {
+            //this->number = TLibraryPool::parseLine(stream);
+        }
+        if (line.find("<Zipcode>") != std::string::npos) {
+            //this->zipcode = TLibraryPool::parseLine(stream);
+        }
+        if (line.find("<Town>") != std::string::npos) {
+            //this->town = TLibraryPool::parseLine(stream);
+        }
+    } while (line.find("</Address>") == std::string::npos);
 }
 
 void TAddress::setStreet(string street) {
