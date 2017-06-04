@@ -3,7 +3,7 @@
  * Author: phil
  *
  * Created on 25. April 2017, 23:58
- * Updated on 30. may 2017 by phil
+ * Updated on 04. June 2017 by phil
  */
 
 #ifndef TLOCATION_H
@@ -13,10 +13,11 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include "tparser.h"
 
 namespace std {
 
-    class TLocation {
+    class TLocation : public TParser{
     private:
         string section;
         string rack;
@@ -27,7 +28,7 @@ namespace std {
 
         void setSection(string section);
         void setRack(string rack);
-        TLocation load(ifstream stream);
+        void load(ifstream stream);
         string getSection();
         string getRack();
 

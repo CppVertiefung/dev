@@ -3,12 +3,9 @@
  * Author: phil
  *
  * Created on 25. April 2017, 23:38
+ * Updated on 04. June 2017 by phil
  */
 
-#include <string>
-#include <stdio.h>
-#include "tdate.h"
-#include "taddress.h"
 #include "tperson.h"
 
 using namespace std;
@@ -17,7 +14,9 @@ using namespace std;
 //{}
 
 TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth) {
-    setName(name);
+    this->name = name;
+	this->address = address;
+	this->birth = birth;
 }
 
 TPerson::~TPerson() {
@@ -26,21 +25,23 @@ TPerson::~TPerson() {
 
 TPerson TPerson::load(ifstream stream) {
     string line;
-    do {
+	TDate date = TDate(0, 0, 0);;
+    TAddress addr = TAddress(0, 0, 0, 0);
+	do {
         getline(stream, line);
-        if (line.find("<Name>") != std::string::npos) {
-            //this->name = TLibraryPool::parseLine(stream);
+        if (line.find("<Name>") != string::npos) {
+            this->name = parseLine(line);
         }
-        if (line.find("<Birthday>") != std::string::npos) {
+        if (line.find("<Birthday>") != string::npos) {
             getline(stream, line);
-            if (line.find("<Date>") != std::string::npos) {
-                //this->birth = TDate::load(stream);
+            if (line.find("<Date>") != string::npos) {
+                this->birth = date.load(stream);
             }
         }
-        if (line.find("<Address>") != std::string::npos) {
-            //this->address = TAddress::load(stream);
+        if (line.find("<Address>") != string::npos) {
+            this->address = addr.load(stream);
         }
-    } while (line.find("</Person>") == std::string::npos);
+    } while (line.find("</Person>") == string::npos);
 }
 
 void TPerson::setName(string name) {

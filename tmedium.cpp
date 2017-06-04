@@ -9,7 +9,7 @@
  * Author: gabriel
  * 
  * Created on 3. Mai 2017, 21:18
- * Updated on 29. may 2017 by phil
+ * Updated on 04. June 2017 by phil
  */
 
 //#include <qt/QtCore/qstring.h>
@@ -19,35 +19,36 @@
 using namespace std;
 
 TMedium::TMedium(string title, string signature, TLocation location, int ageRestriction, Status status) : location(location), status(status) {
-    setTitle(title);
-    setSignature(signature);
-    setAgeRestriction(ageRestriction);
+    this->title = title;
+    this->signature = signature;
+    this->ageRestriction = ageRestriction;
 }
 
 TMedium::~TMedium() {
     printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
 }
 
-TMedium TMedium::load(ifstream stream) {
+void TMedium::load(ifstream stream) {
     string line;
+	TLocation location = TLocation(0, 0);
     do {
         getline(stream, line);
-        if (line.find("<Title>") != std::string::npos) {
-            //this->title = TLibraryPool::parseLine(stream);
+        if (line.find("<Title>") != string::npos) {
+            this->title = parseLine(line);
         }
-        if (line.find("<Signatur>") != std::string::npos) {
-            //this->signature = TLibraryPool::parseLine(stream);
+        if (line.find("<Signatur>") != string::npos) {
+            this->signature = parseLine(line);
         }
-        if (line.find("<Location>") != std::string::npos) {
-            //this->location = TLocation::load(stream);
+        if (line.find("<Location>") != string::npos) {
+            this->location = location.load(line);
         }
-        if (line.find("<FSK>") != std::string::npos) {
-            //this->ageRestriction = atoi(TLibraryPool::parseLine(stream));
+        if (line.find("<FSK>") != string::npos) {
+            this->ageRestriction = stoi(parseLine(line));
         }
-        if (line.find("<Status>") != std::string::npos) {
-            //this->status = atoi(TLibraryPool::parseLine(stream));
+        if (line.find("<Status>") != string::npos) {
+            this->status = stoi(parseLine(line));
         }
-    } while (line.find("</Medium>") == std::string::npos);
+    } while (line.find("</Medium>") == string::npos);
 }
 
 void TMedium::print() {

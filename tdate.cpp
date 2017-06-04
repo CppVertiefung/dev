@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 
+/*
+ * Updated on 03. June 2017 by phil
+ */
+
 #include "tdate.h"
 
 using namespace std;
@@ -12,40 +16,40 @@ TDate::TDate() {
     setCurrentDate();
 }
 
-TDate::TDate(unsigned char day, unsigned char month, int year) {
+TDate::TDate(int day, int month, int year) {
     setYear(year);
     setMonth(month);
     setDay(day);
 }
 
-TDate TDate::load(ifstream stream) {
+void TDate::load(ifstream stream) {
     string line;
     do {
         getline(stream, line);
-        if (line.find("<Day>") != std::string::npos) {
-            //this->day = TLibraryPool::parseLine(stream);
+        if (line.find("<Day>") != string::npos) {
+            this->day = stoi(parseLine(line));
         }
-        if (line.find("<Month>") != std::string::npos) {
-            //this->month = TLibraryPool::parseLine(stream);
+        if (line.find("<Month>") != string::npos) {
+            this->month = stoi(parseLine(line));
         }
-        if (line.find("<Year>") != std::string::npos) {
-            //this->year = atoi(TLibraryPool::parseLine(stream));
+        if (line.find("<Year>") != string::npos) {
+            this->year = stoi(parseLine(line));
         }
-    } while (line.find("</Date>") == std::string::npos);
+    } while (line.find("</Date>") == string::npos);
 }
 
 void TDate::setYear(int year) {
     this->year = year;
 }
 
-void TDate::setMonth(unsigned char month) {
+void TDate::setMonth(int month) {
     if (month <= 12 && month > 0)
         this->month = month;
     else
         this->month = 1;
 }
 
-void TDate::setDay(unsigned char day) {
+void TDate::setDay(int day) {
     if (day <= 31 && day > 0)
         this->day = day;
     else
@@ -56,16 +60,16 @@ int TDate::getYear() {
     return year;
 }
 
-unsigned char TDate::getMonth() {
+int TDate::getMonth() {
     return month;
 }
 
-unsigned char TDate::getDay() {
+int TDate::getDay() {
     return day;
 }
 
 void TDate::print() {
-    printf("%02hhu.%02hhu.%04i", day, month, year);
+    printf("%02i.%02i.%04i", day, month, year);
 }
 
 void TDate::setCurrentDate() {
@@ -76,8 +80,8 @@ void TDate::setCurrentDate() {
     now = localtime(&t);
 
     year = 1900 + now->tm_year;
-    month = (unsigned char) now->tm_mon + 1;
-    day = (unsigned char) now->tm_mday;
+    month = now->tm_mon + 1;
+    day = now->tm_mday;
 }
 
 

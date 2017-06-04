@@ -23,30 +23,27 @@
 #include <cstring>
 #include "tperson.h"
 #include "tlibrary.h"
+#include "tparser.h"
 
 namespace std {
 
-    class TLibraryPool {
+    class TLibraryPool : public TParser {
     private:
         string name;
         TPerson *chief;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
     public: //has to be protected - Vererbung einbauen!
-        string parseLine(string line);
-    public:
+//        string parseLine(string line);
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
         void setName(string name);
-        void load(ifstream stream);
-
+        //void load(ifstream stream);
         string getName();
-
     };
-
 }
 
 #endif /* TLIBRARYPOOL_H */

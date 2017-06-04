@@ -9,7 +9,7 @@
  * Author: gabriel
  *
  * Created on 3. Mai 2017, 21:18
- * Updated on 30. may 2017 by phil
+ * Updated on 04. June 2017 by phil
  */
 
 #ifndef TMEDIUM_H
@@ -20,11 +20,12 @@
 #include <cstdlib>
 
 #include "tlocation.h"
+#include "tparser.h"
 
 
 namespace std {
 
-    class TMedium {
+    class TMedium : public TParser {
     public:
 
         enum Status {
@@ -51,7 +52,7 @@ namespace std {
         void setLocation(TLocation location);
         void setAgeRestriction(int age);
         void setStatus(Status status);
-        TMedium load(ifstream stream);
+        void load(ifstream stream);
 
         string getTitle();
         string getSignature();

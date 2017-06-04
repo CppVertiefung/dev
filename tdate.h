@@ -9,7 +9,7 @@
  * Author: gabriel
  *
  * Created on 18. April 2017, 16:44
- * Updated on 30. may 2017 by phil
+ * Updated on 03. June 2017 by phil
  */
 
 #ifndef TDATE_H
@@ -17,32 +17,35 @@
 
 #include <stdio.h>
 #include <cstdlib>
+#include <string>
 #include <fstream>
 #include "ttime.h"
+#include "tparser.h"
 
 namespace std {
 
-    class TDate {
+    class TDate : public TParser{
     private:
         int year;
-        unsigned char month;
-        unsigned char day;
+        int month;
+        int day;
 
     public:
         TDate();
-        TDate(unsigned char day, unsigned char month, int year);
+        TDate(int day, int month, int year);
 
         void setYear(int year);
-        void setMonth(unsigned char month);
-        void setDay(unsigned char day);
-        TDate load(ifstream stream);
+        void setMonth(int month);
+        void setDay(int day);
+        void load(ifstream stream);
+        
         int getYear();
-        unsigned char getMonth();
-        unsigned char getDay();
-
+        int getMonth();
+        int getDay();
+        
         void print();
         void setCurrentDate();
-    };
+};
 
 }
 #endif /* TDATE_H */

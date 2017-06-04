@@ -3,19 +3,20 @@
  * Author: phil
  *
  * Created on 25. April 2017, 23:20
- * Updated on 30. may 2017 by phil
+ * Updated on 04. June 2017 by phil
  */
 
 #ifndef TPERSON_H
 #define TPERSON_H
 
 #include <string>
-#include "taddress.h"
+#include <stdio.h>
 #include "tdate.h"
+#include "taddress.h"
 
 namespace std {
 
-    class TPerson {
+    class TPerson : public TParser {
     private:
         string name;
         TAddress address;
@@ -29,7 +30,7 @@ namespace std {
         void setName(string name);
         void setAddress(TAddress address);
         void setBirth(TDate birth);
-        TPerson load(ifstream stream);
+        void load(ifstream stream);
 
         string getName();
         TAddress getAddress();
