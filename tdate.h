@@ -9,34 +9,40 @@
  * Author: gabriel
  *
  * Created on 18. April 2017, 16:44
+ * Updated on 03. June 2017 by phil
  */
 
 #ifndef TDATE_H
 #define TDATE_H
 
 #include <stdio.h>
+#include <cstdlib>
+#include <fstream>
 #include "ttime.h"
 
-class TDate {
-private:
-    int year;
-    unsigned char month;
-    unsigned char day;
+namespace std {
 
-public:
-    TDate();
-    TDate(unsigned char day, unsigned char month, int year);
+    class TDate {
+    private:
+        int year;
+        int month;
+        int day;
 
-    void setYear(int year);
-    void setMonth(unsigned char month);
-    void setDay(unsigned char day);
-    int getYear();
-    unsigned char getMonth();
-    unsigned char getDay();
-    
-    void print();
-    void setCurrentDate();
-};
+    public:
+        TDate();
+        TDate(int day, int month, int year);
 
+        void setYear(int year);
+        void setMonth(int month);
+        void setDay(int day);
+        void load(ifstream stream);
+        int getYear();
+        int getMonth();
+        int getDay();
 
+        void print();
+        void setCurrentDate();
+    };
+
+}
 #endif /* TDATE_H */

@@ -9,6 +9,7 @@
  * Author: gabriel
  *
  * Created on 3. Mai 2017, 21:17
+ * Updated on 03. June 2017 by phil
  */
 
 #ifndef TLIBRARY_H
@@ -16,6 +17,7 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
 #include "taddress.h"
 #include "tperson.h"
 #include "tmedium.h"
@@ -28,16 +30,17 @@ namespace std {
         TAddress address;
         TPerson *manager;
         vector<TMedium*> media;
-        
+
     public:
         TLibrary(string name, TAddress address, TPerson *manager);
         void add(TMedium* medium);
         void print();
-        
+
         void setName(string name);
         void setAddress(TAddress address);
         void setManager(TPerson *manager);
-        
+        void load(ifstream stream);
+
         string getName();
         TAddress getAddress();
         TPerson* getManager();
