@@ -27,13 +27,13 @@ void TDate::load(ifstream stream) {
     do {
         getline(stream, line);
         if (line.find("<Day>") != string::npos) {
-            this->day = stoi(parseLine(line));
+            day = stoi(parseLine(line));
         }
         if (line.find("<Month>") != string::npos) {
-            this->month = stoi(parseLine(line));
+            month = stoi(parseLine(line));
         }
         if (line.find("<Year>") != string::npos) {
-            this->year = stoi(parseLine(line));
+            year = stoi(parseLine(line));
         }
     } while (line.find("</Date>") == string::npos);
 }

@@ -10,15 +10,14 @@
 
 using namespace std;
 
-//TLocation()
-//{
-//	setSection("Buero");
-//	setRack("Fach zum Einsortieren");
-//}
-
 TLocation::TLocation(string section, string rack) {
     setSection(section);
     setRack(rack);
+}
+
+TLocation::TLocation() {
+    section = "";
+    rack = "";
 }
 
 void TLocation::load(ifstream stream) {

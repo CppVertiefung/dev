@@ -24,29 +24,34 @@ TMedium::TMedium(string title, string signature, TLocation location, int ageRest
     this->ageRestriction = ageRestriction;
 }
 
+TMedium::TMedium() {
+    title = "";
+    signature = "";
+    location = TLocation();
+}
+
 TMedium::~TMedium() {
     printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
 }
 
 void TMedium::load(ifstream stream) {
     string line;
-	TLocation location = TLocation(0, 0);
     do {
         getline(stream, line);
         if (line.find("<Title>") != string::npos) {
-            this->title = parseLine(line);
+            title = parseLine(line);
         }
         if (line.find("<Signatur>") != string::npos) {
-            this->signature = parseLine(line);
+            signature = parseLine(line);
         }
         if (line.find("<Location>") != string::npos) {
-            this->location = location.load(line);
+            location.load(line);
         }
         if (line.find("<FSK>") != string::npos) {
-            this->ageRestriction = stoi(parseLine(line));
+            ageRestriction = stoi(parseLine(line));
         }
         if (line.find("<Status>") != string::npos) {
-            this->status = stoi(parseLine(line));
+            status = stoi(parseLine(line));
         }
     } while (line.find("</Medium>") == string::npos);
 }

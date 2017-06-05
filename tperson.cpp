@@ -15,8 +15,14 @@ using namespace std;
 
 TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth) {
     this->name = name;
-	this->address = address;
-	this->birth = birth;
+    this->address = address;
+    this->birth = birth;
+}
+
+TPerson::TPerson() {
+    name = "";
+    address = TAddress();
+    birth = TDate();
 }
 
 TPerson::~TPerson() {
@@ -25,21 +31,19 @@ TPerson::~TPerson() {
 
 TPerson TPerson::load(ifstream stream) {
     string line;
-	TDate date = TDate(0, 0, 0);;
-    TAddress addr = TAddress(0, 0, 0, 0);
-	do {
+    do {
         getline(stream, line);
         if (line.find("<Name>") != string::npos) {
-            this->name = parseLine(line);
+            name = parseLine(line);
         }
         if (line.find("<Birthday>") != string::npos) {
             getline(stream, line);
             if (line.find("<Date>") != string::npos) {
-                this->birth = date.load(stream);
+                birth.load(stream);
             }
         }
         if (line.find("<Address>") != string::npos) {
-            this->address = addr.load(stream);
+            address.load(stream);
         }
     } while (line.find("</Person>") == string::npos);
 }

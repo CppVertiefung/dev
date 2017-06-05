@@ -23,10 +23,6 @@ TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief)
 TLibraryPool::TLibraryPool(string filename) {
     ifstream input;
     string line;
-    string tag;
-    TPerson * pers = new TPerson(0, 0, 0);      // ersetze durch Leerkonstruktor
-    TLibrary * lib = new TLibrary(0, 0, 0);     // ersetze durch Leerkonstruktor
-    TPerson * cust = new TPerson(0, 0, 0);      // ersetze durch Leerkonstruktor
     //    if ((input = fopen(filename.c_str(), "r")) == NULL) {
     //    if (input.open(filename)) {
     //        cout << "ERROR: Failed to open file: " << filename << endl;
@@ -35,27 +31,32 @@ TLibraryPool::TLibraryPool(string filename) {
     getline(input, line);
     if (line.find("<LibraryPool>") != string::npos) {
         //        load(input);
-        string line;
+        //        string line;
         do {
             getline(input, line);
             if (line.find("<Name>") != string::npos) {
-                this->name = parseLine(line);
+                name = parseLine(line);
             }
             if (line.find("<Chairman>") != string::npos) {
                 getline(input, line);
                 if (line.find("<Person>") != string::npos) {
-                    this->chief = pers->load(stream);
+                    chief = new TPerson();
+                    chief->load(input);
                 }
             }
             if (line.find("<Library>") != string::npos) {
                 //new Objekt(0, 0, 0, 0, 0) erstellen, objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
-                libraries.add(lib->load(stream));
+                TLibrary * lib = new TLibrary();
+                lib->load(input);
+                libraries.add(lib);
                 //this->libraries.add(lib->load(stream)); ich hab echt keine Ahnung, muss libraries vorher als Attribut abgelegt werden???
             }
             if (line.find("<Customer>") != string::npos) {
                 if (line.find("<Person>") != string::npos) {
                     //new Objekt(0, 0, 0, 0, 0) erstellen, objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
-                    customers.add(cust->load(stream));
+                    TPerson * cust = new TPerson();
+                    cust->load(input);
+                    customers.add(cust);
                 }
             }
         } while (line.find("</LibraryPool>") == string::npos);
@@ -126,9 +127,6 @@ void TLibraryPool::print() {
         printf("\n");
     }
     printf("\n");
-
-
-
 }
 
 void TLibraryPool::setName(string name) {

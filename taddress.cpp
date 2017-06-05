@@ -20,6 +20,13 @@ TAddress::TAddress(string street, string number, string zipcode, string town) {
     this->town = town;
 }
 
+TAddress::TAddress() {
+    street = "";
+    number = "";
+    zipcode = "";
+    town = "";
+}
+
 void TAddress::load(ifstream stream) {
     string line;
     do {

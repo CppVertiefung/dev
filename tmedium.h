@@ -44,6 +44,7 @@ namespace std {
 
     public:
         TMedium(string title, string signature, TLocation location, int ageRestriction, Status status);
+        TMedium();
         ~TMedium();
 
         void print();

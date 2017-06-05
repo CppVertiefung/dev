@@ -20,32 +20,38 @@ TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(ad
     setName(name);
 }
 
+TLibrary::TLibrary() {
+    setName("");
+    address = TAddress();
+    manager = nullptr;
+}
+
 void TLibrary::load(ifstream stream) {
     string line;
-    TPerson * pers = new TPerson(0, 0, 0); // geht so nicht - neuer Leerkonstruktor fuer TPerson muss her
-    TMedium * med = new TMedium(0, 0, 0, 0, 0); // ebenso
     do {
         getline(stream, line);
 
         if (line.find("<Name>") != string::npos) {
-            this->name = parseLine(line);
+            name = parseLine(line);
         }
         if (line.find("<Medium>") != string::npos) {
-            //new Objekt(0, 0, 0, 0, 0) erstellen, mit this->media = objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
-            this->media.push_back(med->load(stream));
+            TMedium *med = new TMedium();
+            med->load(stream);
+            media.push_back(med);
+
         }
         if (line.find("<Address>") != string::npos) {
-            TAddress addr(0, 0, 0, 0);
-            this->address = addr.load(stream);
+            address.load(stream);
         }
         if (line.find("<Manager>") != string::npos) {
             getline(stream, line);
             if (line.find("<Person>") != string::npos) {
-                this->manager = pers->load(stream);
+                manager = new TPerson();
+                manager->load(stream);
             }
         }
 
-    } while (line.find("</Library>") == std::string::npos);
+    } while (line.find("</Library>") == string::npos);
 }
 
 void TLibrary::add(TMedium * medium) {

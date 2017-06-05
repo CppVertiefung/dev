@@ -10,6 +10,7 @@
 #define TPERSON_H
 
 #include <string>
+#include <cstring>
 #include <stdio.h>
 #include "tdate.h"
 #include "taddress.h"
@@ -25,6 +26,7 @@ namespace std {
     public:
         //	TPerson();
         TPerson(string name, TAddress address, TDate birth);
+        TPerson();
         ~TPerson();
 
         void setName(string name);
