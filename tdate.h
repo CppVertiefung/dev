@@ -38,13 +38,14 @@ namespace std {
         void setMonth(int month);
         void setDay(int day);
         void load(ifstream stream);
+        
         int getYear();
         int getMonth();
         int getDay();
-
+        
         void print();
         void setCurrentDate();
-    };
+};
 
 }
 #endif /* TDATE_H */

@@ -35,7 +35,6 @@ namespace std {
         vector<TPerson*> customers;
     public: //has to be protected - Vererbung einbauen!
 //        string parseLine(string line);
-    public:
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
         void add(TLibrary* library);
@@ -43,11 +42,8 @@ namespace std {
         void print();
         void setName(string name);
         //void load(ifstream stream);
-
         string getName();
-
     };
-
 }
 
 #endif /* TLIBRARYPOOL_H */

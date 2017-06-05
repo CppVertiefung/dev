@@ -50,7 +50,6 @@ void TLibrary::load(ifstream stream) {
                 manager->load(stream);
             }
         }
-
     } while (line.find("</Library>") == string::npos);
 }
 

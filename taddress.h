@@ -33,6 +33,7 @@ namespace std {
         void setNumber(string number);
         void setZipcode(string zipcode);
         void setTown(string town);
+
         void load(ifstream stream);
         string getStreet();
         string getNumber();
