@@ -31,7 +31,7 @@ namespace std {
     public:
 
         enum Status {
-            available,
+            available = 1,
             borrowed,
             ordered,
             reserved

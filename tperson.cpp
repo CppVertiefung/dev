@@ -31,6 +31,8 @@ TPerson::~TPerson() {
 
 void TPerson::load(ifstream &stream) {
     string line;
+    TDate date;
+    TAddress addr;
     do {
         getline(stream, line);
         if (line.find("<Name>") != string::npos) {
@@ -39,13 +41,13 @@ void TPerson::load(ifstream &stream) {
         if (line.find("<Birthday>") != string::npos) {
             getline(stream, line);
             if (line.find("<Date>") != string::npos) {
-                TDate date = TDate();
+                date = TDate();
                 date.load(stream);
                 this->birth = date;
             }
         }
         if (line.find("<Address>") != string::npos) {
-            TAddress addr = TAddress();
+            addr = TAddress();
             addr.load(stream);
             this->address = addr;
         }
@@ -77,7 +79,6 @@ TDate TPerson::getBirth() {
 }
 
 void TPerson::print() {
-    //printf("%s\n", name);
     printf("%s\n", name.c_str());
     printf("* ");
     birth.print();

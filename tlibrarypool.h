@@ -38,6 +38,7 @@ namespace std {
 //        string parseLine(string line);
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
+        ~TLibraryPool();
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();

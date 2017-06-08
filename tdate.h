@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <string>
 #include <fstream>
+#include <ctime>
 
 #include "ttime.h"
 #include "tparser.h"

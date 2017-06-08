@@ -39,6 +39,7 @@ TMedium::~TMedium() {
 
 void TMedium::load(ifstream &stream) {
     string line;
+    TLocation loc;
     do {
         getline(stream, line);
         if (line.find("<Title>") != string::npos) {
@@ -48,7 +49,7 @@ void TMedium::load(ifstream &stream) {
             this->signature = parseLine(line);
         }
         if (line.find("<Location>") != string::npos) {
-            TLocation loc = TLocation();
+            loc = TLocation();
             loc.load(stream);
             this->location = loc;
         }
@@ -56,8 +57,6 @@ void TMedium::load(ifstream &stream) {
             this->ageRestriction = atoi(parseLine(line).c_str());
         }
         if (line.find("<Status>") != string::npos) {
-            // status hat typ Status => typecast von string zu Status
-            //            this->status = atoi(parseLine(line).c_str());
             setStatus(parseLine(line).c_str());
         }
     } while (line.find("</Medium>") == string::npos);
@@ -94,13 +93,13 @@ void TMedium::setStatus(Status status) {
 }
 
 void TMedium::setStatus(string line) {
-    if (line == "0")
+    if (line == "1")
         status = Status::available;
-    else if (line == "1")
-        status = Status::borrowed;
     else if (line == "2")
+        status = Status::borrowed;
+    else if (line == "3")
         status = Status::ordered;
-    else
+    else 
         status = Status::reserved;
 }
 
@@ -121,7 +120,7 @@ int TMedium::getAgeRestriction() {
 }
 
 string TMedium::getStatus() {
-    switch (TMedium::status) {
+    switch (status) {
         case TMedium::available:
             return "verfuegbar";
         case TMedium::ordered:
@@ -134,18 +133,3 @@ string TMedium::getStatus() {
             return "ERROR TMedium::getStatus()";
     }
 }
-
-/*Status TMedium::getStatus() {
-    switch (TMedium::status) {
-        case TMedium::available:
-            return TMedium::available;
-        case TMedium::ordered:
-            return TMedium::ordered;
-        case TMedium::reserved:
-            return TMedium::reserved;
-        case TMedium::borrowed:
-            return TMedium::borrowed;
-        default:
-            return "ERROR TMedium::getStatus()";
-    }
-}*/

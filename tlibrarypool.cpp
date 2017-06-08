@@ -20,13 +20,17 @@ TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief)
     setName(name);
 }
 
+TLibraryPool::~TLibraryPool() {
+    
+}
+
 TLibraryPool::TLibraryPool(string filename) {
     ifstream input(filename.c_str());
     string line;
     string tag;
-    TPerson * pers = new TPerson(); 
-    TLibrary * lib = new TLibrary();
-    TPerson * cust = new TPerson();
+    TPerson * pers;
+    TLibrary * lib;
+    TPerson * cust;
 //    input.open(filename.c_str(), ifstream::in);
     getline(input, line);
     if (line.find("<LibraryPool>") != string::npos) {
@@ -40,17 +44,20 @@ TLibraryPool::TLibraryPool(string filename) {
             if (line.find("<Chairman>") != string::npos) {
                 getline(input, line);
                 if (line.find("<Person>") != string::npos) {
+                    pers = new TPerson(); 
                     pers->load(input);
                     this->chief = pers;
                 }
             }
             if (line.find("<Library>") != string::npos) {
+                lib = new TLibrary();
                 lib->load(input);
                 add(lib);
             }
             if (line.find("<Customer>") != string::npos) {
                 getline(input, line); // test
                 if (line.find("<Person>") != string::npos) {
+                    cust = new TPerson();
                     cust->load(input);
                     add(cust);
                 }

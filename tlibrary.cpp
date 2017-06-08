@@ -31,29 +31,30 @@ TLibrary::TLibrary() {
 
 void TLibrary::load(ifstream &stream) {
     string line;
+    TMedium *med;
+    TAddress addr;
+    TPerson *pers;
     do {
         getline(stream, line);
-
         if (line.find("<Name>") != string::npos) {
-            this->name = parseLine(line);
+            name = parseLine(line);
         }
         if (line.find("<Medium>") != string::npos) {
-            //new Objekt(0, 0, 0, 0, 0) erstellen, mit this->media = objekt.load() Werte zuweisen und danach objekt.add() aufrufen um in Vektor einzufügen, Achtung Zeiger
-            TMedium * med = new TMedium();
+            med = new TMedium();
             med->load(stream);
-            this->media.push_back(med);
+            add(med);
         }
         if (line.find("<Address>") != string::npos) {
-            TAddress addr = TAddress();
+            addr = TAddress();
             addr.load(stream);
-            this->address = addr;
+            address = addr;
         }
         if (line.find("<Manager>") != string::npos) {
             getline(stream, line);
             if (line.find("<Person>") != string::npos) {
-                TPerson * pers = new TPerson();
+                pers = new TPerson();
                 pers->load(stream);
-                this->manager = pers;
+                manager = pers;
             }
         }
     } while (line.find("</Library>") == std::string::npos);

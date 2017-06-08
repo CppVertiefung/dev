@@ -44,7 +44,7 @@ void TAddress::load(ifstream &stream) {
         if (line.find("<Town>") != string::npos) {
             this->town = parseLine(line);
         }
-    } while (line.find("</Address>") == std::string::npos);
+    } while (line.find("</Address>") == string::npos);
 }
 
 //void TAddress::load(ifstream stream) {
