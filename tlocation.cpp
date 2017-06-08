@@ -21,7 +21,12 @@ TLocation::TLocation(string section, string rack) {
     setRack(rack);
 }
 
-void TLocation::load(ifstream stream) {
+TLocation::TLocation() {
+    setSection("");
+    setRack("");
+}
+
+void TLocation::load(ifstream &stream) {
     string line;
     do {
         getline(stream, line);

@@ -11,6 +11,8 @@
 
 #include <string>
 #include <stdio.h>
+#include <fstream>
+
 #include "tdate.h"
 #include "taddress.h"
 
@@ -23,14 +25,14 @@ namespace std {
         TDate birth;
 
     public:
-        //	TPerson();
+        TPerson();
         TPerson(string name, TAddress address, TDate birth);
         ~TPerson();
 
         void setName(string name);
         void setAddress(TAddress address);
         void setBirth(TDate birth);
-        void load(ifstream stream);
+        void load(ifstream &stream);
 
         string getName();
         TAddress getAddress();

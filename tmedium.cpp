@@ -24,13 +24,21 @@ TMedium::TMedium(string title, string signature, TLocation location, int ageRest
     this->ageRestriction = ageRestriction;
 }
 
+TMedium::TMedium() {
+    TLocation loc = TLocation();
+    setTitle("");
+    setSignature("");
+    setLocation(loc);
+    setAgeRestriction(0);
+    setStatus(Status::reserved);
+}
+
 TMedium::~TMedium() {
     printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
 }
 
-void TMedium::load(ifstream stream) {
+void TMedium::load(ifstream &stream) {
     string line;
-	TLocation location = TLocation(0, 0);
     do {
         getline(stream, line);
         if (line.find("<Title>") != string::npos) {
@@ -40,13 +48,17 @@ void TMedium::load(ifstream stream) {
             this->signature = parseLine(line);
         }
         if (line.find("<Location>") != string::npos) {
-            this->location = location.load(line);
+            TLocation loc = TLocation();
+            loc.load(stream);
+            this->location = loc;
         }
         if (line.find("<FSK>") != string::npos) {
-            this->ageRestriction = stoi(parseLine(line));
+            this->ageRestriction = atoi(parseLine(line).c_str());
         }
         if (line.find("<Status>") != string::npos) {
-            this->status = stoi(parseLine(line));
+            // status hat typ Status => typecast von string zu Status
+            //            this->status = atoi(parseLine(line).c_str());
+            setStatus(parseLine(line).c_str());
         }
     } while (line.find("</Medium>") == string::npos);
 }
@@ -79,6 +91,17 @@ void TMedium::setAgeRestriction(int age) {
 
 void TMedium::setStatus(Status status) {
     this->status = status;
+}
+
+void TMedium::setStatus(string line) {
+    if (line == "0")
+        status = Status::available;
+    else if (line == "1")
+        status = Status::borrowed;
+    else if (line == "2")
+        status = Status::ordered;
+    else
+        status = Status::reserved;
 }
 
 string TMedium::getTitle() {

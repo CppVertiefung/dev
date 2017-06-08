@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <string>
 #include <fstream>
+
 #include "ttime.h"
 #include "tparser.h"
 
@@ -37,7 +38,7 @@ namespace std {
         void setYear(int year);
         void setMonth(int month);
         void setDay(int day);
-        void load(ifstream stream);
+        void load(ifstream &stream);
         
         int getYear();
         int getMonth();

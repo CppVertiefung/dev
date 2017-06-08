@@ -16,8 +16,10 @@
 #define TMEDIUM_H
 
 #include <string>
+#include <cstring>
 #include <iomanip>
 #include <cstdlib>
+#include <fstream>
 
 #include "tlocation.h"
 #include "tparser.h"
@@ -43,6 +45,7 @@ namespace std {
         Status status;
 
     public:
+        TMedium();
         TMedium(string title, string signature, TLocation location, int ageRestriction, Status status);
         ~TMedium();
 
@@ -52,7 +55,8 @@ namespace std {
         void setLocation(TLocation location);
         void setAgeRestriction(int age);
         void setStatus(Status status);
-        void load(ifstream stream);
+        void setStatus(string line);
+        void load(ifstream &stream);
 
         string getTitle();
         string getSignature();

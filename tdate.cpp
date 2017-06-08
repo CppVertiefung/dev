@@ -22,7 +22,7 @@ TDate::TDate(int day, int month, int year) {
     setDay(day);
 }
 
-void TDate::load(ifstream stream) {
+void TDate::load(ifstream &stream) {
     string line;
     do {
         getline(stream, line);
@@ -69,7 +69,7 @@ int TDate::getDay() {
 }
 
 void TDate::print() {
-    printf("%02i.%02i.%04i", day, month, year);
+    printf("%02i.%02i.%04i\n", day, month, year);
 }
 
 void TDate::setCurrentDate() {

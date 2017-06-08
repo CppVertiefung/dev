@@ -17,18 +17,18 @@
 
 namespace std {
 
-    class TLocation : public TParser{
+    class TLocation : public TParser {
     private:
         string section;
         string rack;
 
     public:
-        //        TLocation();
+        TLocation();
         TLocation(string section, string rack);
 
         void setSection(string section);
         void setRack(string rack);
-        void load(ifstream stream);
+        void load(ifstream &stream);
         string getSection();
         string getRack();
 

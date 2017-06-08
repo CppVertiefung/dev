@@ -10,24 +10,28 @@
 
 using namespace std;
 
-//TPerson()
-//{}
-
 TPerson::TPerson(string name, TAddress address, TDate birth) : address(address), birth(birth) {
     this->name = name;
-	this->address = address;
-	this->birth = birth;
+    this->address = address;
+    this->birth = birth;
+}
+
+TPerson::TPerson() {
+    TAddress addr = TAddress();
+    TDate date = TDate(0, 0, 0);
+
+    setName("");
+    setAddress(addr);
+    setBirth(TDate(date));
 }
 
 TPerson::~TPerson() {
     printf("Die Person '%s' wird vernichtet!\n", name.c_str());
 }
 
-TPerson TPerson::load(ifstream stream) {
+void TPerson::load(ifstream &stream) {
     string line;
-	TDate date = TDate(0, 0, 0);;
-    TAddress addr = TAddress(0, 0, 0, 0);
-	do {
+    do {
         getline(stream, line);
         if (line.find("<Name>") != string::npos) {
             this->name = parseLine(line);
@@ -35,11 +39,15 @@ TPerson TPerson::load(ifstream stream) {
         if (line.find("<Birthday>") != string::npos) {
             getline(stream, line);
             if (line.find("<Date>") != string::npos) {
-                this->birth = date.load(stream);
+                TDate date = TDate();
+                date.load(stream);
+                this->birth = date;
             }
         }
         if (line.find("<Address>") != string::npos) {
-            this->address = addr.load(stream);
+            TAddress addr = TAddress();
+            addr.load(stream);
+            this->address = addr;
         }
     } while (line.find("</Person>") == string::npos);
 }
@@ -71,7 +79,7 @@ TDate TPerson::getBirth() {
 void TPerson::print() {
     //printf("%s\n", name);
     printf("%s\n", name.c_str());
-    address.print();
     printf("* ");
     birth.print();
+    address.print();
 }
