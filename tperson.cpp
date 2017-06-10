@@ -83,4 +83,5 @@ void TPerson::print() {
     printf("* ");
     birth.print();
     address.print();
+    printf("\n");
 }
