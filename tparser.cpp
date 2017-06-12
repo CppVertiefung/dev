@@ -23,7 +23,7 @@ string TParser::parseLine(string line) {
         start = line.find(">") + 1;
         end = line.find("</");
         return line.substr(start, end - start);
-    } 
+    }
 //    else {
 //        start = line.find("<") + 1;
 //        end = line.find(">");

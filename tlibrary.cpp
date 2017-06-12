@@ -23,7 +23,7 @@ TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(ad
 TLibrary::TLibrary() {
     TAddress addr = TAddress();
     TPerson *pers = new TPerson();
-    
+
     setName("");
     setAddress(addr);
     setManager(pers);
@@ -56,6 +56,10 @@ void TLibrary::load(ifstream &stream) {
                 pers->load(stream);
                 manager = pers;
             }
+        }
+        if (stream.eof()) {
+            printf("\nERROR: EOF in TLibrary::load()\n");
+            break;
         }
     } while (line.find("</Library>") == std::string::npos);
 }

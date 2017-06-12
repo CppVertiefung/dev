@@ -36,6 +36,10 @@ void TLocation::load(ifstream &stream) {
         if (line.find("<Rack>") != string::npos) {
             this->rack = parseLine(line);
         }
+        if (stream.eof()) {
+            printf("\nERROR: EOF in TLocation::load()\n");
+            break;
+        }
     } while (line.find("</Location>") == string::npos);
 }
 

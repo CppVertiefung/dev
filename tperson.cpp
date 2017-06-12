@@ -51,6 +51,10 @@ void TPerson::load(ifstream &stream) {
             addr.load(stream);
             this->address = addr;
         }
+        if (stream.eof()) {
+            printf("\nERROR: EOF in TPerson::load()\n");
+            break;
+        }
     } while (line.find("</Person>") == string::npos);
 }
 

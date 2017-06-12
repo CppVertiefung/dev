@@ -35,6 +35,10 @@ void TDate::load(ifstream &stream) {
         if (line.find("<Year>") != string::npos) {
             this->year = atoi(parseLine(line).c_str());
         }
+        if (stream.eof()) {
+            printf("\nERROR: EOF in TDate::load()\n");
+            break;
+        }
     } while (line.find("</Date>") == string::npos);
 }
 

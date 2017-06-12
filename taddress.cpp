@@ -44,6 +44,10 @@ void TAddress::load(ifstream &stream) {
         if (line.find("<Town>") != string::npos) {
             this->town = parseLine(line);
         }
+        if (stream.eof()) {
+            printf("\n\nERROR: EOF in TAddress::load()\n\n");
+            break;
+        }
     } while (line.find("</Address>") == string::npos);
 }
 

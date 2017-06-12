@@ -66,10 +66,14 @@ TLibraryPool::TLibraryPool(string filename) {
                         add(cust);
                     }
                 }
-            } while (!input.eof() && line.find("</LibraryPool>") == string::npos);
+                if (input.eof()) {
+                    printf("\nERROR: EOF in TLibraryPool::load()\n\n");
+                    break;
+                }
+            } while (line.find("</LibraryPool>") == string::npos);
         }
         input.close();
-    } else assert("ERROR: Could not open File");
+    } else printf("ERROR: Could not open File");
 }
 
 void TLibraryPool::add(TLibrary* library) {
