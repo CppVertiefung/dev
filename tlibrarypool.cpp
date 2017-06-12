@@ -12,6 +12,9 @@
  * Updated on 04. June 2017 by phil
  */
 
+#include <fstream>
+#include <assert.h>
+
 #include "tlibrarypool.h"
 
 using namespace std;
@@ -21,7 +24,7 @@ TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief)
 }
 
 TLibraryPool::~TLibraryPool() {
-    
+
 }
 
 TLibraryPool::TLibraryPool(string filename) {
@@ -31,40 +34,43 @@ TLibraryPool::TLibraryPool(string filename) {
     TPerson * pers;
     TLibrary * lib;
     TPerson * cust;
-//    input.open(filename.c_str(), ifstream::in);
-    getline(input, line);
-    if (line.find("<LibraryPool>") != string::npos) {
-        //        load(input);
-        string line;
-        do {
-            getline(input, line);
-            if (line.find("<Name>") != string::npos) {
-                this->name = parseLine(line);
-            }
-            if (line.find("<Chairman>") != string::npos) {
+    //    input.open(filename.c_str(), ifstream::in);
+    if (input.is_open()) {
+        getline(input, line);
+        if (line.find("<LibraryPool>") != string::npos) {
+            //        load(input);
+            string line;
+            do {
                 getline(input, line);
-                if (line.find("<Person>") != string::npos) {
-                    pers = new TPerson(); 
-                    pers->load(input);
-                    this->chief = pers;
+                if (line.find("<Name>") != string::npos) {
+                    this->name = parseLine(line);
                 }
-            }
-            if (line.find("<Library>") != string::npos) {
-                lib = new TLibrary();
-                lib->load(input);
-                add(lib);
-            }
-            if (line.find("<Customer>") != string::npos) {
-                getline(input, line); // test
-                if (line.find("<Person>") != string::npos) {
-                    cust = new TPerson();
-                    cust->load(input);
-                    add(cust);
+                if (line.find("<Chairman>") != string::npos) {
+                    getline(input, line);
+                    if (line.find("<Person>") != string::npos) {
+                        pers = new TPerson();
+                        pers->load(input);
+                        this->chief = pers;
+                    }
                 }
-            }
-        } while (line.find("</LibraryPool>") == string::npos);
-    }
-    input.close();
+                if (line.find("<Library>") != string::npos) {
+                    lib = new TLibrary();
+                    lib->load(input);
+                    add(lib);
+                }
+                if (line.find("<Customer>") != string::npos) {
+                    getline(input, line); // test
+                    if (line.find("<Person>") != string::npos) {
+                        cust = new TPerson();
+                        cust->load(input);
+                        add(cust);
+                    }
+                }
+            } while (line.find("</LibraryPool>") == string::npos);
+
+        }
+        input.close();
+    } else assert("ERROR: Could not open File");
 }
 
 void TLibraryPool::add(TLibrary* library) {
