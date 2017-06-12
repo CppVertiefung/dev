@@ -9,6 +9,7 @@
  * Author: gabriel
  *
  * Created on 18. April 2017, 16:39
+ * Updated on 30. may 2017 by phil
  */
 
 #ifndef TTIME_H
@@ -27,11 +28,11 @@ public:
     TTime();
     TTime(unsigned char hour, unsigned char minute);
     TTime(unsigned char hour, unsigned char minute, unsigned char second);
-    
+
     void setSecond(unsigned char second);
     void setMinute(unsigned char minute);
     void setHour(unsigned char hour);
-    
+
     void print();
     void setCurrentTime();
 };

@@ -9,18 +9,67 @@
  * Author: gabriel
  * 
  * Created on 3. Mai 2017, 21:17
+ * Updated on 04. June 2017 by phil
  */
 
 #include "tlibrary.h"
-#include "tperson.h"
 
 using namespace std;
 
-TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(address), manager(manager) {
+TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(address) {
     setName(name);
 }
 
-void TLibrary::add(TMedium* medium) {
+TLibrary::TLibrary() {
+    TAddress addr = TAddress();
+    TPerson *pers = new TPerson();
+
+    setName("");
+    setAddress(addr);
+    setManager(pers);
+}
+
+TLibrary::~TLibrary() {
+    delete manager;
+    for (TMedium *m : media) delete m;
+}
+
+void TLibrary::load(ifstream &stream) {
+    string line;
+    TMedium *med;
+    TAddress addr;
+    TPerson *pers;
+    do {
+        getline(stream, line);
+        if (line.find("<Name>") != string::npos) {
+            name = parseLine(line);
+        }
+        if (line.find("<Medium>") != string::npos) {
+            med = new TMedium();
+            med->load(stream);
+            add(med);
+        }
+        if (line.find("<Address>") != string::npos) {
+            addr = TAddress();
+            addr.load(stream);
+            address = addr;
+        }
+        if (line.find("<Manager>") != string::npos) {
+            getline(stream, line);
+            if (line.find("<Person>") != string::npos) {
+                pers = new TPerson();
+                pers->load(stream);
+                manager = pers;
+            }
+        }
+        if (stream.eof()) {
+            printf("\nERROR: EOF in TLibrary::load()\n");
+            break;
+        }
+    } while (line.find("</Library>") == std::string::npos);
+}
+
+void TLibrary::add(TMedium * medium) {
     media.push_back(medium);
 }
 
@@ -45,7 +94,7 @@ void TLibrary::setAddress(TAddress address) {
     this->address = address;
 }
 
-void TLibrary::setManager(TPerson *manager) {
+void TLibrary::setManager(TPerson * manager) {
     this->manager = manager;
 }
 
@@ -57,7 +106,7 @@ TAddress TLibrary::getAddress() {
     return address;
 }
 
-TPerson* TLibrary::getManager() {
+TPerson * TLibrary::getManager() {
     return manager;
 }
 

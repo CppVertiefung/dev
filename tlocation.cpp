@@ -3,6 +3,7 @@
  * Author: phil
  *
  * Created on 26. April 2017, 00:05
+ * Updated on 04. June 2017 by phil
  */
 
 #include "tlocation.h"
@@ -18,6 +19,28 @@ using namespace std;
 TLocation::TLocation(string section, string rack) {
     setSection(section);
     setRack(rack);
+}
+
+TLocation::TLocation() {
+    setSection("");
+    setRack("");
+}
+
+void TLocation::load(ifstream &stream) {
+    string line;
+    do {
+        getline(stream, line);
+        if (line.find("<Section>") != string::npos) {
+            this->section = parseLine(line);
+        }
+        if (line.find("<Rack>") != string::npos) {
+            this->rack = parseLine(line);
+        }
+        if (stream.eof()) {
+            printf("\nERROR: EOF in TLocation::load()\n");
+            break;
+        }
+    } while (line.find("</Location>") == string::npos);
 }
 
 void TLocation::setSection(string section) {
