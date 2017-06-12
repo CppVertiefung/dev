@@ -59,6 +59,10 @@ void TMedium::load(ifstream &stream) {
         if (line.find("<Status>") != string::npos) {
             setStatus(parseLine(line).c_str());
         }
+        if (stream.eof()) {
+            printf("\nERROR: EOF in TMedium::load()\n");
+            break;
+        }
     } while (line.find("</Medium>") == string::npos);
 }
 
@@ -99,7 +103,7 @@ void TMedium::setStatus(string line) {
         status = Status::borrowed;
     else if (line == "3")
         status = Status::ordered;
-    else 
+    else
         status = Status::reserved;
 }
 

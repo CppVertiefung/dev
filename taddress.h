@@ -28,6 +28,7 @@ namespace std {
     public:
         TAddress();
         TAddress(string street, string number, string zipcode, string town);
+        ~TAddress();
 
         void setStreet(string street);
         void setNumber(string number);

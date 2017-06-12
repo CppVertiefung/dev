@@ -28,6 +28,10 @@ TAddress::TAddress() {
     setTown("");
 }
 
+TAddress::~TAddress() {
+//   printf("Die Adresse '%s' wird vernichtet!\n", street.c_str());
+}
+
 void TAddress::load(ifstream &stream) {
     string line;
     do {
@@ -43,6 +47,10 @@ void TAddress::load(ifstream &stream) {
         }
         if (line.find("<Town>") != string::npos) {
             this->town = parseLine(line);
+        }
+        if (stream.eof()) {
+            printf("\n\nERROR: EOF in TAddress::load()\n\n");
+            break;
         }
     } while (line.find("</Address>") == string::npos);
 }
