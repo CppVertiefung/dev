@@ -10,7 +10,8 @@
 #define TPERSON_H
 
 #include <string>
-#include <stdio.h>
+//#include <stdio.h>
+#include <cstdio>
 #include <fstream>
 
 #include "tdate.h"

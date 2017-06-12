@@ -15,7 +15,8 @@
 #ifndef TDATE_H
 #define TDATE_H
 
-#include <stdio.h>
+//#include <stdio.h>
+#include <cstdio>
 #include <cstdlib>
 #include <string>
 #include <fstream>

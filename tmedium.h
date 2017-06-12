@@ -16,10 +16,12 @@
 #define TMEDIUM_H
 
 #include <string>
+#include <cstdio>
 #include <cstring>
 #include <iomanip>
 #include <cstdlib>
 #include <fstream>
+
 
 #include "tlocation.h"
 #include "tparser.h"

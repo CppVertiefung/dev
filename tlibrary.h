@@ -18,6 +18,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <cstdio>
 
 #include "taddress.h"
 #include "tperson.h"

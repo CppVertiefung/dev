@@ -15,7 +15,8 @@
 #ifndef TTIME_H
 #define TTIME_H
 
-#include <stdio.h>
+//#include <stdio.h>
+#include <cstdio>
 #include "ttime.h"
 #include <iostream>
 

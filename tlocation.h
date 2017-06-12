@@ -9,10 +9,12 @@
 #ifndef TLOCATION_H
 #define TLOCATION_H
 
-#include <stdio.h>
+//#include <stdio.h>
+#include <cstdio>
 #include <string>
 #include <iomanip>
 #include <fstream>
+
 #include "tparser.h"
 
 namespace std {

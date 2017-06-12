@@ -20,6 +20,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <cstdio>
 #include <cstring>
 
 #include "tperson.h"
@@ -34,8 +35,7 @@ namespace std {
         TPerson *chief;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
-    public: //has to be protected - Vererbung einbauen!
-//        string parseLine(string line);
+    public:
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
         ~TLibraryPool();
