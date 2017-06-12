@@ -43,14 +43,14 @@ TLibraryPool::TLibraryPool(string filename) {
             do {
                 getline(input, line);
                 if (line.find("<Name>") != string::npos) {
-                    this->name = parseLine(line);
+                    name = parseLine(line);
                 }
                 if (line.find("<Chairman>") != string::npos) {
                     getline(input, line);
                     if (line.find("<Person>") != string::npos) {
                         pers = new TPerson();
                         pers->load(input);
-                        this->chief = pers;
+                        chief = pers;
                     }
                 }
                 if (line.find("<Library>") != string::npos) {
@@ -66,8 +66,7 @@ TLibraryPool::TLibraryPool(string filename) {
                         add(cust);
                     }
                 }
-            } while (line.find("</LibraryPool>") == string::npos);
-
+            } while (!input.eof() && line.find("</LibraryPool>") == string::npos);
         }
         input.close();
     } else assert("ERROR: Could not open File");
