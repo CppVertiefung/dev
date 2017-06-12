@@ -24,7 +24,9 @@ TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief)
 }
 
 TLibraryPool::~TLibraryPool() {
-
+    delete chief;
+    for (TLibrary *l : libraries) delete l;
+    for (TPerson *p : customers) delete p;
 }
 
 TLibraryPool::TLibraryPool(string filename) {

@@ -29,6 +29,11 @@ TLibrary::TLibrary() {
     setManager(pers);
 }
 
+TLibrary::~TLibrary() {
+    delete manager;
+    for (TMedium *m : media) delete m;
+}
+
 void TLibrary::load(ifstream &stream) {
     string line;
     TMedium *med;

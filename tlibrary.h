@@ -36,6 +36,8 @@ namespace std {
     public:
         TLibrary(string name, TAddress address, TPerson *manager);
         TLibrary();
+        ~TLibrary();
+        
         void add(TMedium* medium);
         void print();
 
