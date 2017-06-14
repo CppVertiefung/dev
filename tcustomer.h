@@ -14,6 +14,12 @@
 #ifndef TCUSTOMER_H
 #define TCUSTOMER_H
 
+#include <string>
+#include <cstdio>
+
+#include "tperson.h"
+#include "tparser.h"
+
 namespace std {
     class TCustomer : public TParser, public TPerson {
     private:

@@ -14,7 +14,11 @@
 #ifndef TEMPLOYEE_H
 #define TEMPLOYEE_H
 
+#include <string>
+#include <cstdio>
+
 #include "tperson.h"
+#include "tparser.h"
 
 namespace std {
 
