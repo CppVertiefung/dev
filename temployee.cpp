@@ -1,21 +1,23 @@
 #include "temployee.h"
 
-temployee::temployee()
+using namespace std;
+
+TEmployee::TEmployee()
 {
     //ctor
 }
 
-temployee::~temployee()
+TEmployee::~TEmployee()
 {
     //dtor
 }
 
-temployee::temployee(const temployee& other)
+TEmployee::TEmployee(const TEmployee& other)
 {
     //copy ctor
 }
 
-temployee& temployee::operator=(const temployee& rhs)
+TEmployee& TEmployee::operator=(const TEmployee& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator

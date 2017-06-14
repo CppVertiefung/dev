@@ -1,21 +1,23 @@
 #ifndef TEMPLOYEE_H
 #define TEMPLOYEE_H
 
-#include <tperson.h>
-#include <tcustomer.h>
+#include "tperson.h"
+#include "tcustomer.h"
 
+namespace std {
 
-class temployee : public tperson.h , tcustomer.h
-{
+    class TEmployee : public TPerson {
     public:
-        temployee();
-        virtual ~temployee();
-        temployee(const temployee& other);
-        temployee& operator=(const temployee& other);
+        TEmployee();
+        virtual ~TEmployee();
+        TEmployee(const TEmployee& other);
+        TEmployee& operator=(const TEmployee& other);
 
     protected:
 
     private:
-};
+    };
+
+}
 
 #endif // TEMPLOYEE_H

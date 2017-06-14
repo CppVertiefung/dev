@@ -1,21 +1,23 @@
 #include "tcustomer.h"
 
-tcustomer::tcustomer()
+using namespace std;
+
+TCustomer::TCustomer()
 {
     //ctor
 }
 
-tcustomer::~tcustomer()
+TCustomer::~TCustomer()
 {
     //dtor
 }
 
-tcustomer::tcustomer(const tcustomer& other)
+TCustomer::TCustomer(const TCustomer& other)
 {
     //copy ctor
 }
 
-tcustomer& tcustomer::operator=(const tcustomer& rhs)
+TCustomer& TCustomer::operator=(const TCustomer& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
