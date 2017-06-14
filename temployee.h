@@ -30,7 +30,7 @@ namespace std {
         TEmployee(TPerson person, int EmployeeNr);
         TEmployee(string name, TAddress address, TDate birth, int EmployeeNr);
 
-        ~TEmployee();
+        ~TEmployee() override;
 
         void setEmployeeNr();
         int getEmployeeNr();

@@ -28,7 +28,7 @@ TEmployee::TEmployee(string name, TAddress address, TDate birth, int EmployeeNr)
     // test parameter passing
 }
 
-TEmployee::~TEmployee() override {
+TEmployee::~TEmployee(){
 
 }
 
