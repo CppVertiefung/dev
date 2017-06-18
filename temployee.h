@@ -6,15 +6,18 @@
 
 namespace std {
 
-    class TEmployee : public TPerson {
+    class TEmployee : virtual public TPerson, virtual public TCustomer {
     public:
-        TEmployee();
+        TEmployee(string nr);
         virtual ~TEmployee();
         TEmployee(const TEmployee& other);
         TEmployee& operator=(const TEmployee& other);
+        void load(ifstream &stream);
+        void setEmployeeNr(string val);
+        string getEmployeeNr();
 
     protected:
-
+        string EmployeeNr;
     private:
     };
 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tlibrarypool.h
  * Author: gabriel
  *
@@ -22,6 +22,8 @@
 #include <iomanip>
 #include <cstring>
 
+#include "temployee.h"
+#include "tcustomer.h"
 #include "tperson.h"
 #include "tlibrary.h"
 #include "tparser.h"

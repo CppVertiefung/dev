@@ -5,20 +5,19 @@
 
 namespace std {
 
-    class TCustomer : public TPerson {
+    class TCustomer : virtual public TPerson {
     private:
-        unsigned int CustomerNr;
+        string CustomerNr;
 
     public:
-        TCustomer();
+        TCustomer(string CustomerNr);
         virtual ~TCustomer();
         TCustomer(const TCustomer& other);
         TCustomer& operator=(const TCustomer& other);
 
-        unsigned int GetCustomerNr();
-
-        void SetCustomerNr(unsigned int val);
-
+        void load(ifstream &stream);
+        void SetCustomerNr(string val);
+        string GetCustomerNr();
     };
 
 }

@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tlibrarypool.cpp
  * Author: gabriel
- * 
+ *
  * Created on 4. Mai 2017, 13:56
  * Updated on 04. June 2017 by phil
  */
@@ -19,7 +19,7 @@
 
 using namespace std;
 
-TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief) 
+TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief)
     setName(name);
 }
 
@@ -33,9 +33,9 @@ TLibraryPool::TLibraryPool(string filename) {
     ifstream input(filename.c_str());
     string line;
     string tag;
-    TPerson * pers;
+    TCustomer * cust;
+    TEmployee * empl;
     TLibrary * lib;
-    TPerson * cust;
     //    input.open(filename.c_str(), ifstream::in);
     if (input.is_open()) {
         getline(input, line);
@@ -49,10 +49,10 @@ TLibraryPool::TLibraryPool(string filename) {
                 }
                 if (line.find("<Chairman>") != string::npos) {
                     getline(input, line);
-                    if (line.find("<Person>") != string::npos) {
-                        pers = new TPerson();
-                        pers->load(input);
-                        chief = pers;
+                    if (line.find("<Employee>") != string::npos) {
+                        empl = new TEmployee(0);
+                        empl->load(input);
+                        chief = empl;
                     }
                 }
                 if (line.find("<Library>") != string::npos) {
@@ -63,7 +63,7 @@ TLibraryPool::TLibraryPool(string filename) {
                 if (line.find("<Customer>") != string::npos) {
                     getline(input, line); // test
                     if (line.find("<Person>") != string::npos) {
-                        cust = new TPerson();
+                        cust = new TCustomer(0);
                         cust->load(input);
                         add(cust);
                     }
