@@ -4,12 +4,12 @@ using namespace std;
 
 TEmployee::TEmployee(string nr)
 {
-    this->EmployeeNr =Nr;
+    this->EmployeeNr = nr;
 }
 
 TEmployee::~TEmployee()
 {
-    printf("Der Angestellt '%s' wird vernichtet!\n", TEmployee::getName());
+    printf("Der Angestellte '%s' wird vernichtet!\n", TEmployee::getName());
 }
 
 TEmployee::TEmployee(const TEmployee& other)
@@ -25,7 +25,6 @@ TEmployee& TEmployee::operator=(const TEmployee& rhs)
 
 void TEmployee::load(ifstream &stream) {
     string line;
-    string nr;
     TDate date;
     TAddress addr;
     do {
@@ -33,7 +32,7 @@ void TEmployee::load(ifstream &stream) {
         if (line.find("<Name>") != string::npos) {
             TPerson::setName(parseLine(line));
         }
-        if (line.find("<Birthday>") != string::npos) {
+        else if (line.find("<Birthday>") != string::npos) {
             getline(stream, line);
             if (line.find("<Date>") != string::npos) {
                 date = TDate();
@@ -41,16 +40,14 @@ void TEmployee::load(ifstream &stream) {
                 this->birth = date;
             }
         }
-        if (line.find("<Address>") != string::npos) {
+        else if (line.find("<Address>") != string::npos) {
             addr = TAddress();
             addr.load(stream);
             this->address = addr;
         }
-        if (line.find("<CustomerNr>") != string::npos) {
-            TCustomer::SetCustomerNr(parseLine(line));
-
-
-            //this->CustomerNr=(parseLine(line));
+        else if (line.find("<CustomerNr>") != string::npos) {
+            //TCustomer::SetCustomerNr(parseLine(line));
+            this->CustomerNr = parseLine(line);
 
         }
 
@@ -62,6 +59,6 @@ void TEmployee::load(ifstream &stream) {
 }
 
 void TEmployee::SetCustomerNr(string val){
-    this->EmployeeNr=val;
+    this->EmployeeNr = val;
 
 }
