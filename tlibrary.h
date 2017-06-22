@@ -21,8 +21,10 @@
 
 #include "taddress.h"
 #include "tperson.h"
-#include "tmedium.h"
+//#include "tmedium.h"
 #include "tparser.h"
+#include "tbook.h"
+#include "tmagazine.h"
 
 namespace std {
 

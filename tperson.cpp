@@ -26,7 +26,8 @@ TPerson::TPerson() {
 }
 
 TPerson::~TPerson() {
-    printf("Die Person '%s' wird vernichtet!\n", name.c_str());
+//    string s = getName();
+    printf("Die Person '%s' wird vernichtet!\n", getName().c_str());
 }
 
 void TPerson::load(ifstream &stream) {

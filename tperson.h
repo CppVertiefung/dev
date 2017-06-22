@@ -27,7 +27,7 @@ namespace std {
     public:
         TPerson();
         TPerson(string name, TAddress address, TDate birth);
-        ~TPerson();
+        virtual ~TPerson();
 
         void setName(string name);
         void setAddress(TAddress address);

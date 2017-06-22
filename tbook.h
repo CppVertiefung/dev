@@ -22,19 +22,18 @@
 
 namespace std {
 
-    class TBook : public TParser, public TPrintedMedium {
+    class TBook : public TPrintedMedium {
     private:
-		string author;
+        string author;
 
     public:
         TBook();
         TBook(string author);
         ~TBook();
 
-
         void load(ifstream &stream);
-		void setAuthor(string author);
-		string getAuthor();
+        void setAuthor(string author);
+        string getAuthor();
     };
 
 }

@@ -2,27 +2,27 @@
 
 using namespace std;
 
-TCustomer::TCustomer(string CustomerNr="")
-{
-    this->CustomerNr = CustomerNr;
+TCustomer::TCustomer(string CustomerNr) {
+    setCustomerNr(CustomerNr);
 }
 
-TCustomer::~TCustomer()
-{
-    printf("Der Kunde'%s' wird vernichtet!\n", TCustomer::getName().c_str());
+TCustomer::TCustomer() {
+    setCustomerNr("");
 }
 
-TCustomer::TCustomer(const TCustomer& other)
-{
-    //copy ctor
+TCustomer::~TCustomer() {
+    printf("Der Kunde'%s' wird vernichtet!\n", getName().c_str());
 }
 
-TCustomer& TCustomer::operator=(const TCustomer& rhs)
-{
-    if (this == &rhs) return *this; // handle self assignment
-    //assignment operator
-    return *this;
-}
+//TCustomer::TCustomer(const TCustomer& other) {
+//    //copy ctor
+//}
+//
+//TCustomer& TCustomer::operator=(const TCustomer& rhs) {
+//    if (this == &rhs) return *this; // handle self assignment
+//    //assignment operator
+//    return *this;
+//}
 
 void TCustomer::load(ifstream &stream) {
     string line;
@@ -32,27 +32,23 @@ void TCustomer::load(ifstream &stream) {
     do {
         getline(stream, line);
         if (line.find("<Name>") != string::npos) {
-            TPerson::setName(parseLine(line));
+            setName(parseLine(line));
         }
         if (line.find("<Birthday>") != string::npos) {
             getline(stream, line);
             if (line.find("<Date>") != string::npos) {
                 date = TDate();
                 date.load(stream);
-                this->birth = date;
+                setBirth(date);
             }
         }
         if (line.find("<Address>") != string::npos) {
             addr = TAddress();
             addr.load(stream);
-            this->address = addr;
+            setAddress(addr);
         }
         if (line.find("<CustomerNr>") != string::npos) {
-            TCustomer::SetCustomerNr(parseLine(line));
-
-
-            //this->CustomerNr=(parseLine(line));
-
+            setCustomerNr(parseLine(line));
         }
 
         if (stream.eof()) {
@@ -62,10 +58,10 @@ void TCustomer::load(ifstream &stream) {
     } while (line.find("</Person>") == string::npos);
 }
 
-void TCustomer::SetCustomerNr(string val){
-    this->CustomerNr=val;
+void TCustomer::setCustomerNr(string val) {
+    this->CustomerNr = val;
 }
 
-string TCustomer::GetCustomerNr(){
-    return (this->CustomerNr);
+string TCustomer::getCustomerNr() {
+    return CustomerNr;
 }

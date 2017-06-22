@@ -19,7 +19,7 @@
 
 using namespace std;
 
-TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief)
+TLibraryPool::TLibraryPool(string name, TPerson* chief) : chief(chief) { // : chief(chief)
     setName(name);
 }
 
@@ -30,7 +30,7 @@ TLibraryPool::~TLibraryPool() {
 }
 
 TLibraryPool::TLibraryPool(string filename) {
-    ifstream input(filename.c_str());
+    ifstream input(filename);
     string line;
     string tag;
     TCustomer * cust;
@@ -50,7 +50,7 @@ TLibraryPool::TLibraryPool(string filename) {
                 if (line.find("<Chairman>") != string::npos) {
                     getline(input, line);
                     if (line.find("<Employee>") != string::npos) {
-                        empl = new TEmployee(0);
+                        empl = new TEmployee();
                         empl->load(input);
                         chief = empl;
                     }
@@ -61,12 +61,12 @@ TLibraryPool::TLibraryPool(string filename) {
                     add(lib);
                 }
                 if (line.find("<Customer>") != string::npos) {
-                    getline(input, line); // test
-                    if (line.find("<Person>") != string::npos) {
-                        cust = new TCustomer(0);
-                        cust->load(input);
-                        add(cust);
-                    }
+                    //                    getline(input, line); // test
+                    //                    if (line.find("<Person>") != string::npos) {
+                    cust = new TCustomer();
+                    cust->load(input);
+                    add(cust);
+                    //                    }
                 }
                 if (input.eof()) {
                     printf("\nERROR: EOF in TLibraryPool::load()\n\n");
@@ -111,3 +111,12 @@ void TLibraryPool::setName(string name) {
 string TLibraryPool::getName() {
     return name;
 }
+
+void TLibraryPool::setChief(TPerson *chief) {
+    this->chief = chief;
+}
+
+TPerson * TLibraryPool::getChief() {
+    return chief;
+}
+

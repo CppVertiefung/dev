@@ -16,25 +16,23 @@
 #include <fstream>
 
 
-#include "tparser.h"
 #include "tmedium.h"
 
 
 namespace std {
 
-    class TPrintedMedium : public TParser, public TMedium {
+    class TPrintedMedium : public TMedium {
     protected:
-		int pages;
+        int pages;
 
     public:
         TPrintedMedium();
         TPrintedMedium(int pages);
         ~TPrintedMedium();
 
-
         void load(ifstream &stream);
-		void setPages(int pages);
-		int getPages();
+        void setPages(int pages);
+        int getPages();
     };
 
 }

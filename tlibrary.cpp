@@ -13,6 +13,7 @@
  */
 
 #include "tlibrary.h"
+#include "temployee.h"
 
 using namespace std;
 
@@ -44,8 +45,18 @@ void TLibrary::load(ifstream &stream) {
         if (line.find("<Name>") != string::npos) {
             name = parseLine(line);
         }
-        if (line.find("<Medium>") != string::npos) {
-            med = new TMedium();
+        //        if (line.find("<Medium>") != string::npos) {
+        //            med = new TMedium();
+        //            med->load(stream);
+        //            add(med);
+        //        }
+        if (line.find("<Book>") != string::npos) {
+            med = new TBook();
+            med->load(stream);
+            add(med);
+        }
+        if (line.find("<Magazine>") != string::npos) {
+            med = new TMagazine();
             med->load(stream);
             add(med);
         }
@@ -56,8 +67,8 @@ void TLibrary::load(ifstream &stream) {
         }
         if (line.find("<Manager>") != string::npos) {
             getline(stream, line);
-            if (line.find("<Person>") != string::npos) {
-                pers = new TPerson();
+            if (line.find("<Employee>") != string::npos) {
+                pers = new TEmployee();
                 pers->load(stream);
                 manager = pers;
             }

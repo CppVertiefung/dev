@@ -36,17 +36,19 @@ namespace std {
         TPerson *chief;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
-    public: //has to be protected - Vererbung einbauen!
-//        string parseLine(string line);
+    public:
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
         ~TLibraryPool();
+
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
         void setName(string name);
         //void load(ifstream stream);
         string getName();
+        void setChief(TPerson *chief);
+        TPerson* getChief();
     };
 }
 

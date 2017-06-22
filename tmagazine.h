@@ -16,28 +16,25 @@
 #include <fstream>
 
 
-#include "tparser.h"
 #include "tprintedmedium.h"
 
 
 namespace std {
 
-    class TMagazine : public TParser, public TPrintedMedium {
+    class TMagazine : public TPrintedMedium {
     private:
-		string designer;
+        string designer;
 
     public:
         TMagazine();
         TMagazine(string designer);
         ~TMagazine();
 
-
         void load(ifstream &stream);
-		void setDesigner(string designer);
-		string getDesigner();
+        void setDesigner(string designer);
+        string getDesigner();
     };
 
 }
-
 
 #endif /* TMAGAZINE */

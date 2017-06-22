@@ -2,26 +2,27 @@
 
 using namespace std;
 
-TEmployee::TEmployee(string nr)
-{
+TEmployee::TEmployee(string nr) {
     this->EmployeeNr = nr;
 }
 
-TEmployee::~TEmployee()
-{
-    printf("Der Angestellte '%s' wird vernichtet!\n", TEmployee::getName());
+TEmployee::TEmployee() {
+    setEmployeeNr("");
 }
 
-TEmployee::TEmployee(const TEmployee& other)
-{
-    //copy ctor
+TEmployee::~TEmployee() {
+    printf("Der Angestellte '%s' wird vernichtet!\n", getName().c_str());
 }
-TEmployee& TEmployee::operator=(const TEmployee& rhs)
-{
-    if (this == &rhs) return *this; // handle self assignment
-    //assignment operator
-    return *this;
-}
+
+//TEmployee::TEmployee(const TEmployee& other) {
+//    //copy ctor
+//}
+
+//TEmployee& TEmployee::operator=(const TEmployee& rhs) {
+//    if (this == &rhs) return *this; // handle self assignment
+//    //assignment operator
+//    return *this;
+//}
 
 void TEmployee::load(ifstream &stream) {
     string line;
@@ -30,25 +31,22 @@ void TEmployee::load(ifstream &stream) {
     do {
         getline(stream, line);
         if (line.find("<Name>") != string::npos) {
-            TPerson::setName(parseLine(line));
-        }
-        else if (line.find("<Birthday>") != string::npos) {
+            setName(parseLine(line));
+        } else if (line.find("<Birthday>") != string::npos) {
             getline(stream, line);
             if (line.find("<Date>") != string::npos) {
                 date = TDate();
                 date.load(stream);
-                this->birth = date;
+                setBirth(date);
             }
-        }
-        else if (line.find("<Address>") != string::npos) {
+        } else if (line.find("<Address>") != string::npos) {
             addr = TAddress();
             addr.load(stream);
-            this->address = addr;
-        }
-        else if (line.find("<CustomerNr>") != string::npos) {
-            //TCustomer::SetCustomerNr(parseLine(line));
-            this->CustomerNr = parseLine(line);
-
+            setAddress(addr);
+        } else if (line.find("<EmployeeNr>") != string::npos) {
+            setEmployeeNr(parseLine(line));
+        } else if (line.find("<CustomerNr>") != string::npos) {
+            setCustomerNr(parseLine(line));
         }
 
         if (stream.eof()) {
@@ -58,7 +56,10 @@ void TEmployee::load(ifstream &stream) {
     } while (line.find("</Person>") == string::npos);
 }
 
-void TEmployee::SetCustomerNr(string val){
+void TEmployee::setEmployeeNr(string val) {
     this->EmployeeNr = val;
+}
 
+string TEmployee::getEmployeeNr() {
+    return EmployeeNr;
 }
