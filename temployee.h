@@ -5,7 +5,7 @@
 
 namespace std {
 
-    class TEmployee : public TCustomer {
+    class TEmployee : public virtual TPerson, public TCustomer {
     public:
         TEmployee(string nr);
         TEmployee();

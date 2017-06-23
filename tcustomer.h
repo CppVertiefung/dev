@@ -8,7 +8,7 @@
 
 namespace std {
 
-    class TCustomer : public TPerson {
+    class TCustomer : public virtual TPerson {
     private:
         string CustomerNr;
 
