@@ -14,6 +14,7 @@
 #include <iomanip>
 #include <cstdlib>
 #include <fstream>
+#include <iostream>
 
 
 #include "tparser.h"
@@ -22,16 +23,17 @@
 
 namespace std {
 
-    class TBook : public TPrintedMedium {
+    class TBook : virtual public TPrintedMedium {
     private:
         string author;
 
     public:
         TBook();
         TBook(string author);
-        ~TBook();
+        virtual ~TBook();
 
-        void load(ifstream &stream);
+        virtual void print();
+        virtual void load(ifstream &stream);
         void setAuthor(string author);
         string getAuthor();
     };

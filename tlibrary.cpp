@@ -74,6 +74,11 @@ void TLibrary::load(ifstream &stream) {
             med->load(stream);
             add(med);
         }
+        if (line.find("<Audiobook>") != string::npos) {
+            med = new TAudioBook();
+            med->load(stream);
+            add(med);
+        }
 
         if (line.find("<Manager>") != string::npos) {
             getline(stream, line);

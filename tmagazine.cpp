@@ -19,7 +19,7 @@ TMagazine::TMagazine() {
 }
 
 TMagazine::~TMagazine() {
-    printf("Das Buch '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
+    printf("Das Magazin '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
 }
 
 void TMagazine::load(ifstream &stream) {

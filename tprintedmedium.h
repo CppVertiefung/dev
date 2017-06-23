@@ -21,16 +21,16 @@
 
 namespace std {
 
-    class TPrintedMedium : public TMedium {
+    class TPrintedMedium : virtual public TMedium {
     protected:
         int pages;
 
     public:
         TPrintedMedium();
         TPrintedMedium(int pages);
-        ~TPrintedMedium();
+        virtual ~TPrintedMedium();
 
-        void load(ifstream &stream);
+        virtual void load(ifstream &stream);
         void setPages(int pages);
         int getPages();
     };

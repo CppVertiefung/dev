@@ -25,14 +25,14 @@
 
 namespace std {
 
-    class TCD : public TMedium {
+    class TCD : virtual public TMedium {
     private:
         string interpret;
         int tracks;
     public:
         TCD();
         TCD(string interpret, int tracks);
-        ~TCD();
+        virtual ~TCD();
 
         void load(ifstream &stream);
         void print();

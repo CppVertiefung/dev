@@ -1,28 +1,37 @@
-/* 
- * File:   tbook.h
- * Author: phil
- *
- * Created on 19. June 2017, 22:48
- * Updated on 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
-#include "tbook.h"
+/* 
+ * File:   taudiobook.cpp
+ * Author: gabriel
+ * 
+ * Created on 23. Juni 2017, 19:21
+ */
+
+#include "taudiobook.h"
 
 using namespace std;
 
-TBook::TBook(string author) {
-    setAuthor(author);
+TAudioBook::TAudioBook() {
+    setCDs(0);
 }
 
-TBook::TBook() {
-    setAuthor("");
+TAudioBook::TAudioBook(int CDs) {
+    setCDs(CDs);
 }
 
-TBook::~TBook() {
-    printf("Das Buch '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
+TAudioBook::~TAudioBook() {
+    cout << "Das Audiobook " << getTitle()
+            << " mit der Signatur " << getSignature()
+            << " wird vernichtet!" << endl;
 }
 
-void TBook::load(ifstream &stream) {
+// modularisieren
+
+void TAudioBook::load(ifstream &stream) {
     string line;
     TLocation loc;
     do {
@@ -39,6 +48,10 @@ void TBook::load(ifstream &stream) {
             setAgeRestriction(atoi(parseLine(line).c_str()));
         } else if (line.find("<Status>") != string::npos) {
             setStatus(parseLine(line).c_str());
+        } else if (line.find("<Interpret>") != string::npos) {
+            setInterpret(parseLine(line));
+        } else if (line.find("<Tracks>") != string::npos) {
+            setTracks(atoi(parseLine(line).c_str()));
         } else if (line.find("<Pages>") != string::npos) {
             setPages(atoi(parseLine(line).c_str()));
         } else if (line.find("<Author>") != string::npos) {
@@ -46,14 +59,19 @@ void TBook::load(ifstream &stream) {
         }
 
         if (stream.eof()) {
-            printf("\nERROR: EOF in TBook::load()\n");
+            printf("\nERROR: EOF in TAudioBook::load()\n");
             break;
         }
-    } while (line.find("</Book>") == string::npos);
+    } while (line.find("</Audiobook>") == string::npos);
 }
 
-void TBook::print() {
-    cout    << "Autor:          " << getAuthor() << endl
+// modularisieren
+
+void TAudioBook::print() {
+    cout << "Interpret:      " << getInterpret() << endl
+            << "Anz. Tracks:    " << getTracks() << endl
+            << "Anz. CDs:       " << getCDs() << endl
+            << "Autor:          " << getAuthor() << endl
             << "Anz. Seiten:    " << getPages() << endl
             << "Titel:          " << getTitle() << endl
             << "Signatur:       " << getSignature() << endl
@@ -64,10 +82,10 @@ void TBook::print() {
             << "Status:         " << getStatus() << endl;
 }
 
-void TBook::setAuthor(string author) {
-    this->author = author;
+void TAudioBook::setCDs(int CDs) {
+    this->CDs = CDs;
 }
 
-string TBook::getAuthor() {
-    return author;
+int TAudioBook::getCDs() {
+    return CDs;
 }

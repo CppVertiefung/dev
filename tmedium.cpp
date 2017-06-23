@@ -25,10 +25,9 @@ TMedium::TMedium(string title, string signature, TLocation location, int ageRest
 }
 
 TMedium::TMedium() {
-    TLocation loc = TLocation();
     setTitle("");
     setSignature("");
-    setLocation(loc);
+    setLocation(TLocation());
     setAgeRestriction(0);
     setStatus(Status::reserved);
 }

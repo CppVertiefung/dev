@@ -49,14 +49,14 @@ namespace std {
         TMedium(string title, string signature, TLocation location, int ageRestriction, Status status);
         virtual ~TMedium();
 
-        void print();
+        virtual void print();
         void setTitle(string title);
         void setSignature(string signature);
         void setLocation(TLocation location);
         void setAgeRestriction(int age);
         void setStatus(Status status);
         void setStatus(string line);
-        virtual void load(ifstream &stream);
+        virtual void load(ifstream &stream);        // virtual?
 
         string getTitle();
         string getSignature();

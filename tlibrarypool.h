@@ -29,6 +29,7 @@
 #include "tparser.h"
 #include "tcd.h"
 #include "tdvd.h"
+#include "taudiobook.h"
 
 namespace std {
 

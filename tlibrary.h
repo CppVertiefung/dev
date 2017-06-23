@@ -29,6 +29,7 @@
 #include "tdvd.h"
 #include "temployee.h"
 #include "tcustomer.h"
+#include "taudiobook.h"
 
 namespace std {
 

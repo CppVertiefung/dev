@@ -30,8 +30,8 @@ TDVD::~TDVD() {
 }
 
 void TDVD::print() {
-    printf("Schauspieler:      %s\n", getActor().c_str());
-    printf("Spieldauer:    ");
+    printf("Schauspieler: %s\n", getActor().c_str());
+    printf("Spieldauer:  ");
     getDuration().print();
     printf("\n");
     TMedium::print();

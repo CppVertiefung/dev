@@ -30,8 +30,8 @@ TCD::~TCD() {
 }
 
 void TCD::print() {
-    printf("Interpret:      %s\n", getInterpret().c_str());
-    printf("Anz. Tracks:    %i\n", getTracks());
+    printf("Interpret:  %s\n", getInterpret().c_str());
+    printf("Anz.Tracks: %i\n", getTracks());
     TMedium::print();
 }
 
