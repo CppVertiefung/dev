@@ -24,6 +24,13 @@ TEmployee::~TEmployee() {
 //    return *this;
 //}
 
+void TEmployee::print() {
+    cout << getName() << " (Kundennr.: " << getCustomerNr() << " / Personalnr.: " << getEmployeeNr() << ")" << endl
+            << getAddress().getStreet() << " " << getAddress().getNumber() << "; "
+            << getAddress().getZipcode() << " " << getAddress().getTown() << endl
+            << "* " << getBirth().getDay() << "." << getBirth().getMonth() << "." << getBirth().getYear() << endl;
+}
+
 void TEmployee::load(ifstream &stream) {
     string line;
     TDate date;
@@ -53,7 +60,7 @@ void TEmployee::load(ifstream &stream) {
             printf("\nERROR: EOF in TCustomer::load()\n");
             break;
         }
-    } while (line.find("</Person>") == string::npos);
+    } while (line.find("</Employee>") == string::npos);
 }
 
 void TEmployee::setEmployeeNr(string val) {

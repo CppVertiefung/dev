@@ -32,13 +32,13 @@ namespace std {
         void setName(string name);
         void setAddress(TAddress address);
         void setBirth(TDate birth);
-        void load(ifstream &stream);
+        virtual void load(ifstream &stream);
 
         string getName();
         TAddress getAddress();
         TDate getBirth();
 
-        void print();
+        virtual void print();
     };
 
 } // std

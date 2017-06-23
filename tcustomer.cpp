@@ -24,30 +24,33 @@ TCustomer::~TCustomer() {
 //    return *this;
 //}
 
+void TCustomer::print() {
+    cout << getName() << " (Kundennr.: " << getCustomerNr() << ")" << endl
+            << getAddress().getStreet() << " " << getAddress().getNumber() << "; "
+            << getAddress().getZipcode() << " " << getAddress().getTown() << endl
+            << "* " << getBirth().getDay() << "." << getBirth().getMonth() << "." << getBirth().getYear() << endl;
+}
+
 void TCustomer::load(ifstream &stream) {
     string line;
-    string nr;
     TDate date;
     TAddress addr;
     do {
         getline(stream, line);
         if (line.find("<Name>") != string::npos) {
             setName(parseLine(line));
-        }
-        if (line.find("<Birthday>") != string::npos) {
+        } else if (line.find("<Birthday>") != string::npos) {
             getline(stream, line);
             if (line.find("<Date>") != string::npos) {
                 date = TDate();
                 date.load(stream);
                 setBirth(date);
             }
-        }
-        if (line.find("<Address>") != string::npos) {
+        } else if (line.find("<Address>") != string::npos) {
             addr = TAddress();
             addr.load(stream);
             setAddress(addr);
-        }
-        if (line.find("<CustomerNr>") != string::npos) {
+        } else if (line.find("<CustomerNr>") != string::npos) {
             setCustomerNr(parseLine(line));
         }
 
@@ -55,7 +58,7 @@ void TCustomer::load(ifstream &stream) {
             printf("\nERROR: EOF in TCustomer::load()\n");
             break;
         }
-    } while (line.find("</Person>") == string::npos);
+    } while (line.find("</Customer>") == string::npos);
 }
 
 void TCustomer::setCustomerNr(string val) {

@@ -12,6 +12,7 @@ namespace std {
         virtual ~TEmployee();
 //        TEmployee(const TEmployee& other);
 //        TEmployee& operator=(const TEmployee& other);
+        void print();
         void load(ifstream &stream);
         void setEmployeeNr(string val);
         string getEmployeeNr();

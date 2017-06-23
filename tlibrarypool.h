@@ -27,6 +27,8 @@
 #include "tperson.h"
 #include "tlibrary.h"
 #include "tparser.h"
+#include "tcd.h"
+#include "tdvd.h"
 
 namespace std {
 

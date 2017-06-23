@@ -13,7 +13,6 @@
  */
 
 #include "tlibrary.h"
-#include "temployee.h"
 
 using namespace std;
 
@@ -65,6 +64,17 @@ void TLibrary::load(ifstream &stream) {
             addr.load(stream);
             address = addr;
         }
+        if (line.find("<CD>") != string::npos) {
+            med = new TCD();
+            med->load(stream);
+            add(med);
+        }
+        if (line.find("<DVD>") != string::npos) {
+            med = new TDVD();
+            med->load(stream);
+            add(med);
+        }
+
         if (line.find("<Manager>") != string::npos) {
             getline(stream, line);
             if (line.find("<Employee>") != string::npos) {
