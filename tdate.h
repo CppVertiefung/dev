@@ -26,7 +26,7 @@
 
 namespace std {
 
-    class TDate : public TParser{
+    class TDate : public TParser {
     private:
         int year;
         int month;
@@ -40,14 +40,15 @@ namespace std {
         void setMonth(int month);
         void setDay(int day);
         void load(ifstream &stream);
-        
+
         int getYear();
         int getMonth();
         int getDay();
-        
+
         void print();
+        ostream & printStream(ostream &ostr);
         void setCurrentDate();
-};
+    };
 
 }
 #endif /* TDATE_H */

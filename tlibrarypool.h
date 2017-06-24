@@ -21,6 +21,7 @@
 #include <vector>
 #include <iomanip>
 #include <cstring>
+#include <iostream>
 
 #include "temployee.h"
 #include "tcustomer.h"
@@ -47,6 +48,9 @@ namespace std {
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
+        virtual ostream & printStream(ostream & ostr);
+        friend ostream & operator<<(ostream &ostr, TLibraryPool &lp);
+        
         void setName(string name);
         //void load(ifstream stream);
         string getName();

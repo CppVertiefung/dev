@@ -76,6 +76,10 @@ void TDate::print() {
     printf("%02i.%02i.%04i\n", day, month, year);
 }
 
+ostream& TDate::printStream(ostream& ostr) {
+    return ostr << getDay() << "." << getMonth() << "." << getYear() << endl;
+}
+
 void TDate::setCurrentDate() {
     time_t t;
     struct tm *now;

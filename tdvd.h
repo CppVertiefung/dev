@@ -37,6 +37,9 @@ namespace std {
 
         void load(ifstream &stream);
         void print();
+        virtual ostream & printStream(ostream &ostr);
+        friend ostream & operator<<(ostream &ostr, TDVD &cd);
+
         void setActor(string actor);
         string getActor();
         void setDuration(TTime duration);

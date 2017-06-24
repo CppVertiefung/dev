@@ -90,3 +90,12 @@ void TPerson::print() {
     address.print();
     printf("\n");
 }
+
+ostream & TPerson::printStream(ostream& ostr) {
+    ostr << getName() << endl;
+    ostr << "* ";
+    getBirth().printStream(ostr);
+    getAddress().printStream(ostr);
+    return ostr;
+    
+}

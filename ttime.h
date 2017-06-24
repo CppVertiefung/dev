@@ -19,6 +19,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iostream>
 
 #include "tparser.h"
 
@@ -35,6 +36,7 @@ namespace std {
         TTime(int hour, int minute, int second);
 
         void load(ifstream &stream);
+        virtual ostream & printStream(ostream &ostr);
         void setSecond(int second);
         int getSecond();
         void setMinute(int minute);

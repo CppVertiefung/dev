@@ -18,6 +18,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iostream>
 
 #include "taddress.h"
 #include "tperson.h"
@@ -47,6 +48,7 @@ namespace std {
         
         void add(TMedium* medium);
         void print();
+        ostream & printStream(ostream &ostr);
 
         void setName(string name);
         void setAddress(TAddress address);

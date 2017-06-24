@@ -52,6 +52,18 @@ void TPrintedMedium::load(ifstream &stream) {
     } while (line.find("</PrintedMedium>") == string::npos);
 }
 
+ostream& TPrintedMedium::printStream(ostream& ostr) {
+    TMedium m = *this;
+    m.printStream(ostr);
+    return ostr << "PrintedMedium" << endl;
+}
+
+ostream & std::operator<<(ostream &ostr, TPrintedMedium &pm) {
+//    TMedium m = pm;
+//    m.printStream(ostr);
+    pm.printStream(ostr);
+}
+
 void TPrintedMedium::setPages(int pages) {
     this->pages = pages;
 }

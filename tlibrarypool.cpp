@@ -104,6 +104,24 @@ void TLibraryPool::print() {
     printf("\n");
 }
 
+ostream & TLibraryPool::printStream(ostream &ostr) {
+    ostr << "Leitung:" << getName() << endl
+            << "Zum Buechereiverband gehoeren " << libraries.size() << " Filialen" << endl;
+    for (unsigned int i = 0; i < libraries.size(); i++) {
+        cout << "DEBUG" << endl << endl;
+        libraries.at(i)->printStream(ostr);
+    }
+    for (unsigned int i = 0; i < customers.size(); i++) {
+//        ostr << customers.at(i) << endl;
+        customers.at(i)->print();
+    }
+    return ostr;
+}
+
+ostream & std::operator<<(ostream &ostr, TLibraryPool &lp) {
+    lp.printStream(ostr);
+}
+
 void TLibraryPool::setName(string name) {
     this->name = name;
 }

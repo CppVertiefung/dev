@@ -31,7 +31,9 @@ namespace std {
         TPrintedMedium(int pages);
         virtual ~TPrintedMedium();
 
+        virtual ostream& printStream(ostream& ostr);
         virtual void load(ifstream &stream);
+        friend ostream & operator<<(ostream &ostr, TPrintedMedium &pm);
         void setPages(int pages);
         int getPages();
     };
