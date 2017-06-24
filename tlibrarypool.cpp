@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tlibrarypool.cpp
  * Author: gabriel
- * 
+ *
  * Created on 4. Mai 2017, 13:56
  * Updated on 04. June 2017 by phil
  */
@@ -19,7 +19,7 @@
 
 using namespace std;
 
-TLibraryPool::TLibraryPool(string name, TPerson* chief) { // : chief(chief) 
+TLibraryPool::TLibraryPool(string name, TPerson* chief) : chief(chief) { // : chief(chief)
     setName(name);
 }
 
@@ -30,12 +30,12 @@ TLibraryPool::~TLibraryPool() {
 }
 
 TLibraryPool::TLibraryPool(string filename) {
-    ifstream input(filename.c_str());
+    ifstream input(filename);
     string line;
     string tag;
-    TPerson * pers;
+    TCustomer * cust;
+    TEmployee * empl;
     TLibrary * lib;
-    TPerson * cust;
     //    input.open(filename.c_str(), ifstream::in);
     if (input.is_open()) {
         getline(input, line);
@@ -49,10 +49,10 @@ TLibraryPool::TLibraryPool(string filename) {
                 }
                 if (line.find("<Chairman>") != string::npos) {
                     getline(input, line);
-                    if (line.find("<Person>") != string::npos) {
-                        pers = new TPerson();
-                        pers->load(input);
-                        chief = pers;
+                    if (line.find("<Employee>") != string::npos) {
+                        empl = new TEmployee();
+                        empl->load(input);
+                        chief = empl;
                     }
                 }
                 if (line.find("<Library>") != string::npos) {
@@ -61,12 +61,12 @@ TLibraryPool::TLibraryPool(string filename) {
                     add(lib);
                 }
                 if (line.find("<Customer>") != string::npos) {
-                    getline(input, line); // test
-                    if (line.find("<Person>") != string::npos) {
-                        cust = new TPerson();
-                        cust->load(input);
-                        add(cust);
-                    }
+                    //                    getline(input, line); // test
+                    //                    if (line.find("<Person>") != string::npos) {
+                    cust = new TCustomer();
+                    cust->load(input);
+                    add(cust);
+                    //                    }
                 }
                 if (input.eof()) {
                     printf("\nERROR: EOF in TLibraryPool::load()\n\n");
@@ -111,3 +111,12 @@ void TLibraryPool::setName(string name) {
 string TLibraryPool::getName() {
     return name;
 }
+
+void TLibraryPool::setChief(TPerson *chief) {
+    this->chief = chief;
+}
+
+TPerson * TLibraryPool::getChief() {
+    return chief;
+}
+

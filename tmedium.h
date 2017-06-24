@@ -37,7 +37,7 @@ namespace std {
             reserved
         };
 
-    private:
+    protected:
         string title;
         string signature;
         TLocation location;
@@ -47,16 +47,16 @@ namespace std {
     public:
         TMedium();
         TMedium(string title, string signature, TLocation location, int ageRestriction, Status status);
-        ~TMedium();
+        virtual ~TMedium();
 
-        void print();
+        virtual void print();
         void setTitle(string title);
         void setSignature(string signature);
         void setLocation(TLocation location);
         void setAgeRestriction(int age);
         void setStatus(Status status);
         void setStatus(string line);
-        void load(ifstream &stream);
+        virtual void load(ifstream &stream);        // virtual?
 
         string getTitle();
         string getSignature();
