@@ -64,6 +64,20 @@ void TCD::load(ifstream &stream) {
     } while (line.find("</CD>") == string::npos);
 }
 
+ostream & TCD::printStream(ostream &ostr) {
+    ostr << "Interpret:      " << getInterpret() << endl
+            << "Anz. Tracks:    " << getTracks() << endl;
+    
+    TMedium m = *this;
+    m.printStream(ostr);
+    
+    return ostr << endl;
+}
+
+ostream & std::operator<<(ostream &ostr, TCD &cd) {
+    cd.printStream(ostr);
+}
+
 void TCD::setInterpret(string interpret) {
     this->interpret = interpret;
 }
