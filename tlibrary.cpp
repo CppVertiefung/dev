@@ -44,8 +44,18 @@ void TLibrary::load(ifstream &stream) {
         if (line.find("<Name>") != string::npos) {
             name = parseLine(line);
         }
-        if (line.find("<Medium>") != string::npos) {
-            med = new TMedium();
+        //        if (line.find("<Medium>") != string::npos) {
+        //            med = new TMedium();
+        //            med->load(stream);
+        //            add(med);
+        //        }
+        if (line.find("<Book>") != string::npos) {
+            med = new TBook();
+            med->load(stream);
+            add(med);
+        }
+        if (line.find("<Magazine>") != string::npos) {
+            med = new TMagazine();
             med->load(stream);
             add(med);
         }
@@ -54,10 +64,26 @@ void TLibrary::load(ifstream &stream) {
             addr.load(stream);
             address = addr;
         }
+        if (line.find("<CD>") != string::npos) {
+            med = new TCD();
+            med->load(stream);
+            add(med);
+        }
+        if (line.find("<DVD>") != string::npos) {
+            med = new TDVD();
+            med->load(stream);
+            add(med);
+        }
+        if (line.find("<Audiobook>") != string::npos) {
+            med = new TAudioBook();
+            med->load(stream);
+            add(med);
+        }
+
         if (line.find("<Manager>") != string::npos) {
             getline(stream, line);
-            if (line.find("<Person>") != string::npos) {
-                pers = new TPerson();
+            if (line.find("<Employee>") != string::npos) {
+                pers = new TEmployee();
                 pers->load(stream);
                 manager = pers;
             }

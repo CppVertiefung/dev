@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   tperson.h
  * Author: phil
  *
@@ -19,7 +19,7 @@
 namespace std {
 
     class TPerson : public TParser {
-    private:
+    protected:
         string name;
         TAddress address;
         TDate birth;
@@ -27,18 +27,18 @@ namespace std {
     public:
         TPerson();
         TPerson(string name, TAddress address, TDate birth);
-        ~TPerson();
+        virtual ~TPerson();
 
         void setName(string name);
         void setAddress(TAddress address);
         void setBirth(TDate birth);
-        void load(ifstream &stream);
+        virtual void load(ifstream &stream);
 
         string getName();
         TAddress getAddress();
         TDate getBirth();
 
-        void print();
+        virtual void print();
     };
 
 } // std

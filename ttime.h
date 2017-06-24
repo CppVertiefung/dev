@@ -15,27 +15,39 @@
 #ifndef TTIME_H
 #define TTIME_H
 
-#include <stdio.h>
-#include "ttime.h"
+#include <cstdio>
 #include <iostream>
+#include <string>
+#include <fstream>
 
-class TTime {
-private:
-    unsigned char hour;
-    unsigned char minute;
-    unsigned char second;
-public:
-    TTime();
-    TTime(unsigned char hour, unsigned char minute);
-    TTime(unsigned char hour, unsigned char minute, unsigned char second);
+#include "tparser.h"
 
-    void setSecond(unsigned char second);
-    void setMinute(unsigned char minute);
-    void setHour(unsigned char hour);
+namespace std {
 
-    void print();
-    void setCurrentTime();
-};
+    class TTime : public TParser {
+    private:
+        int hour;
+        int minute;
+        int second;
+    public:
+        TTime();
+        TTime(int hour, int minute);
+        TTime(int hour, int minute, int second);
+
+        void load(ifstream &stream);
+        void setSecond(int second);
+        int getSecond();
+        void setMinute(int minute);
+        int getMinute();
+        void setHour(int hour);
+        int getHour();
+        //        string getTime();
+
+        void print();
+        void setCurrentTime();
+    };
+
+}
 
 #endif /* TTIME_H */
 

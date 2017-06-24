@@ -24,6 +24,7 @@ string TParser::parseLine(string line) {
         end = line.find("</");
         return line.substr(start, end - start);
     }
+    else return NULL;
 //    else {
 //        start = line.find("<") + 1;
 //        end = line.find(">");

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tlibrarypool.h
  * Author: gabriel
  *
@@ -22,9 +22,14 @@
 #include <iomanip>
 #include <cstring>
 
+#include "temployee.h"
+#include "tcustomer.h"
 #include "tperson.h"
 #include "tlibrary.h"
 #include "tparser.h"
+#include "tcd.h"
+#include "tdvd.h"
+#include "taudiobook.h"
 
 namespace std {
 
@@ -34,17 +39,19 @@ namespace std {
         TPerson *chief;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
-    public: //has to be protected - Vererbung einbauen!
-//        string parseLine(string line);
+    public:
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
         ~TLibraryPool();
+
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
         void setName(string name);
         //void load(ifstream stream);
         string getName();
+        void setChief(TPerson *chief);
+        TPerson* getChief();
     };
 }
 
