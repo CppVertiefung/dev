@@ -9,7 +9,7 @@
  * Author: gabriel
  *
  * Created on 18. April 2017, 16:44
- * Updated on 03. June 2017 by phil
+ * Updated on 24. June 2017 by phil
  */
 
 #ifndef TDATE_H
@@ -48,6 +48,7 @@ namespace std {
         void print();
         ostream & printStream(ostream &ostr);
         void setCurrentDate();
+		TDate operator+ (const int span);
     };
 
 }
