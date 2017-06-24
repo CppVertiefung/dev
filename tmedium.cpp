@@ -33,7 +33,10 @@ TMedium::TMedium() {
 }
 
 TMedium::~TMedium() {
-    printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
+//    printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
+    cout << "Das Medium '" << getTitle() 
+            << "' mit der Signatur '"<< getSignature()
+            << "' wird vernichtet!" << endl;
 }
 
 void TMedium::load(ifstream &stream) {

@@ -20,6 +20,7 @@
 #include <iomanip>
 #include <cstdlib>
 #include <fstream>
+#include <iostream>
 
 #include "tlocation.h"
 #include "tparser.h"

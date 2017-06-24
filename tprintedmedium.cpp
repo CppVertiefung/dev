@@ -19,7 +19,10 @@ TPrintedMedium::TPrintedMedium() {
 }
 
 TPrintedMedium::~TPrintedMedium() {
-    printf("Das Printed-Medium '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
+//    printf("Das Printed-Medium '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
+    cout << "Das Printed-Medium '" << getTitle()
+            << "' mit der Signatur '" << getSignature()
+            << "' wird vernichtet!" << endl;
 }
 
 void TPrintedMedium::load(ifstream &stream) {
