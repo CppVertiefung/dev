@@ -21,7 +21,7 @@
 #include <vector>
 #include <iomanip>
 #include <cstring>
-
+#include <algorithm>
 #include "temployee.h"
 #include "tcustomer.h"
 #include "tperson.h"
@@ -37,13 +37,15 @@ namespace std {
     private:
         string name;
         TPerson *chief;
+         static bool ident1(TCustomer person);
+        string sig;
+        string nr;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
     public:
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
         ~TLibraryPool();
-
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
