@@ -68,6 +68,31 @@ TLibraryPool::TLibraryPool(string filename) {
                     add(cust);
                     //                    }
                 }
+                if (line.find("<Loan>") != string::npos) {
+                    TPerson * pers;
+                    TMedium * med;
+                    do{
+                        getline(input,line);
+                        if(line.find("<Signatur>") != string::npos) {
+                            sig=parseLine(line);
+                        }
+                        if(line.find("<CuistomerNr>") != string::npos) {
+                            nr=parseLine(line);
+                        }
+
+                    }while(line.find("</Loan>") == string::npos);
+                    std::vector<TPerson>::iterator it = std::find_if(TLibraryPool::customers.cbegin(),TLibraryPool::customers.cend(),TLibraryPool::ident1);//raussuchen des passenden Elements im Vector
+                    pers = &it;
+                    for (std::vector<TLibrary>::iterator it2 = myvector.begin() ; it != myvector.end(); ++it){//Iterieren durch den Vector der Librarys und Überprüfen des inhalts des Vectors in dem jeweiligen Vectorelement
+                        std::vector<TMedium>::iterator it3 = std::find_if(TLibraryPool::customers.cbegin(),TLibraryPool::customers.cend(),TLibraryPool.ident3);//raussuchen des passenden Elements im Vector
+                        if(it3){
+                            med=&it3;
+                            break;
+                        }
+                    }
+                    //Constuctor für Loan mit den Werten  (pers,med)
+                    //loan.load(input);
+                }
                 if (input.eof()) {
                     printf("\nERROR: EOF in TLibraryPool::load()\n\n");
                     break;
@@ -81,7 +106,16 @@ TLibraryPool::TLibraryPool(string filename) {
 void TLibraryPool::add(TLibrary* library) {
     libraries.push_back(library);
 }
-
+bool static TLibraryPool::ident1(TCustomer person){
+    return(nr==person.getCustomerNr());
+}/*
+bool TLibraryPool::ident2(TLibrary lib){
+    return(lib==lib.media.//check lib
+    .getCustomerNr());
+}*/
+bool TLibraryPool::ident3(TMedium med){
+    return(sig==med.getSignature());
+}
 void TLibraryPool::add(TPerson* customer) {
     customers.push_back(customer);
 }
