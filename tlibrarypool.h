@@ -41,8 +41,8 @@ namespace std {
         TPerson *chief;
         static bool ident1(TCustomer person);
         static bool ident3(TMedium med);
-        string sig;
-        string nr;
+        static string sig;
+        static string nr;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
     public:

@@ -35,6 +35,9 @@ TLibraryPool::TLibraryPool(string filename) {
     TCustomer * cust;
     TEmployee * empl;
     TLibrary * lib;
+    TPerson * pers;
+    TMedium * med;
+    
     //    input.open(filename.c_str(), ifstream::in);
     if (input.is_open()) {
         getline(input, line);
@@ -68,8 +71,7 @@ TLibraryPool::TLibraryPool(string filename) {
                     //                    }
                 }
                 if (line.find("<Loan>") != string::npos) {
-                    TPerson * pers;
-                    TMedium * med;
+
                     do {
                         getline(input, line);
                         if (line.find("<Signatur>") != string::npos) {
@@ -82,7 +84,7 @@ TLibraryPool::TLibraryPool(string filename) {
                     } while (line.find("</Loan>") == string::npos);
                     vector<TPerson>::iterator it = find_if(customers.cbegin(), customers.cend(), TLibraryPool::ident1); //raussuchen des passenden Elements im Vector
                     pers = &it;
-                    for (vector<TLibrary>::iterator it2 = myvector.begin(); it != myvector.end(); ++it) {//Iterieren durch den Vector der Librarys und Überprüfen des inhalts des Vectors in dem jeweiligen Vectorelement
+                    for (vector<TLibrary>::iterator it2 = libraries.begin(); it != libraries.end(); ++it) {//Iterieren durch den Vector der Librarys und Überprüfen des inhalts des Vectors in dem jeweiligen Vectorelement
                         vector<TMedium>::iterator it3 = find_if(customers.cbegin(), customers.cend(), TLibraryPool::ident3); //raussuchen des passenden Elements im Vector
                         if (it3) {
                             med = &it3;
@@ -110,6 +112,8 @@ void TLibraryPool::add(TLibrary* library) {
 // die funktion muss direkt die instanz eines objektes wissen
 // objektreferenz uebergeben ?? #idk
 
+// achso nr als static wuerde gehen, gibts dann aber auch nur einmal fuer alle objekte
+
 bool TLibraryPool::ident1(TCustomer person) {
     return (nr == person.getCustomerNr());
 }
@@ -121,6 +125,7 @@ bool TLibraryPool::ident2(TLibrary lib){
 }*/
 
 // same here
+
 bool TLibraryPool::ident3(TMedium med) {
     return (sig == med.getSignature());
 }
