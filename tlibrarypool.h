@@ -22,7 +22,7 @@
 #include <iomanip>
 #include <cstring>
 #include <algorithm>
-#include <iostream>
+#include <assert.h>
 
 #include "temployee.h"
 #include "tcustomer.h"
@@ -40,6 +40,7 @@ namespace std {
         string name;
         TPerson *chief;
          static bool ident1(TCustomer person);
+         bool ident3(TMedium med);
         string sig;
         string nr;
         vector<TLibrary*> libraries;
@@ -54,6 +55,7 @@ namespace std {
         virtual ostream & printStream(ostream & ostr);
         friend ostream & operator<<(ostream &ostr, TLibraryPool &lp);
         
+        bool ident3(TMedium med);        
         void setName(string name);
         //void load(ifstream stream);
         string getName();

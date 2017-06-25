@@ -92,6 +92,7 @@ void TDate::setCurrentDate() {
     day = now->tm_mday;
 }
 
+// statt 'TDate TDate::operator+' warhsceinlich 'TDate std::operator+'
 TDate TDate::operator+ (const int span){
 	int daysPerMonth[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	TDate date;
