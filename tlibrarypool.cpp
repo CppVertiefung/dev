@@ -80,10 +80,10 @@ TLibraryPool::TLibraryPool(string filename) {
                         }
 
                     } while (line.find("</Loan>") == string::npos);
-                    vector<TPerson>::iterator it = find_if(TLibraryPool::customers.cbegin(), TLibraryPool::customers.cend(), TLibraryPool::ident1); //raussuchen des passenden Elements im Vector
+                    vector<TPerson>::iterator it = find_if(customers.cbegin(), customers.cend(), TLibraryPool::ident1); //raussuchen des passenden Elements im Vector
                     pers = &it;
                     for (vector<TLibrary>::iterator it2 = myvector.begin(); it != myvector.end(); ++it) {//Iterieren durch den Vector der Librarys und Überprüfen des inhalts des Vectors in dem jeweiligen Vectorelement
-                        vector<TMedium>::iterator it3 = find_if(TLibraryPool::customers.cbegin(), TLibraryPool::customers.cend(), TLibraryPool.ident3); //raussuchen des passenden Elements im Vector
+                        vector<TMedium>::iterator it3 = find_if(customers.cbegin(), customers.cend(), TLibraryPool::ident3); //raussuchen des passenden Elements im Vector
                         if (it3) {
                             med = &it3;
                             break;
@@ -109,6 +109,7 @@ void TLibraryPool::add(TLibrary* library) {
 // mann kann in einer statischen funktion nicht auf attribute einer objekt instanz zugreifen
 // die funktion muss direkt die instanz eines objektes wissen
 // objektreferenz uebergeben ?? #idk
+
 bool TLibraryPool::ident1(TCustomer person) {
     return (nr == person.getCustomerNr());
 }
@@ -118,6 +119,8 @@ bool TLibraryPool::ident2(TLibrary lib){
     return(lib==lib.media.//check lib
     .getCustomerNr());
 }*/
+
+// same here
 bool TLibraryPool::ident3(TMedium med) {
     return (sig == med.getSignature());
 }

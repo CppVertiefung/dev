@@ -39,8 +39,8 @@ namespace std {
     private:
         string name;
         TPerson *chief;
-         static bool ident1(TCustomer person);
-         bool ident3(TMedium med);
+        static bool ident1(TCustomer person);
+        static bool ident3(TMedium med);
         string sig;
         string nr;
         vector<TLibrary*> libraries;
@@ -54,8 +54,7 @@ namespace std {
         void print();
         virtual ostream & printStream(ostream & ostr);
         friend ostream & operator<<(ostream &ostr, TLibraryPool &lp);
-        
-        bool ident3(TMedium med);        
+
         void setName(string name);
         //void load(ifstream stream);
         string getName();
