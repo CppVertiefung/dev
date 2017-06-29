@@ -92,24 +92,26 @@ void TDate::setCurrentDate() {
     day = now->tm_mday;
 }
 
-// statt 'TDate TDate::operator+' warhsceinlich 'TDate std::operator+'
-TDate TDate::operator+ (const int span){
-	int daysPerMonth[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	TDate date;
-	
-	date.year = this->year;
-	date.month = this->month;
-	date.day = this->day + span;
-	while(date.day > daysPerMonth[date.month]){
-		if((date.year % 4 == 0 && date.year % 100 != 0) || date.year % 400 == 0){
-			daysPerMonth[2] = 29; 
-		}
-		date.day -= daysPerMonth[date.month];
-		date.month++;
-		if(date.month > 12){
-			date.month = 1;
-			date.year++;
-		}
- 	}
-	return date;
+TDate TDate::operator+(const int span) {
+    int daysPerMonth[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    TDate res = TDate(0, 0, 0);
+    
+    res.year = this->getYear();
+    res.month = this->getMonth();
+    res.day = this->getDay() + span;
+    
+    while (res.day > daysPerMonth[res.month]) {
+        if ((res.year % 4 == 0 && res.year % 100 != 0) || res.year % 400 == 0) {
+            daysPerMonth[2] = 29;
+        }
+        res.day -= daysPerMonth[res.month];
+        res.month++;
+        if (res.month > 12) {
+            res.month = 1;
+            res.year++;
+        }
+    }
+    return res;
+    
 }

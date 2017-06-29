@@ -20,6 +20,7 @@
 #include <string>
 #include <fstream>
 #include <ctime>
+#include <iostream>
 
 #include "ttime.h"
 #include "tparser.h"
@@ -48,7 +49,7 @@ namespace std {
         void print();
         ostream & printStream(ostream &ostr);
         void setCurrentDate();
-		TDate operator+ (const int span);
+        TDate operator+(int span);
     };
 
 }

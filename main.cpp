@@ -2,14 +2,25 @@
 
 using namespace std;
 
-#include "tlibrarypool.h"
-#include "tmedium.h"
+//#include "tlibrarypool.h"
+//#include "tmedium.h"
+#include "tdate.h"
+#include "tparser.h"
 
 int main() {
-    TLibraryPool LP("data.xml");
+//    TLibraryPool LP("data.xml");
 
 //    LP.print();
-    cout << LP << endl;
+//    cout << LP << endl;
+    
+    
+    // Tests:
+    // Test TDate operator+
+//    TDate date1 = TDate(1, 1, 1999);
+//    TDate date2 = date1 + 63;
+//    
+//    date1.print();
+//    date2.print();
     
 //    TMedium test = TMedium();
 //    test.setAgeRestriction(69);
