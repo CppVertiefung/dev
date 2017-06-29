@@ -2,16 +2,16 @@
 
 using namespace std;
 
-//#include "tlibrarypool.h"
+#include "tlibrarypool.h"
 //#include "tmedium.h"
-#include "tdate.h"
-#include "tparser.h"
+//#include "tdate.h"
+//#include "tparser.h"
 
 int main() {
-//    TLibraryPool LP("data.xml");
+    TLibraryPool LP("data.xml");
 
-//    LP.print();
-//    cout << LP << endl;
+    LP.print();
+    cout << LP << endl;
     
     
     // Tests:

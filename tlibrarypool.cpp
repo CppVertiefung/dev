@@ -82,15 +82,15 @@ TLibraryPool::TLibraryPool(string filename) {
                         }
 
                     } while (line.find("</Loan>") == string::npos);
-                    vector<TPerson>::iterator it = find_if(customers.cbegin(), customers.cend(), TLibraryPool::ident1); //raussuchen des passenden Elements im Vector
-                    pers = &it;
-                    for (vector<TLibrary>::iterator it2 = libraries.begin(); it != libraries.end(); ++it) {//Iterieren durch den Vector der Librarys und Überprüfen des inhalts des Vectors in dem jeweiligen Vectorelement
-                        vector<TMedium>::iterator it3 = find_if(customers.cbegin(), customers.cend(), TLibraryPool::ident3); //raussuchen des passenden Elements im Vector
-                        if (it3) {
-                            med = &it3;
-                            break;
-                        }
-                    }
+                    vector<TPerson *>::iterator it = find_if(customers.begin(), customers.end(), TLibraryPool::ident1); //raussuchen des passenden Elements im Vector
+//                    pers = &it;
+//                    for (vector<TLibrary>::iterator it2 = libraries.begin(); it != libraries.end(); ++it) {//Iterieren durch den Vector der Librarys und Überprüfen des inhalts des Vectors in dem jeweiligen Vectorelement
+//                        vector<TMedium>::iterator it3 = find_if(customers.begin(), customers.end(), TLibraryPool::ident3); //raussuchen des passenden Elements im Vector
+//                        if (it3) {
+//                            med = &it3;
+//                            break;
+//                        }
+//                    }
                     //Constuctor für Loan mit den Werten  (pers,med)
                     //loan.load(input);
                 }

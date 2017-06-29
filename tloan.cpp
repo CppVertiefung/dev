@@ -1,6 +1,7 @@
 #include "tloan.h"
 
 using namespace std;
+
 TLoan::TLoan(TPerson * pers,TMedium * med,TDate loan,int duration):loandate (),duration(0)
 {
     this->loaner =pers;
