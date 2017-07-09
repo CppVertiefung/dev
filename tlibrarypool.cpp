@@ -70,6 +70,8 @@ TLibraryPool::TLibraryPool(string filename) {
                 if (line.find("<Loan>") != string::npos) {
                     TPerson * pers;
                     TMedium * med;
+                    TDate tempdate;
+                    int tempduration;
                     do {
                         getline(input, line);
                         if (line.find("<Signatur>") != string::npos) {
@@ -78,19 +80,29 @@ TLibraryPool::TLibraryPool(string filename) {
                         if (line.find("<CuistomerNr>") != string::npos) {
                             nr = parseLine(line);
                         }
+                        if (line.find("<LoanDate>") != string::npos) {
+                            tempdate.load(input);
+                        }
+                        if (line.find("<LoanDays>") != string::npos) {
+                            tempduration=stoi(parseLine(line));
+                        }
 
                     } while (line.find("</Loan>") == string::npos);
-                    vector<TPerson>::iterator it = find_if(customers.cbegin(), customers.cend(), TLibraryPool::ident1); //raussuchen des passenden Elements im Vector
-                    pers = &it;
-                    for (vector<TLibrary>::iterator it2 = myvector.begin(); it != myvector.end(); ++it) {//Iterieren durch den Vector der Librarys und Überprüfen des inhalts des Vectors in dem jeweiligen Vectorelement
-                        vector<TMedium>::iterator it3 = find_if(customers.cbegin(), customers.cend(), TLibraryPool::ident3); //raussuchen des passenden Elements im Vector
-                        if (it3) {
-                            med = &it3;
-                            break;
+
+                    for (unsigned int i = 0; i < libraries.size(); i++) {
+                        //libraries.at(i)->print();
+                        for (unsigned int j = 0; j < libraries.at(i)->media.size(); j++) {
+                            if (libraries.at(i)->media.at(j)->getSignature()== nr){
+                                med=libraries.at(i)->media.at(j);
+                            }
                         }
                     }
-                    //Constuctor für Loan mit den Werten  (pers,med)
-                    //loan.load(input);
+                    for (unsigned int j = 0; j < customers.size(); j++) {
+                        if (customers.at(j)->getCustomerNr()== nr){
+                            pers=customers.at(j);
+                        }
+                    }
+                    TLoan loan(pers,med,tempdate,tempduration);
                 }
                 if (input.eof()) {
                     printf("\nERROR: EOF in TLibraryPool::load()\n\n");
@@ -106,27 +118,21 @@ void TLibraryPool::add(TLibrary* library) {
     libraries.push_back(library);
 }
 
-// mann kann in einer statischen funktion nicht auf attribute einer objekt instanz zugreifen
-// die funktion muss direkt die instanz eines objektes wissen
-// objektreferenz uebergeben ?? #idk
 
 bool TLibraryPool::ident1(TCustomer person) {
     return (nr == person.getCustomerNr());
 }
 
-/*
-bool TLibraryPool::ident2(TLibrary lib){
-    return(lib==lib.media.//check lib
-    .getCustomerNr());
-}*/
-
-// same here
 bool TLibraryPool::ident3(TMedium med) {
     return (sig == med.getSignature());
 }
 
-void TLibraryPool::add(TPerson* customer) {
+void TLibraryPool::add(TCustomer* customer) {
     customers.push_back(customer);
+}
+
+void TLibraryPool::add(TLoan* loan) {
+    loans.push_back(loan);
 }
 
 void TLibraryPool::print() {
@@ -142,6 +148,13 @@ void TLibraryPool::print() {
     printf("\nDer Buechereiverband hat %lu Kunden:\n\n", customers.size());
     for (unsigned int i = 0; i < customers.size(); i++) {
         customers.at(i)->print();
+        printf("\n");
+    }    printf("\nFolgende %lu Medien sind ausgeliehen:\n\n", loans.size());
+    for (unsigned int i = 0; i < loans.size(); i++) {
+        loans.at(i)->print();
+        printf("\n");
+        printf("\n");
+        printf("\n");
         printf("\n");
     }
     printf("\n");

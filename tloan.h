@@ -10,7 +10,7 @@ class TLoan :public TParser
     public:
         TLoan(TPerson * pers, TMedium * med,TDate loan,int duration);
         ~TLoan();
-        void load(ifstream &stream);
+        void print();
     protected:
 
     private:

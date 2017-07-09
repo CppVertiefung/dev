@@ -32,6 +32,7 @@
 #include "tcd.h"
 #include "tdvd.h"
 #include "taudiobook.h"
+#include "tloan.h"
 
 namespace std {
 
@@ -39,18 +40,20 @@ namespace std {
     private:
         string name;
         TPerson *chief;
-        static bool ident1(TCustomer person);
-        static bool ident3(TMedium med);
+        bool ident1(TCustomer person);
+        bool ident3(TMedium med);
         string sig;
         string nr;
         vector<TLibrary*> libraries;
-        vector<TPerson*> customers;
+        vector<TCustomer*> customers;
+        vector<TLoan*> loans;
     public:
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
         ~TLibraryPool();
         void add(TLibrary* library);
-        void add(TPerson* customer);
+        void add(TCustomer* customer);
+        void add(TLoan* loan);
         void print();
         virtual ostream & printStream(ostream & ostr);
         friend ostream & operator<<(ostream &ostr, TLibraryPool &lp);
