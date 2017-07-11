@@ -73,7 +73,7 @@ int TDate::getDay() {
 }
 
 void TDate::print() {
-    printf("* %02i.%02i.%04i\n", day, month, year);
+    printf("%02i.%02i.%04i\n", day, month, year);
 }
 
 ostream& TDate::printStream(ostream& ostr) {

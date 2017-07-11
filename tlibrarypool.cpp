@@ -103,6 +103,7 @@ TLibraryPool::TLibraryPool(string filename) {
                         }
                     }
                     TLoan loan(pers,med,tempdate,tempduration);
+                    add(loan);
                 }
                 if (input.eof()) {
                     printf("\nERROR: EOF in TLibraryPool::load()\n\n");
@@ -172,6 +173,12 @@ ostream & TLibraryPool::printStream(ostream &ostr) {
         //        ostr << customers.at(i) << endl;
         customers.at(i)->print();
     }
+    cout << loans.size()<<endl<<endl<<endl;
+    for (unsigned int i = 0; i < loans.size(); i++) {
+        //        ostr << customers.at(i) << endl;
+        loans.at(i)->print();
+    }
+
     return ostr;
 }
 

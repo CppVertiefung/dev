@@ -26,6 +26,7 @@ TEmployee::~TEmployee() {
 ostream & TEmployee::printStream(ostream &ostr) {
     ostr << name <<"(Kundennummer.: " << getCustomerNr() << " / Personalnummer.: " << getEmployeeNr() << ")"<< endl;
     address.print();
+    cout << "* ";
     birth.print();
     return ostr;
 }

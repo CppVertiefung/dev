@@ -15,7 +15,11 @@ TLoan::~TLoan()
 }
 
 void TLoan::print(){
-    cout << "TLOAN WIRD AUSGEGEBEN" << endl;
+    TDate temp=(loandate + duration);
+    cout << loaner << endl << "Ausleihen" << endl << "Ausleihe vom";
+    loandate.print();
+    cout << endl << "Rueckgabe bis spaetestens ";
+    temp.print();
 
     //cout << "Ausleihe vom " << loandate;
 }

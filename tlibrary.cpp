@@ -117,7 +117,7 @@ ostream& TLibrary::printStream(ostream& ostr) {
     getAddress().printStream(ostr);
     ostr <<"Filialleiter ";
     getManager()->printStream(ostr);
-    ostr << endl <<"es stehen "<<media.size()<< " Medien zur Verfügung"<<endl<<endl;
+    ostr << endl <<"Es stehen "<<media.size()<< " Medien zur Verfügung"<<endl<<endl;
 
     for (unsigned int i = 0; i < media.size(); i++) {
 //        printf("Medium Nr. %i\n", i + 1);
