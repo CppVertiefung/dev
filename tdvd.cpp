@@ -69,21 +69,6 @@ void TDVD::load(ifstream &stream) {
     } while (line.find("</DVD>") == string::npos);
 }
 
-ostream & TDVD::printStream(ostream &ostr) {
-    ostr << "Schauspieler:   " << getActor() << endl
-            << "Spieldauer:     " << getDuration().getHour() << ":"
-            << getDuration().getMinute() << ":" << getDuration().getSecond() << endl;
-    
-    TMedium m = *this;
-    m.printStream(ostr);
-    
-    return ostr;
-}
-
-ostream & std::operator<<(ostream &ostr, TDVD &dvd) {
-    dvd.printStream(ostr);
-}
-
 void TDVD::setActor(string actor) {
     this->actor = actor;
 }

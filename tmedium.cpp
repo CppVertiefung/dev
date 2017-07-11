@@ -33,10 +33,7 @@ TMedium::TMedium() {
 }
 
 TMedium::~TMedium() {
-    //    printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
-    cout << "Das Medium '" << getTitle()
-            << "' mit der Signatur '" << getSignature()
-            << "' wird vernichtet!" << endl;
+    printf("Das Medium '%s' mit der Signatur '%s' wird vernichtet!\n", title.c_str(), signature.c_str());
 }
 
 void TMedium::load(ifstream &stream) {
@@ -69,35 +66,13 @@ void TMedium::load(ifstream &stream) {
 }
 
 void TMedium::print() {
-    //    printf("Titel:      %s\n", title.c_str());
-    //    printf("Signatur:   %s\n", signature.c_str());
-    //    printf("Ort:        ");
-    //    location.print();
-    //    printf("\n");
-    //    printf("FSK:        freigegeben ab %i Jahren\n", ageRestriction);
-    //    printf("Status:     %s\n", getStatus().c_str());
-
-    cout << "Titel:          " << getTitle() << endl
-            << "Signatur:       " << getSignature() << endl
-            << "Ort:            " << "Abt.: " << getLocation().getSection()
-            << "; Regal: " << getLocation().getRack() << endl
-            << "FSK:            freigegeben ab "
-            << getAgeRestriction() << "Jahren" << endl
-            << "Status:         " << getStatus() << endl;
-}
-
-ostream & TMedium::printStream(ostream& ostr) {
-    return ostr << "Titel:          " << getTitle() << endl
-            << "Signatur:       " << getSignature() << endl
-            << "Ort:            " << "Abt.: " << getLocation().getSection()
-            << "; Regal: " << getLocation().getRack() << endl
-            << "FSK:            freigegeben ab "
-            << getAgeRestriction() << " Jahren" << endl
-            << "Status:         " << getStatus() << endl << endl;
-}
-
-ostream & std::operator<<(ostream &ostr, TMedium &m) {
-    m.printStream(ostr);
+    printf("Titel:      %s\n", title.c_str());
+    printf("Signatur:   %s\n", signature.c_str());
+    printf("Ort:        ");
+    location.print();
+    printf("\n");
+    printf("FSK:        freigegeben ab %i Jahren\n", ageRestriction);
+    printf("Status:     %s\n", getStatus().c_str());
 }
 
 void TMedium::setTitle(string title) {

@@ -20,7 +20,6 @@
 #include <iomanip>
 #include <cstdlib>
 #include <fstream>
-#include <iostream>
 
 #include "tlocation.h"
 #include "tparser.h"
@@ -51,15 +50,13 @@ namespace std {
         virtual ~TMedium();
 
         virtual void print();
-        virtual ostream & printStream(ostream &ostr);
         void setTitle(string title);
         void setSignature(string signature);
         void setLocation(TLocation location);
         void setAgeRestriction(int age);
         void setStatus(Status status);
         void setStatus(string line);
-        virtual void load(ifstream &stream);
-        friend ostream & operator<<(ostream &ostr, TMedium &m);
+        virtual void load(ifstream &stream);        // virtual?
 
         string getTitle();
         string getSignature();

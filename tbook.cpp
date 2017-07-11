@@ -64,19 +64,6 @@ void TBook::print() {
             << "Status:         " << getStatus() << endl;
 }
 
-ostream& TBook::printStream(ostream& ostr) {
-    TMedium m = *this;
-    m.printStream(ostr);
-    return ostr << "Autor:          " << getAuthor() << endl
-            << "Anz. Seiten:    " << getPages() << endl;
-}
-
-ostream& std::operator<<(ostream &ostr, TBook &b) {
-    b.printStream(ostr);
-//    TMedium m = b;
-//    m.printStream(ostr);
-}
-
 void TBook::setAuthor(string author) {
     this->author = author;
 }

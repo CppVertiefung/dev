@@ -9,7 +9,7 @@
  * Author: gabriel
  *
  * Created on 18. April 2017, 16:44
- * Updated on 24. June 2017 by phil
+ * Updated on 03. June 2017 by phil
  */
 
 #ifndef TDATE_H
@@ -20,14 +20,13 @@
 #include <string>
 #include <fstream>
 #include <ctime>
-#include <iostream>
 
 #include "ttime.h"
 #include "tparser.h"
 
 namespace std {
 
-    class TDate : public TParser {
+    class TDate : public TParser{
     private:
         int year;
         int month;
@@ -41,16 +40,14 @@ namespace std {
         void setMonth(int month);
         void setDay(int day);
         void load(ifstream &stream);
-
+        
         int getYear();
         int getMonth();
         int getDay();
-
+        
         void print();
-        ostream & printStream(ostream &ostr);
         void setCurrentDate();
-        TDate operator+(int span);
-    };
+};
 
 }
 #endif /* TDATE_H */

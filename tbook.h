@@ -33,8 +33,6 @@ namespace std {
         virtual ~TBook();
 
         virtual void print();
-        virtual ostream& printStream(ostream &ostr);
-        friend ostream & operator<<(ostream &ostr, TBook &b);
         virtual void load(ifstream &stream);
         void setAuthor(string author);
         string getAuthor();
