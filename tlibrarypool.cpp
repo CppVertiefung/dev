@@ -18,7 +18,7 @@
 
 using namespace std;
 
-TLibraryPool::TLibraryPool(string name, TPerson* chief) : chief(chief) { // : chief(chief)
+TLibraryPool::TLibraryPool(string name, TEmployee* chief) : chief(chief) { // : chief(chief)
     setName(name);
 }
 
@@ -29,7 +29,9 @@ TLibraryPool::~TLibraryPool() {
 }
 
 TLibraryPool::TLibraryPool(string filename) {
+    cout <<"Datei Data.xml wird geöffnet";
     ifstream input(filename);
+    cout << " - ok" << endl << "Datei wird eingelesen ";
     string line;
     string tag;
     TCustomer * cust;
@@ -88,9 +90,7 @@ TLibraryPool::TLibraryPool(string filename) {
                         }
 
                     } while (line.find("</Loan>") == string::npos);
-
                     for (unsigned int i = 0; i < libraries.size(); i++) {
-                        //libraries.at(i)->print();
                         for (unsigned int j = 0; j < libraries.at(i)->media.size(); j++) {
                             if (libraries.at(i)->media.at(j)->getSignature()== nr){
                                 med=libraries.at(i)->media.at(j);
@@ -111,6 +111,7 @@ TLibraryPool::TLibraryPool(string filename) {
             } while (line.find("</LibraryPool>") == string::npos);
         }
         input.close();
+        cout <<" ok" << endl;
     } else printf("ERROR: Could not open File");
 }
 
@@ -119,14 +120,14 @@ void TLibraryPool::add(TLibrary* library) {
 }
 
 
-bool TLibraryPool::ident1(TCustomer person) {
+/*bool TLibraryPool::ident1(TCustomer person) {
     return (nr == person.getCustomerNr());
 }
 
 bool TLibraryPool::ident3(TMedium med) {
     return (sig == med.getSignature());
 }
-
+*/
 void TLibraryPool::add(TCustomer* customer) {
     customers.push_back(customer);
 }
@@ -137,6 +138,7 @@ void TLibraryPool::add(TLoan* loan) {
 
 void TLibraryPool::print() {
     string str = getName();
+
     printf("Leitung: %s\n", str.c_str());
     chief->print();
     int num = libraries.size();
@@ -161,8 +163,7 @@ void TLibraryPool::print() {
 }
 
 ostream & TLibraryPool::printStream(ostream &ostr) {
-    ostr << "Leitung:" << getName() << endl
-            << "Zum Buechereiverband gehoeren " << libraries.size() << " Filialen" << endl;
+    ostr << getName() << endl << "Leitung:"<< *chief <<endl<< "Zum Buechereiverband gehoeren " << libraries.size() << " Filialen" << endl;
     for (unsigned int i = 0; i < libraries.size(); i++) {
         //        cout << "DEBUG" << endl << endl;
         libraries.at(i)->printStream(ostr);
@@ -186,11 +187,11 @@ string TLibraryPool::getName() {
     return name;
 }
 
-void TLibraryPool::setChief(TPerson *chief) {
+void TLibraryPool::setChief(TEmployee *chief) {
     this->chief = chief;
 }
 
-TPerson * TLibraryPool::getChief() {
+TEmployee * TLibraryPool::getChief() {
     return chief;
 }
 

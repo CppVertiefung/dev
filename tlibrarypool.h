@@ -39,16 +39,16 @@ namespace std {
     class TLibraryPool : public TParser {
     private:
         string name;
-        TPerson *chief;
-        bool ident1(TCustomer person);
-        bool ident3(TMedium med);
+        TEmployee *chief;
+        //bool ident1(TCustomer person);
+        //bool ident3(TMedium med);
         string sig;
         string nr;
         vector<TLibrary*> libraries;
         vector<TCustomer*> customers;
         vector<TLoan*> loans;
     public:
-        TLibraryPool(string name, TPerson* chief);
+        TLibraryPool(string name, TEmployee* chief);
         TLibraryPool(string filename);
         ~TLibraryPool();
         void add(TLibrary* library);
@@ -61,8 +61,8 @@ namespace std {
         void setName(string name);
         //void load(ifstream stream);
         string getName();
-        void setChief(TPerson *chief);
-        TPerson* getChief();
+        void setChief(TEmployee *chief);
+        TEmployee* getChief();
     };
 }
 
