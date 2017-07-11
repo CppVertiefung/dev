@@ -26,6 +26,7 @@ TLibraryPool::~TLibraryPool() {
     delete chief;
     for (TLibrary *l : libraries) delete l;
     for (TPerson *p : customers) delete p;
+    for (TLoan *l : loans) delete l;
 }
 
 TLibraryPool::TLibraryPool(string filename) {
@@ -37,6 +38,7 @@ TLibraryPool::TLibraryPool(string filename) {
     TCustomer * cust;
     TEmployee * empl;
     TLibrary * lib;
+    TLoan *loan;
     //    input.open(filename.c_str(), ifstream::in);
     if (input.is_open()) {
         getline(input, line);
@@ -102,7 +104,7 @@ TLibraryPool::TLibraryPool(string filename) {
                             pers=customers.at(j);
                         }
                     }
-                    TLoan loan(pers,med,tempdate,tempduration);
+                    loan = new TLoan(pers,med,tempdate,tempduration);
                     add(loan);
                 }
                 if (input.eof()) {
