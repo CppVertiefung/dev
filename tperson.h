@@ -39,7 +39,6 @@ namespace std {
         TDate getBirth();
 
         virtual void print();
-        virtual ostream & printStream(ostream &ostr);
     };
 
 } // std

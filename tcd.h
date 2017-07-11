@@ -20,7 +20,6 @@
 #include <iomanip>
 #include <cstdlib>
 #include <fstream>
-#include <iostream>
 
 #include "tmedium.h"
 
@@ -37,9 +36,6 @@ namespace std {
 
         void load(ifstream &stream);
         void print();
-        virtual ostream & printStream(ostream &ostr);
-        friend ostream & operator<<(ostream &ostr, TCD &cd);
-        
         void setInterpret(string interpret);
         string getInterpret();
         void setTracks(int tracks);

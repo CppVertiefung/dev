@@ -112,23 +112,6 @@ void TLibrary::print() {
     }
 }
 
-ostream& TLibrary::printStream(ostream& ostr) {
-    ostr << "Buecherei: " << getName() << endl;
-    getAddress().printStream(ostr);
-    getManager()->printStream(ostr);
-    ostr << endl;
-    for (unsigned int i = 0; i < media.size(); i++) {
-//        printf("Medium Nr. %i\n", i + 1);
-//        cout << "DEBUG LIB" << endl;
-        ostr << "Medium Nr. " << i+1 << endl;
-//        ostr << media.at(i) << endl;
-//        if(typeid(media.at(i)) == typeid())
-//        type_info ti = typeid(media.at(i));
-        media.at(i)->printStream(ostr);
-    }
-    return ostr;
-}
-
 void TLibrary::setName(string name) {
     this->name = name;
 }

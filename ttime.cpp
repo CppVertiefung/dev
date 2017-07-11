@@ -85,10 +85,6 @@ void TTime::print() {
     printf("%02i:%02i:%02i", hour, minute, second);
 }
 
-ostream & TTime::printStream(ostream &ostr) {
-    return ostr << getHour() << ":" << getMinute() << ":" << getSecond();
-}
-
 void TTime::setCurrentTime() {
     time_t t;
     struct tm *now;

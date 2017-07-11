@@ -109,8 +109,3 @@ string TAddress::getTown() {
 void TAddress::print() {
     printf("%s %s\n%s %s", street.c_str(), number.c_str(), zipcode.c_str(), town.c_str());
 }
-
-ostream& TAddress::printStream(ostream& ostr) {
-    return ostr << getStreet() << " " << getNumber() << endl
-            << getZipcode() << " " << getTown() << endl;
-}

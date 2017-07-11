@@ -18,7 +18,6 @@
 #include <string>
 #include <fstream>
 #include <cstring>
-#include <iostream>
 
 #include "tbook.h"
 #include "tcd.h"
@@ -35,8 +34,6 @@ namespace std {
         
         void load(ifstream &stream);
         void print();
-        virtual ostream & printStream(ostream &ostr);
-        friend ostream & operator<<(ostream &ostr, TAudioBook &ab);
         
         void setCDs(int CDs);
         int getCDs();
