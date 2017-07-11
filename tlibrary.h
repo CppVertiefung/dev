@@ -38,10 +38,10 @@ namespace std {
     private:
         string name;
         TAddress address;
-        TPerson *manager;
+        TEmployee *manager;
     public:
         vector<TMedium*> media;
-        TLibrary(string name, TAddress address, TPerson *manager);
+        TLibrary(string name, TAddress address, TEmployee *manager);
         TLibrary();
         ~TLibrary();
 
@@ -51,12 +51,12 @@ namespace std {
 
         void setName(string name);
         void setAddress(TAddress address);
-        void setManager(TPerson *manager);
+        void setManager(TEmployee *manager);
 
         void load(ifstream &stream);
         string getName();
         TAddress getAddress();
-        TPerson* getManager();
+        TEmployee* getManager();
     };
 
 }

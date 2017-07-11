@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tlibrary.cpp
  * Author: gabriel
- * 
+ *
  * Created on 3. Mai 2017, 21:17
  * Updated on 04. June 2017 by phil
  */
@@ -16,13 +16,13 @@
 
 using namespace std;
 
-TLibrary::TLibrary(string name, TAddress address, TPerson* manager) : address(address) {
+TLibrary::TLibrary(string name, TAddress address, TEmployee* manager) : address(address) {
     setName(name);
 }
 
 TLibrary::TLibrary() {
     TAddress addr = TAddress();
-    TPerson *pers = new TPerson();
+    TEmployee *pers = new TEmployee();
 
     setName("");
     setAddress(addr);
@@ -38,7 +38,7 @@ void TLibrary::load(ifstream &stream) {
     string line;
     TMedium *med;
     TAddress addr;
-    TPerson *pers;
+    TEmployee *pers;
     do {
         getline(stream, line);
         if (line.find("<Name>") != string::npos) {
@@ -100,9 +100,9 @@ void TLibrary::add(TMedium * medium) {
 }
 
 void TLibrary::print() {
-    printf("\nBuecherei:  %s\n", getName().c_str());
+    printf("\nBuecherei Filiale  %s\n", getName().c_str());
     address.print();
-    printf("\n");
+    printf("\nFilialleiter");
     manager->print();
     printf("\n");
     for (unsigned int i = 0; i < media.size(); i++) {
@@ -113,10 +113,12 @@ void TLibrary::print() {
 }
 
 ostream& TLibrary::printStream(ostream& ostr) {
-    ostr << "Buecherei: " << getName() << endl;
+    ostr << "Buecherei Filiale " << getName() << endl;
     getAddress().printStream(ostr);
+    ostr <<"Filialleiter ";
     getManager()->printStream(ostr);
-    ostr << endl;
+    ostr << endl <<"es stehen "<<media.size()<< " Medien zur Verfügung"<<endl<<endl;
+
     for (unsigned int i = 0; i < media.size(); i++) {
 //        printf("Medium Nr. %i\n", i + 1);
 //        cout << "DEBUG LIB" << endl;
@@ -137,7 +139,7 @@ void TLibrary::setAddress(TAddress address) {
     this->address = address;
 }
 
-void TLibrary::setManager(TPerson * manager) {
+void TLibrary::setManager(TEmployee * manager) {
     this->manager = manager;
 }
 
@@ -149,7 +151,7 @@ TAddress TLibrary::getAddress() {
     return address;
 }
 
-TPerson * TLibrary::getManager() {
+TEmployee* TLibrary::getManager() {
     return manager;
 }
 

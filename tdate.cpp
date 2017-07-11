@@ -73,7 +73,7 @@ int TDate::getDay() {
 }
 
 void TDate::print() {
-    printf("%02i.%02i.%04i\n", day, month, year);
+    printf("* %02i.%02i.%04i\n", day, month, year);
 }
 
 ostream& TDate::printStream(ostream& ostr) {
@@ -96,13 +96,13 @@ void TDate::setCurrentDate() {
 TDate TDate::operator+ (const int span){
 	int daysPerMonth[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	TDate date;
-	
+
 	date.year = this->year;
 	date.month = this->month;
 	date.day = this->day + span;
 	while(date.day > daysPerMonth[date.month]){
 		if((date.year % 4 == 0 && date.year % 100 != 0) || date.year % 400 == 0){
-			daysPerMonth[2] = 29; 
+			daysPerMonth[2] = 29;
 		}
 		date.day -= daysPerMonth[date.month];
 		date.month++;

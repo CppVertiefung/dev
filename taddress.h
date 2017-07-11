@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   taddress.h
  * Author: phil
  *
@@ -43,6 +43,7 @@ namespace std {
 
         void print();
         ostream & printStream(ostream &ostr);
+        friend ostream & operator<<(ostream &ostr, TAddress &add);
     };
 
 } // namespace std

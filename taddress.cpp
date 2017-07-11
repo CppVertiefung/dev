@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   taddress.cpp
  * Author: phil
  *
@@ -90,6 +90,9 @@ void TAddress::setTown(string town) {
     this->town = town;
 }
 
+ostream & std::operator<<(ostream &ostr, TAddress &add) {
+    add.printStream(ostr);
+}
 string TAddress::getStreet() {
     return street;
 }
@@ -107,10 +110,9 @@ string TAddress::getTown() {
 }
 
 void TAddress::print() {
-    printf("%s %s\n%s %s", street.c_str(), number.c_str(), zipcode.c_str(), town.c_str());
+    printf("%s %s; %s %s \n", street.c_str(), number.c_str(), zipcode.c_str(), town.c_str());
 }
 
 ostream& TAddress::printStream(ostream& ostr) {
-    return ostr << getStreet() << " " << getNumber() << endl
-            << getZipcode() << " " << getTown() << endl;
+    return ostr << getStreet() << " " << getNumber() << "; "<< getZipcode() << " " << getTown() << endl;
 }

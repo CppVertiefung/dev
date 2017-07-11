@@ -111,7 +111,7 @@ TLibraryPool::TLibraryPool(string filename) {
             } while (line.find("</LibraryPool>") == string::npos);
         }
         input.close();
-        cout <<" ok" << endl;
+        cout <<" ok" << endl<< endl<< endl;
     } else printf("ERROR: Could not open File");
 }
 
@@ -163,7 +163,7 @@ void TLibraryPool::print() {
 }
 
 ostream & TLibraryPool::printStream(ostream &ostr) {
-    ostr << getName() << endl << "Leitung:"<< *chief <<endl<< "Zum Buechereiverband gehoeren " << libraries.size() << " Filialen" << endl;
+    ostr << getName() << endl << "Leitung:"<< *chief <<endl<< "Zum Buechereiverband gehoeren "  <<libraries.size() << " Filialen" << endl << endl;
     for (unsigned int i = 0; i < libraries.size(); i++) {
         //        cout << "DEBUG" << endl << endl;
         libraries.at(i)->printStream(ostr);
