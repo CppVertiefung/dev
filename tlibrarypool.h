@@ -21,6 +21,8 @@
 #include <vector>
 #include <iomanip>
 #include <cstring>
+#include <algorithm>
+#include <assert.h>
 
 #include "temployee.h"
 #include "tcustomer.h"
@@ -37,16 +39,22 @@ namespace std {
     private:
         string name;
         TPerson *chief;
+        static bool ident1(TCustomer person);
+        static bool ident3(TMedium med);
+        static string sig;
+        static string nr;
         vector<TLibrary*> libraries;
         vector<TPerson*> customers;
     public:
         TLibraryPool(string name, TPerson* chief);
         TLibraryPool(string filename);
         ~TLibraryPool();
-
         void add(TLibrary* library);
         void add(TPerson* customer);
         void print();
+        virtual ostream & printStream(ostream & ostr);
+        friend ostream & operator<<(ostream &ostr, TLibraryPool &lp);
+
         void setName(string name);
         //void load(ifstream stream);
         string getName();

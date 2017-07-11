@@ -76,10 +76,25 @@ void TAudioBook::print() {
             << "Titel:          " << getTitle() << endl
             << "Signatur:       " << getSignature() << endl
             << "Ort:            " << "Abt.: " << getLocation().getSection()
-                << "; Regal: " << getLocation().getRack() << endl
+            << "; Regal: " << getLocation().getRack() << endl
             << "FSK:            freigegeben ab "
-                << getAgeRestriction() << "Jahren" << endl
+            << getAgeRestriction() << "Jahren" << endl
             << "Status:         " << getStatus() << endl;
+}
+
+ostream & TAudioBook::printStream(ostream& ostr) {
+    TCD cd = *this;
+    cd.printStream(ostr);
+    ostr << "Anz. CDs:    " << getCDs() << endl;
+    TBook b = *this;
+    b.printStream(ostr);
+    TMedium m = *this;
+    m.printStream(ostr);
+    return ostr << endl;
+}
+
+ostream & std::operator<<(ostream &ostr, TAudioBook &ab) {
+    ab.printStream(ostr);
 }
 
 void TAudioBook::setCDs(int CDs) {

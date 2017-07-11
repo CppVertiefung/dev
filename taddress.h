@@ -42,6 +42,7 @@ namespace std {
         string getTown();
 
         void print();
+        ostream & printStream(ostream &ostr);
     };
 
 } // namespace std

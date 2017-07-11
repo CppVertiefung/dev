@@ -19,7 +19,10 @@ TPrintedMedium::TPrintedMedium() {
 }
 
 TPrintedMedium::~TPrintedMedium() {
-    printf("Das Printed-Medium '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
+//    printf("Das Printed-Medium '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
+    cout << "Das Printed-Medium '" << getTitle()
+            << "' mit der Signatur '" << getSignature()
+            << "' wird vernichtet!" << endl;
 }
 
 void TPrintedMedium::load(ifstream &stream) {
@@ -47,6 +50,18 @@ void TPrintedMedium::load(ifstream &stream) {
             break;
         }
     } while (line.find("</PrintedMedium>") == string::npos);
+}
+
+ostream& TPrintedMedium::printStream(ostream& ostr) {
+    TMedium m = *this;
+    m.printStream(ostr);
+    return ostr << "PrintedMedium" << endl;
+}
+
+ostream & std::operator<<(ostream &ostr, TPrintedMedium &pm) {
+//    TMedium m = pm;
+//    m.printStream(ostr);
+    pm.printStream(ostr);
 }
 
 void TPrintedMedium::setPages(int pages) {

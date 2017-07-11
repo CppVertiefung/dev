@@ -12,8 +12,7 @@
  * Updated on 04. June 2017 by phil
  */
 
-#include <fstream>
-#include <assert.h>
+
 
 #include "tlibrarypool.h"
 
@@ -36,6 +35,9 @@ TLibraryPool::TLibraryPool(string filename) {
     TCustomer * cust;
     TEmployee * empl;
     TLibrary * lib;
+    TPerson * pers;
+    TMedium * med;
+    
     //    input.open(filename.c_str(), ifstream::in);
     if (input.is_open()) {
         getline(input, line);
@@ -68,6 +70,30 @@ TLibraryPool::TLibraryPool(string filename) {
                     add(cust);
                     //                    }
                 }
+                if (line.find("<Loan>") != string::npos) {
+
+                    do {
+                        getline(input, line);
+                        if (line.find("<Signatur>") != string::npos) {
+                            sig = parseLine(line);
+                        }
+                        if (line.find("<CuistomerNr>") != string::npos) {
+                            nr = parseLine(line);
+                        }
+
+                    } while (line.find("</Loan>") == string::npos);
+                    vector<TPerson *>::iterator it = find_if(customers.begin(), customers.end(), TLibraryPool::ident1); //raussuchen des passenden Elements im Vector
+//                    pers = &it;
+//                    for (vector<TLibrary>::iterator it2 = libraries.begin(); it != libraries.end(); ++it) {//Iterieren durch den Vector der Librarys und Überprüfen des inhalts des Vectors in dem jeweiligen Vectorelement
+//                        vector<TMedium>::iterator it3 = find_if(customers.begin(), customers.end(), TLibraryPool::ident3); //raussuchen des passenden Elements im Vector
+//                        if (it3) {
+//                            med = &it3;
+//                            break;
+//                        }
+//                    }
+                    //Constuctor für Loan mit den Werten  (pers,med)
+                    //loan.load(input);
+                }
                 if (input.eof()) {
                     printf("\nERROR: EOF in TLibraryPool::load()\n\n");
                     break;
@@ -80,6 +106,28 @@ TLibraryPool::TLibraryPool(string filename) {
 
 void TLibraryPool::add(TLibrary* library) {
     libraries.push_back(library);
+}
+
+// mann kann in einer statischen funktion nicht auf attribute einer objekt instanz zugreifen
+// die funktion muss direkt die instanz eines objektes wissen
+// objektreferenz uebergeben ?? #idk
+
+// achso nr als static wuerde gehen, gibts dann aber auch nur einmal fuer alle objekte
+
+bool TLibraryPool::ident1(TCustomer person) {
+    return (nr == person.getCustomerNr());
+}
+
+/*
+bool TLibraryPool::ident2(TLibrary lib){
+    return(lib==lib.media.//check lib
+    .getCustomerNr());
+}*/
+
+// same here
+
+bool TLibraryPool::ident3(TMedium med) {
+    return (sig == med.getSignature());
 }
 
 void TLibraryPool::add(TPerson* customer) {
@@ -102,6 +150,24 @@ void TLibraryPool::print() {
         printf("\n");
     }
     printf("\n");
+}
+
+ostream & TLibraryPool::printStream(ostream &ostr) {
+    ostr << "Leitung:" << getName() << endl
+            << "Zum Buechereiverband gehoeren " << libraries.size() << " Filialen" << endl;
+    for (unsigned int i = 0; i < libraries.size(); i++) {
+        //        cout << "DEBUG" << endl << endl;
+        libraries.at(i)->printStream(ostr);
+    }
+    for (unsigned int i = 0; i < customers.size(); i++) {
+        //        ostr << customers.at(i) << endl;
+        customers.at(i)->print();
+    }
+    return ostr;
+}
+
+ostream & std::operator<<(ostream &ostr, TLibraryPool &lp) {
+    lp.printStream(ostr);
 }
 
 void TLibraryPool::setName(string name) {
