@@ -72,7 +72,7 @@ TLibraryPool::TLibraryPool(string filename) {
                     //                    }
                 }
                 if (line.find("<Loan>") != string::npos) {
-                    TPerson * pers;
+                    TCustomer * pers;
                     TMedium * med;
                     TDate tempdate;
                     int tempduration;
@@ -169,7 +169,8 @@ void TLibraryPool::print() {
 }
 
 ostream & TLibraryPool::printStream(ostream &ostr) {
-    ostr << getName() << endl << "Leitung:"<< *chief <<endl<< "Zum Buechereiverband gehoeren "  <<libraries.size() << " Filialen" << endl << endl;
+    ostr<< getName() << endl << "Leitung:"<< *chief <<endl<< "Zum Buechereiverband gehoeren "
+        <<libraries.size() << " Filialen" << endl << endl;
     for (unsigned int i = 0; i < libraries.size(); i++) {
         //        cout << "DEBUG" << endl << endl;
         libraries.at(i)->printStream(ostr);
@@ -178,12 +179,17 @@ ostream & TLibraryPool::printStream(ostream &ostr) {
     ostr << "Der Buechereiverband hat "<< temp << " Kunden:"<<endl;
     for (unsigned int i = 0; i < customers.size(); i++) {
         //        ostr << customers.at(i) << endl;
-        customers.at(i)->print();
+        customers.at(i)->printStream(ostr);
+        for (unsigned int k = 0; k< loans.size(); k++) {//Ausgabe der Ausleihen für jeden Kunden
+            if(loans.at(k)->getloaner().getCustomerNr()==customers.at(i)->getCustomerNr()){
+                loans.at(k)->printStream(ostr);
+            }
+        }
+
     }
-    cout << loans.size()<<endl<<endl<<endl;
     for (unsigned int i = 0; i < loans.size(); i++) {
         //        ostr << customers.at(i) << endl;
-        loans.at(i)->print();
+        loans.at(i)->printStream(ostr);
     }
 
     return ostr;

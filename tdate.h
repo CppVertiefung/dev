@@ -47,6 +47,7 @@ namespace std {
 
         void print();
         ostream & printStream(ostream &ostr);
+        friend ostream & operator<<(ostream &ostr, TDate &d);
         void setCurrentDate();
 		TDate operator+ (const int span);
     };

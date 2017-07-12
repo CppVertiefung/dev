@@ -1,9 +1,9 @@
 #include "tloan.h"
 
 using namespace std;
-TLoan::TLoan(TPerson * pers,TMedium * med,TDate loan,int duration)
+TLoan::TLoan(TCustomer * cust,TMedium * med,TDate loan,int duration)
 {
-    this->loaner =pers;
+    this->loaner =cust;
     this->loaned =med;
     this->loandate = loan;
     this->duration = duration;
@@ -14,12 +14,23 @@ TLoan::~TLoan()
     //dtor
 }
 
-void TLoan::print(){
-    TDate temp=(loandate + duration);
-    cout << loaner << endl << "Ausleihen" << endl << "Ausleihe vom";
-    loandate.print();
-    cout << endl << "Rueckgabe bis spaetestens ";
-    temp.print();
+TCustomer TLoan::getloaner(){
+    return *loaner;
+}
 
-    //cout << "Ausleihe vom " << loandate;
+void TLoan::print(){
+    TDate tempdate=(loandate + duration);
+    cout << "Ausleihe vom "<<loandate<<endl<<"Rueckgabe bis spaetestens "<<tempdate<<endl<<loaned;
+}
+ostream& TLoan::printStream(ostream& ostr) {
+    TDate tempdate=(loandate + duration);
+    ostr<< "Ausleihe vom "<<loandate<<endl<<"Rueckgabe bis spaetestens "<<tempdate<<endl;
+    loaned->printStream(ostr);
+    //<<loaned<<endl;
+    return ostr;
+}
+
+ostream& std::operator<<(ostream &ostr, TLoan &l) {
+    l.printStream(ostr);
+    return ostr;
 }

@@ -65,12 +65,15 @@ void TCD::load(ifstream &stream) {
 }
 
 ostream & TCD::printStream(ostream &ostr) {
-    ostr << "Interpret:      " << getInterpret() << endl
-         << "Anz. Tracks:    " << getTracks() << endl;
-
-    TMedium m = *this;
-    m.printStream(ostr);
-
+    ostr<< "Interpret:      " << getInterpret() << endl
+        << "Anz. Tracks:    " << getTracks() << endl
+        << "Titel:          " << getTitle() << endl
+        << "Signatur:       " << getSignature() << endl
+        << "Ort:            " << "Abt.: " << getLocation().getSection()
+        << "; Regal: " << getLocation().getRack() << endl
+        << "FSK:            freigegeben ab "
+        << getAgeRestriction() << " Jahren" << endl
+        << "Status:         " << getStatus() << endl << endl;
     return ostr << endl;
 }
 

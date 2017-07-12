@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tdvd.cpp
  * Author: gabriel
- * 
+ *
  * Created on 23. Juni 2017, 15:45
  */
 
@@ -72,11 +72,14 @@ void TDVD::load(ifstream &stream) {
 ostream & TDVD::printStream(ostream &ostr) {
     ostr << "Schauspieler:   " << getActor() << endl
             << "Spieldauer:     " << getDuration().getHour() << ":"
-            << getDuration().getMinute() << ":" << getDuration().getSecond() << endl;
-    
-    TMedium m = *this;
-    m.printStream(ostr);
-    
+            << getDuration().getMinute() << ":" << getDuration().getSecond() << endl
+            << "Titel:          " << getTitle() << endl
+            << "Signatur:       " << getSignature() << endl
+            << "Ort:            " << "Abt.: " << getLocation().getSection()
+            << "; Regal: " << getLocation().getRack() << endl
+            << "FSK:            freigegeben ab "
+            << getAgeRestriction() << " Jahren" << endl
+            << "Status:         " << getStatus() << endl << endl;
     return ostr;
 }
 

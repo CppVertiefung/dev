@@ -22,9 +22,14 @@ TMagazine::~TMagazine() {
     printf("Das Magazin '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
 }
 ostream& TMagazine::printStream(ostream& ostr) {
-    TMedium m = *this;
-    ostr<< "Designer:       " << getDesigner() << endl;
-    m.printStream(ostr);
+    ostr<< "Designer:       " << getDesigner() << endl
+        << "Titel:          " << getTitle() << endl
+        << "Signatur:       " << getSignature() << endl
+        << "Ort:            " << "Abt.: " << getLocation().getSection()
+        << "; Regal: " << getLocation().getRack() << endl
+        << "FSK:            freigegeben ab "
+        << getAgeRestriction() << " Jahren" << endl
+        << "Status:         " << getStatus() << endl << endl;
     return ostr;
 }
 ostream& std::operator<<(ostream &ostr, TMagazine &m) {

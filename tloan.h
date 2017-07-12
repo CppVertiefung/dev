@@ -1,6 +1,7 @@
 #ifndef TLOAN_H
 #define TLOAN_H
 #include "tdate.h"
+#include "tcustomer.h"
 #include "tperson.h"
 #include "tmedium.h"
 #include "tparser.h"
@@ -8,13 +9,16 @@ namespace std{
 class TLoan :public TParser
 {
     public:
-        TLoan(TPerson * pers, TMedium * med,TDate loan,int duration);
+        TLoan(TCustomer* cust, TMedium * med,TDate loan,int duration);
         ~TLoan();
         void print();
+        virtual ostream& printStream(ostream &ostr);
+        friend ostream & operator<<(ostream &ostr, TLoan &b);
+        TCustomer getloaner();
     protected:
 
     private:
-        TPerson * loaner;
+        TCustomer * loaner;
         TMedium * loaned;
         TDate loandate;
         int duration;

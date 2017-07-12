@@ -79,6 +79,9 @@ void TDate::print() {
 ostream& TDate::printStream(ostream& ostr) {
     return ostr << getDay() << "." << getMonth() << "." << getYear() << endl;
 }
+ostream& std::operator<<(ostream &ostr, TDate &d) {
+    d.printStream(ostr);
+}
 
 void TDate::setCurrentDate() {
     time_t t;

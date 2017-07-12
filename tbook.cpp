@@ -65,10 +65,15 @@ void TBook::print() {
 }
 
 ostream& TBook::printStream(ostream& ostr) {
-    TMedium m = *this;
     ostr<< "Autor:          " << getAuthor() << endl
-        << "Anz. Seiten:    " << getPages() << endl;
-    m.printStream(ostr);
+        << "Anz. Seiten:    " << getPages() << endl
+        << "Titel:          " << getTitle() << endl
+        << "Signatur:       " << getSignature() << endl
+        << "Ort:            " << "Abt.: " << getLocation().getSection()
+        << "; Regal: " << getLocation().getRack() << endl
+        << "FSK:            freigegeben ab "
+        << getAgeRestriction() << " Jahren" << endl
+        << "Status:         " << getStatus() << endl << endl;
     return ostr;
 }
 
