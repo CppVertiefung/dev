@@ -1,9 +1,9 @@
-/* 
+/*
  * File:   tmagazine.h
  * Author: phil
  *
  * Created on 19. June 2017, 23:03
- * Updated on 
+ * Updated on
  */
 
 #ifndef TMAGAZINE_H
@@ -29,6 +29,8 @@ namespace std {
         TMagazine();
         TMagazine(string designer);
         ~TMagazine();
+        virtual ostream& printStream(ostream &ostr);
+        friend ostream & operator<<(ostream &ostr, TMagazine &m);
 
         void load(ifstream &stream);
         void setDesigner(string designer);

@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   tcd.cpp
  * Author: gabriel
- * 
+ *
  * Created on 23. Juni 2017, 14:58
  */
 
@@ -66,11 +66,11 @@ void TCD::load(ifstream &stream) {
 
 ostream & TCD::printStream(ostream &ostr) {
     ostr << "Interpret:      " << getInterpret() << endl
-            << "Anz. Tracks:    " << getTracks() << endl;
-    
+         << "Anz. Tracks:    " << getTracks() << endl;
+
     TMedium m = *this;
     m.printStream(ostr);
-    
+
     return ostr << endl;
 }
 

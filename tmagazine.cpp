@@ -1,9 +1,9 @@
-/* 
+/*
  * File:   tmagazine.cpp
  * Author: phil
  *
  * Created on 19. June 2017, 23:03
- * Updated on 
+ * Updated on
  */
 
 #include "tmagazine.h"
@@ -20,6 +20,15 @@ TMagazine::TMagazine() {
 
 TMagazine::~TMagazine() {
     printf("Das Magazin '%s' mit der Signatur '%s' wird vernichtet!\n", getTitle().c_str(), getSignature().c_str());
+}
+ostream& TMagazine::printStream(ostream& ostr) {
+    TMedium m = *this;
+    ostr<< "Designer:       " << getDesigner() << endl;
+    m.printStream(ostr);
+    return ostr;
+}
+ostream& std::operator<<(ostream &ostr, TMagazine &m) {
+    m.printStream(ostr);
 }
 
 void TMagazine::load(ifstream &stream) {

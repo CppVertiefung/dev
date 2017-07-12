@@ -1,9 +1,9 @@
-/* 
+/*
  * File:   tbook.h
  * Author: phil
  *
  * Created on 19. June 2017, 22:48
- * Updated on 
+ * Updated on
  */
 
 #include "tbook.h"
@@ -66,9 +66,10 @@ void TBook::print() {
 
 ostream& TBook::printStream(ostream& ostr) {
     TMedium m = *this;
+    ostr<< "Autor:          " << getAuthor() << endl
+        << "Anz. Seiten:    " << getPages() << endl;
     m.printStream(ostr);
-    return ostr << "Autor:          " << getAuthor() << endl
-            << "Anz. Seiten:    " << getPages() << endl;
+    return ostr;
 }
 
 ostream& std::operator<<(ostream &ostr, TBook &b) {

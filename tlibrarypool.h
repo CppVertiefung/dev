@@ -33,6 +33,7 @@
 #include "tdvd.h"
 #include "taudiobook.h"
 #include "tloan.h"
+#include "tmedium.h"
 
 namespace std {
 

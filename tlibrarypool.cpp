@@ -103,7 +103,10 @@ TLibraryPool::TLibraryPool(string filename) {
                         if (customers.at(j)->getCustomerNr()== nr){
                             pers=customers.at(j);
                         }
-                    }
+                    }/*
+                    med->setStatus("borrowed");
+                    funktioniert nicht muss aber!
+                    */
                     loan = new TLoan(pers,med,tempdate,tempduration);
                     add(loan);
                 }
@@ -171,6 +174,8 @@ ostream & TLibraryPool::printStream(ostream &ostr) {
         //        cout << "DEBUG" << endl << endl;
         libraries.at(i)->printStream(ostr);
     }
+    unsigned int temp = customers.size();
+    ostr << "Der Buechereiverband hat "<< temp << " Kunden:"<<endl;
     for (unsigned int i = 0; i < customers.size(); i++) {
         //        ostr << customers.at(i) << endl;
         customers.at(i)->print();
@@ -186,6 +191,7 @@ ostream & TLibraryPool::printStream(ostream &ostr) {
 
 ostream & std::operator<<(ostream &ostr, TLibraryPool &lp) {
     lp.printStream(ostr);
+    return ostr;
 }
 
 void TLibraryPool::setName(string name) {

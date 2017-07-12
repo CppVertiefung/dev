@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   taudiobook.cpp
  * Author: gabriel
- * 
+ *
  * Created on 23. Juni 2017, 19:21
  */
 
@@ -83,13 +83,26 @@ void TAudioBook::print() {
 }
 
 ostream & TAudioBook::printStream(ostream& ostr) {
-    TCD cd = *this;
+    ostr    << "Interpret:      " << getInterpret() << endl
+            << "Anz. Tracks:    " << getTracks() << endl
+            << "Anz. CDs:       " << getCDs() << endl
+            << "Autor:          " << getAuthor() << endl
+            << "Anz. Seiten:    " << getPages() << endl
+            << "Titel:          " << getTitle() << endl
+            << "Signatur:       " << getSignature() << endl
+            << "Ort:            " << "Abt.: " << getLocation().getSection()
+            << "; Regal: " << getLocation().getRack() << endl
+            << "FSK:            freigegeben ab "
+            << getAgeRestriction() << "Jahren" << endl
+            << "Status:         " << getStatus() << endl;
+
+    /*TCD cd = *this;
     cd.printStream(ostr);
     ostr << "Anz. CDs:    " << getCDs() << endl;
     TBook b = *this;
     b.printStream(ostr);
     TMedium m = *this;
-    m.printStream(ostr);
+    m.printStream(ostr);*/
     return ostr << endl;
 }
 
