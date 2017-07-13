@@ -13,8 +13,9 @@ int main() {
     
 //    TMedium test = TMedium();
 //    test.setAgeRestriction(69);
+//    test.setStatus("2");
 //    cout << test;
-//    
+    
 //    TPrintedMedium pm = TPrintedMedium();
 //    pm.setPages(88);
 //    cout << pm;

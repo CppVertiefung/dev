@@ -15,25 +15,27 @@ TEmployee::~TEmployee() {
 }
 
 //TEmployee::TEmployee(const TEmployee& other) {
-    //copy ctor
+//copy ctor
 //}
 
 //TEmployee& TEmployee::operator=(const TEmployee& rhs) {
 //    if (this == &rhs) return *this; // handle self assignment
-    //assignment operator
+//assignment operator
 //    return *this;
 //}
+
 ostream & TEmployee::printStream(ostream &ostr) {
-    ostr << name <<"(Kundennummer.: " << getCustomerNr() << " / Personalnummer.: " << getEmployeeNr() << ")"<< endl;
+    ostr << name << "(Kundennummer.: " << getCustomerNr() << " / Personalnummer.: " << getEmployeeNr() << " )" << endl;
     address.print();
-    cout << "* ";
+    ostr << "* ";
     birth.print();
     return ostr;
 }
 
-ostream & std::operator<<(ostream &ostr, TEmployee&emp) {
+ostream & std::operator<<(ostream &ostr, TEmployee &emp) {
     emp.printStream(ostr);
 }
+
 void TEmployee::print() {
     cout << getName() << " (Kundennr.: " << getCustomerNr() << " / Personalnr.: " << getEmployeeNr() << ")" << endl
             << getAddress().getStreet() << " " << getAddress().getNumber() << "; "

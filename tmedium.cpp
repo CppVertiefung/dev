@@ -122,13 +122,13 @@ void TMedium::setStatus(Status status) {
 
 void TMedium::setStatus(string line) {
     if (line == "1")
-        status = Status::available;
+        status = TMedium::available;
     else if (line == "2")
-        status = Status::borrowed;
+        status = TMedium::borrowed;
     else if (line == "3")
-        status = Status::ordered;
+        status = TMedium::ordered;
     else
-        status = Status::reserved;
+        status = TMedium::reserved;
 }
 
 string TMedium::getTitle() {

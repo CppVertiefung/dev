@@ -20,10 +20,13 @@ namespace std {
 //        TCustomer(const TCustomer& other);
 //        TCustomer& operator=(const TCustomer& other);
 
-        void print();
-        void load(ifstream &stream);
+        virtual void print();
+        virtual void load(ifstream &stream);
         void setCustomerNr(string val);
         string getCustomerNr();
+        
+        friend ostream & operator<<(ostream & ostr, TCustomer &c);
+        ostream & printStream(ostream & ostr);
     };
 
 }

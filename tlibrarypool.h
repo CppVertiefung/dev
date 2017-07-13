@@ -34,6 +34,7 @@
 #include "taudiobook.h"
 #include "tloan.h"
 #include "tmedium.h"
+#include "tlist.h"
 
 namespace std {
 
@@ -47,7 +48,7 @@ namespace std {
         string nr;
         vector<TLibrary*> libraries;
         vector<TCustomer*> customers;
-        vector<TLoan*> loans;
+        TList<TLoan*> loans;
     public:
         TLibraryPool(string name, TEmployee* chief);
         TLibraryPool(string filename);

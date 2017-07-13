@@ -30,7 +30,7 @@ TLibraryPool::~TLibraryPool() {
 }
 
 TLibraryPool::TLibraryPool(string filename) {
-    cout <<"Datei Data.xml wird geöffnet";
+    cout << "Datei Data.xml wird geöffnet";
     ifstream input(filename);
     cout << " - ok" << endl << "Datei wird eingelesen ";
     string line;
@@ -39,6 +39,9 @@ TLibraryPool::TLibraryPool(string filename) {
     TEmployee * empl;
     TLibrary * lib;
     TLoan *loan;
+    TCustomer * pers;
+    TMedium * med;
+    TDate tempdate;
     //    input.open(filename.c_str(), ifstream::in);
     if (input.is_open()) {
         getline(input, line);
@@ -72,43 +75,53 @@ TLibraryPool::TLibraryPool(string filename) {
                     //                    }
                 }
                 if (line.find("<Loan>") != string::npos) {
-                    TCustomer * pers;
-                    TMedium * med;
-                    TDate tempdate;
+
                     int tempduration;
                     do {
                         getline(input, line);
                         if (line.find("<Signatur>") != string::npos) {
                             sig = parseLine(line);
                         }
-                        if (line.find("<CuistomerNr>") != string::npos) {
+                        if (line.find("<CustomerNr>") != string::npos) {
                             nr = parseLine(line);
                         }
                         if (line.find("<LoanDate>") != string::npos) {
                             tempdate.load(input);
                         }
                         if (line.find("<LoanDays>") != string::npos) {
-                            tempduration=stoi(parseLine(line));
+                            tempduration = stoi(parseLine(line));
                         }
 
                     } while (line.find("</Loan>") == string::npos);
                     for (unsigned int i = 0; i < libraries.size(); i++) {
                         for (unsigned int j = 0; j < libraries.at(i)->media.size(); j++) {
-                            if (libraries.at(i)->media.at(j)->getSignature()== nr){
-                                med=libraries.at(i)->media.at(j);
+                            //                            if (libraries.at(i)->media.at(j)->getSignature() == sig) {
+                            string lib_temp = libraries.at(i)->media.at(j)->getSignature();
+                            if (lib_temp.compare(sig)) {
+                                med = libraries.at(i)->media.at(j);
+                                if (!med) {
+                                    EXIT_FAILURE;
+                                }
+                                //                                cout << "med: " << med << endl;
+                                med->setStatus("2");
                             }
                         }
                     }
                     for (unsigned int j = 0; j < customers.size(); j++) {
-                        if (customers.at(j)->getCustomerNr()== nr){
-                            pers=customers.at(j);
+                        //                        if (customers.at(j)->getCustomerNr() == nr) {
+                        string cust_temp2 = customers.at(j)->getCustomerNr();
+                        if (cust_temp2.compare(nr)) {
+                            pers = customers.at(j);
                         }
-                    }/*
-                    med->setStatus("borrowed");
-                    funktioniert nicht muss aber!
-                    */
-                    loan = new TLoan(pers,med,tempdate,tempduration);
+                    }
+
+
+                    //                    funktioniert nicht muss aber!
+                    loan = new TLoan(pers, med, tempdate, tempduration);
+
                     add(loan);
+                    //                    med->printStream(cout);
+                    //                    cout << *loan << endl;
                 }
                 if (input.eof()) {
                     printf("\nERROR: EOF in TLibraryPool::load()\n\n");
@@ -117,14 +130,13 @@ TLibraryPool::TLibraryPool(string filename) {
             } while (line.find("</LibraryPool>") == string::npos);
         }
         input.close();
-        cout <<" ok" << endl<< endl<< endl;
+        cout << " ok" << endl << endl << endl;
     } else printf("ERROR: Could not open File");
 }
 
 void TLibraryPool::add(TLibrary* library) {
     libraries.push_back(library);
 }
-
 
 /*bool TLibraryPool::ident1(TCustomer person) {
     return (nr == person.getCustomerNr());
@@ -133,7 +145,7 @@ void TLibraryPool::add(TLibrary* library) {
 bool TLibraryPool::ident3(TMedium med) {
     return (sig == med.getSignature());
 }
-*/
+ */
 void TLibraryPool::add(TCustomer* customer) {
     customers.push_back(customer);
 }
@@ -157,39 +169,49 @@ void TLibraryPool::print() {
     for (unsigned int i = 0; i < customers.size(); i++) {
         customers.at(i)->print();
         printf("\n");
-    }    printf("\nFolgende %lu Medien sind ausgeliehen:\n\n", loans.size());
-    for (unsigned int i = 0; i < loans.size(); i++) {
-        loans.at(i)->print();
-        printf("\n");
-        printf("\n");
-        printf("\n");
-        printf("\n");
     }
+    printf("\nFolgende %lu Medien sind ausgeliehen:\n\n", loans.size());
+//    for (unsigned int i = 0; i < loans.size(); i++) {
+//        loans.at(i)->print();
+//        printf("\n");
+//        printf("\n");
+//        printf("\n");
+//        printf("\n");
+//    }
     printf("\n");
 }
 
 ostream & TLibraryPool::printStream(ostream &ostr) {
-    ostr<< getName() << endl << "Leitung:"<< *chief <<endl<< "Zum Buechereiverband gehoeren "
-        <<libraries.size() << " Filialen" << endl << endl;
-    for (unsigned int i = 0; i < libraries.size(); i++) {
+    ostr << getName() << endl << "Leitung:" << *chief << endl << "Zum Buechereiverband gehoeren "
+            << libraries.size() << " Filialen" << endl << endl;
+//    for (unsigned int i = 0; i < libraries.size(); i++) {
+    for (vector<TLibrary *>::iterator it = libraries.begin(); it != libraries.end(); it++) {
         //        cout << "DEBUG" << endl << endl;
-        libraries.at(i)->printStream(ostr);
+        (*it)->printStream(ostr);
+//        libraries.at(i)->printStream(ostr);
     }
     unsigned int temp = customers.size();
-    ostr << "Der Buechereiverband hat "<< temp << " Kunden:"<<endl;
+    ostr << "Der Buechereiverband hat " << temp << " Kunden:" << endl;
     for (unsigned int i = 0; i < customers.size(); i++) {
         //        ostr << customers.at(i) << endl;
         customers.at(i)->printStream(ostr);
-        for (unsigned int k = 0; k< loans.size(); k++) {//Ausgabe der Ausleihen für jeden Kunden
-            if(loans.at(k)->getloaner().getCustomerNr()==customers.at(i)->getCustomerNr()){
-                loans.at(k)->printStream(ostr);
-            }
+        for (unsigned int k = 0; k < loans.size(); k++) {
+            //Ausgabe der Ausleihen für jeden Kunden
+//            string loan_temp = loans.at(k)->getloaner()->getCustomerNr();
+            string cust_temp = customers.at(i)->getCustomerNr();
+            //            cout << "DEBUG1" << "loan: " << loan_temp << "cust: " << cust_temp << endl;
+//            if (loan_temp.compare(cust_temp)) {
+//                //                cout << "DEBUG2" << endl;
+//                loans.at(k)->printStream(ostr);
+//            }
         }
-
     }
-    for (unsigned int i = 0; i < loans.size(); i++) {
-        //        ostr << customers.at(i) << endl;
-        loans.at(i)->printStream(ostr);
+//    for (unsigned int i = 0; i < loans.size(); i++) {
+    for (TList<TLoan *>::Iterator it = loans.begin(); it != loans.end(); it++) {
+        //        ostr << *customers.at(i) << endl;
+//        loans.at(i)->printStream(ostr);
+        (*it)->printStream(ostr);
+        //        ostr << loans.at(i) << endl;
     }
 
     return ostr;

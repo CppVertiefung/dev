@@ -68,3 +68,15 @@ void TCustomer::setCustomerNr(string val) {
 string TCustomer::getCustomerNr() {
     return CustomerNr;
 }
+
+ostream & TCustomer::printStream(ostream& ostr) {
+    ostr << name << "(Kundennummer.: " << getCustomerNr() << " )" << endl;
+    address.print();
+    ostr << "* ";
+    birth.print();
+    return ostr;
+}
+
+ostream & std::operator<<(ostream &ostr, TCustomer &c) {
+    c.printStream(ostr);
+}
